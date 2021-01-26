@@ -31,7 +31,7 @@ module.exports = {
          * The full URL of the WordPress site's GraphQL API.
          * Example : 'https://www.example-site.com/graphql'
          */
-        url: process.env.WPGRAPHQL_URL,
+        url: process.env.GATSBY_WPGRAPHQL_URL,
       },
     },
     {
