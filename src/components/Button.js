@@ -18,6 +18,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   text: "Book a Bin",
+  outline: false,
 }
 
 export default Button

@@ -7,13 +7,21 @@
     font-family: "Kumbh Sans", sans-serif;
     @apply antialiased;
   }
+  p {
+    @apply text-dark-grey;
+  }
 }
 
 .container-lg {
   max-width: 1675px;
 }
 
-.container-lg {
+.cs-container {
+  max-width: 1393px;
+}
+
+.container-lg,
+.cs-container {
   @apply mx-auto w-full px-15px;
 }
 
@@ -38,4 +46,28 @@
 
 .cs-btn:hover {
   @apply bg-opacity-80;
+}
+
+.cs-header .cs-btn {
+  @apply hidden lg:flex;
+}
+
+/* HERO */
+
+.cs-hero-texts h1 {
+  font-size: 18px;
+  line-height: 15px;
+  @apply text-dark-grey;
+}
+
+.cs-hero-texts h2 {
+  @apply text-slogan-sm text-dark-green lg:text-slogan-lg lg:max-w-500px;
+}
+
+.cs-hero-texts .hero-content p {
+  @apply text-content-p;
+}
+
+.cs-hero {
+  @apply lg:h-hero-lg;
 }
