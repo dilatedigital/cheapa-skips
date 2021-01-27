@@ -3,6 +3,11 @@ import PropTypes from "prop-types"
 import Button from "../Button"
 import CircleBg from "../../images/circle.svg"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { useSpring, animated } from "react-spring"
+
+const calc = (x, y) => [x - window.innerWidth / 2, y - window.innerHeight / 2]
+const trans1 = (x, y) => `translate3d(${x / 10}px,${y / 10}px,0)`
+const trans2 = (x, y) => `translate3d(${x / 8 + 0}px,${y / 8 - 0}px,0)`
 
 const Hero = ({
   showHeroButton,
@@ -13,26 +18,20 @@ const Hero = ({
   heroImage,
 }) => {
   const imageData = getImage(heroImage.localFile)
-
-  const firstTwoWords = string => {
-    let splitedString = string.split(" ")
-    let restOfString = splitedString.slice(2).join(" ")
-
-    return (
-      <>
-        {`${splitedString[0]} ${splitedString[1]}`}
-        <br /> {restOfString}
-      </>
-    )
-  }
+  const [props, set] = useSpring(() => ({
+    xy: [0, 0],
+    config: { mass: 10, tension: 550, friction: 140 },
+  }))
 
   return (
     <div className="cs-container cs-hero lg:mt-22 lg:flex lg:justify-between lg:items-center">
       <div className="cs-hero-texts">
         <h1 className="font-bold">{heroTitle}</h1>
-        <h2 className="font-bold mt-6 lg:mt-5.5">
-          {firstTwoWords(heroSlogan)}
-        </h2>
+        <div
+          className="font-bold mt-6 lg:mt-5.5"
+          dangerouslySetInnerHTML={{ __html: heroSlogan }}
+        />
+
         <div
           dangerouslySetInnerHTML={{ __html: heroTexts }}
           className="hero-content my-7 lg:max-w-400px lg:mt-8.5 lg:mb-7.5"
@@ -45,11 +44,19 @@ const Hero = ({
           />
         )}
       </div>
-      <div className="relative hero-image lg:max-w-811px lg:flex lg:justify-end w-full">
-        <div className="absolute left-0 lg:-top-90px">
+      <div
+        className="relative hero-image lg:max-w-811px lg:flex lg:justify-end w-full"
+        onMouseMove={({ clientX: x, clientY: y }) => set({ xy: calc(x, y) })}
+      >
+        <animated.div
+          className="absolute left-0 lg:-top-90px"
+          style={{ transform: props.xy.interpolate(trans1) }}
+        >
           <CircleBg />
-        </div>
-        <GatsbyImage image={imageData} alt="Cheap Skips Bin" />
+        </animated.div>
+        <animated.div style={{ transform: props.xy.interpolate(trans2) }}>
+          <GatsbyImage image={imageData} alt="Cheap Skips Bin" />
+        </animated.div>
       </div>
     </div>
   )

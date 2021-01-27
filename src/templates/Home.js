@@ -19,7 +19,6 @@ const Home = ({ data: { wpPage } }) => {
       />
       <Hero
         heroButton={wpPage.homeFields.heroButton}
-        heroSlogan={wpPage.homeFields.heroSlogan}
         heroTexts={wpPage.homeFields.heroTexts}
         heroSlogan={wpPage.homeFields.heroSlogan}
         heroTitle={wpPage.homeFields.heroTitle}
