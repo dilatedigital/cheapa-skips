@@ -4,9 +4,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "indigo-lighter": "#b3bcf5",
-        indigo: "#5c6ac4",
-        "indigo-dark": "#202e78",
+        primary: "#1E451A",
+        secondary: "#FD6F63",
+        "dark-green": "#182B33",
+        "dark-grey": "#363636",
+      },
+      fontSize: {
+        "menu-item": ["16px", "36px"],
+        "phone-header": ["18px", "36px"],
+      },
+      ringColor: {
+        primary: "#1E451A",
+      },
+      spacing: {
+        "15px": "15px",
+      },
+      maxWidth: {
+        "container-lg": "1675px",
+        "menu-desktop": "540px",
       },
     },
   },

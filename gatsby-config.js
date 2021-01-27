@@ -9,9 +9,11 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby WordPress Tailwind Starter`,
-    description: `A starter using Gatsby, WordPress, and Tailwind`,
-    author: `Jejomar Dorongon`,
+    title: `Cheapa Skips WA`,
+    description: `Cheapa Skips WA website powered by Gatsby.js`,
+    author: `Dilate Digital - Jejomar Dorongon`,
+    image: "/cheapa-skips-logo.png",
+    siteUrl: `https://google.com/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -22,8 +24,17 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Kumbh Sans"],
+        },
+      },
+    },
     {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
@@ -46,7 +57,16 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /images/,
+        },
+      },
+    },
     `gatsby-plugin-postcss`,
+    `gatsby-plugin-preact`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

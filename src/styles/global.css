@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    font-family: "Kumbh Sans", sans-serif;
+    @apply antialiased;
+  }
+}
+
+.container-lg {
+  max-width: 1675px;
+}
+
+.container-lg {
+  @apply mx-auto w-full px-15px;
+}
+
+.menu {
+  margin-left: 130px;
+}
+
+.menu a:hover {
+  @apply text-primary;
+}
+
+.menu li:hover svg path {
+  @apply fill-current text-primary;
+}
+
+.cs-btn {
+  @apply bg-secondary text-white w-full flex items-center justify-center font-bold text-phone-header transition focus:ring-2 focus:ring-primary;
+  max-width: 150px;
+  height: 58px;
+  border-radius: 2px;
+}
+
+.cs-btn:hover {
+  @apply bg-opacity-80;
+}
