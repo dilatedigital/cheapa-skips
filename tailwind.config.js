@@ -29,8 +29,10 @@ module.exports = {
         22: "96px",
       },
       maxWidth: {
+        "logo-sm": "75px",
         "container-lg": "1675px",
         "menu-desktop": "540px",
+        "270px": "270px",
         "400px": "400px",
         "500px": "500px",
         "811px": "811px",

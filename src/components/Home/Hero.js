@@ -24,7 +24,7 @@ const Hero = ({
   }))
 
   return (
-    <div className="cs-container cs-hero lg:mt-22 lg:flex lg:justify-between lg:items-center">
+    <div className="cs-container cs-hero mt-12 lg:mt-22 lg:flex lg:justify-between lg:items-center">
       <div className="cs-hero-texts">
         <h1 className="font-bold">{heroTitle}</h1>
         <div
@@ -45,7 +45,7 @@ const Hero = ({
         )}
       </div>
       <div
-        className="relative hero-image lg:max-w-811px lg:flex lg:justify-end w-full"
+        className="relative hero-image mt-8 justify-center lg:mt-0 lg:max-w-811px lg:flex lg:justify-end w-full"
         onMouseMove={({ clientX: x, clientY: y }) => set({ xy: calc(x, y) })}
       >
         <animated.div
@@ -54,8 +54,15 @@ const Hero = ({
         >
           <CircleBg />
         </animated.div>
-        <animated.div style={{ transform: props.xy.interpolate(trans2) }}>
-          <GatsbyImage image={imageData} alt="Cheap Skips Bin" />
+        <animated.div
+          style={{ transform: props.xy.interpolate(trans2) }}
+          className="max-w-270px mx-auto lg:mx-0 lg:max-w-full"
+        >
+          <GatsbyImage
+            image={imageData}
+            alt="Cheap Skips Bin"
+            className="mt-8 lg:mt-0"
+          />
         </animated.div>
       </div>
     </div>
