@@ -81,7 +81,8 @@
 
 .cs-hero-texts .hero-content p,
 .skip-bin-sizes p,
-.cs-welcome p {
+.cs-welcome p,
+.cs-whatCanGoContent p {
   @apply text-content-p;
 }
 
@@ -137,7 +138,8 @@
   height: 236px;
 }
 
-.cs-welcome p:not(:last-child) {
+.cs-welcome p:not(:last-child),
+.cs-whatCanGoContent p:not(:last-child) {
   @apply mb-4;
 }
 

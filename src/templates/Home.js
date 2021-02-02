@@ -5,6 +5,7 @@ import { graphql } from "gatsby"
 import SEO from "../components/seo"
 import SkipBinSizes from "../components/Home/SkipBinSizes"
 import Welcome from "../components/Home/Welcome"
+import WhatCanGo from "../components/Home/WhatCanGo"
 
 const Home = ({ data: { wpPage } }) => {
   //console.log(wpPage)
@@ -36,6 +37,12 @@ const Home = ({ data: { wpPage } }) => {
         welcomeContent={wpPage.homeFields.welcomeContent}
         welcomeImage={wpPage.homeFields.welcomeImage}
         welcomeButton={wpPage.homeFields.welcomeButton}
+      />
+      <WhatCanGo
+        whatCanGoButton={wpPage.homeFields.whatCanGoButton}
+        whatCanGoTitle={wpPage.homeFields.whatCanGoTitle}
+        whatCanGoContent={wpPage.homeFields.whatCanGoContent}
+        whatCanGoIcons={wpPage.homeFields.whatCanGoIcons}
       />
     </Layout>
   )
@@ -94,6 +101,26 @@ export const query = graphql`
             }
           }
           welcomeButtonText
+        }
+        whatCanGoTitle
+        whatCanGoContent
+        whatCanGoButton {
+          whatCanGoButtonLink {
+            ... on WpPage {
+              uri
+            }
+          }
+          whatCanGoButtonText
+        }
+        whatCanGoIcons {
+          name
+          icon {
+            altText
+            id
+            localFile {
+              publicURL
+            }
+          }
         }
       }
     }

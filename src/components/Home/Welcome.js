@@ -9,7 +9,7 @@ const Welcome = ({
   welcomeImage,
   welcomeButton,
 }) => {
-  console.log(welcomeButton)
+  //console.log(welcomeButton)
   const imageData = getImage(welcomeImage.localFile)
   return (
     <section className="cs-welcome xl:flex xl:items-center xl:h-welcome-img">
