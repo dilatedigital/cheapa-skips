@@ -80,7 +80,8 @@
 }
 
 .cs-hero-texts .hero-content p,
-.skip-bin-sizes p {
+.skip-bin-sizes p,
+.cs-welcome p {
   @apply text-content-p;
 }
 
@@ -130,9 +131,24 @@
   @apply font-bold;
 }
 
+/*  WELCOME SECTION */
+.cs-welcome-image {
+  max-width: 327px;
+  height: 236px;
+}
+
+.cs-welcome p:not(:last-child) {
+  @apply mb-4;
+}
+
 @media screen and (min-width: 768px) {
   .each-bin:not(:first-child) {
     margin-top: 0;
+  }
+
+  .cs-welcome-image {
+    max-width: 600px;
+    height: auto;
   }
 }
 
@@ -140,6 +156,9 @@
   .hero-image svg {
     width: 400px;
     height: 450px;
+  }
+  .cs-welcome-image {
+    @apply max-w-full;
   }
 }
 
@@ -152,5 +171,9 @@
   .skip-bins-container {
     max-width: 1574px;
     @apply mx-auto;
+  }
+
+  .cs-welcome-content {
+    max-width: 660px;
   }
 }

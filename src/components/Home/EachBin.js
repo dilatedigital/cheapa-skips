@@ -6,7 +6,7 @@ import Button from "../Button"
 
 const EachBin = ({ node }) => {
   const imageData = getImage(node.featuredImage.node.localFile)
-  console.log(node)
+
   return (
     <div className="each-bin">
       <div className="flex items-center justify-center h-bin-img">

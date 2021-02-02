@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import { graphql } from "gatsby"
 import SEO from "../components/seo"
 import SkipBinSizes from "../components/Home/SkipBinSizes"
+import Welcome from "../components/Home/Welcome"
 
 const Home = ({ data: { wpPage } }) => {
   //console.log(wpPage)
@@ -29,6 +30,12 @@ const Home = ({ data: { wpPage } }) => {
       <SkipBinSizes
         title={wpPage.homeFields.skipBinTitle}
         content={wpPage.homeFields.skipBinContent}
+      />
+      <Welcome
+        welcomeTitle={wpPage.homeFields.welcomeTitle}
+        welcomeContent={wpPage.homeFields.welcomeContent}
+        welcomeImage={wpPage.homeFields.welcomeImage}
+        welcomeButton={wpPage.homeFields.welcomeButton}
       />
     </Layout>
   )
@@ -69,6 +76,25 @@ export const query = graphql`
         }
         skipBinTitle
         skipBinContent
+        welcomeTitle
+        welcomeContent
+        welcomeImage {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        welcomeButton {
+          welcomeButtonLink {
+            ... on WpPage {
+              id
+              uri
+            }
+          }
+          welcomeButtonText
+        }
       }
     }
   }

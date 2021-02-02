@@ -7,7 +7,7 @@ const SkipBinSizes = ({ title, content }) => {
   const { allWpBinSize } = useStaticQuery(query)
   //console.log(allWpBinSize)
   return (
-    <section className="py-20 text-center px-15px skip-bin-sizes xl:py-52">
+    <section className="py-20 text-center px-15px skip-bin-sizes xl:py-52 xl:pt-52 xl:pb-42">
       <h3 className="text-h3-sm lg:text-h3-lg">{title}</h3>
       <div
         dangerouslySetInnerHTML={{ __html: content }}
