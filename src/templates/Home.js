@@ -3,9 +3,10 @@ import Hero from "../components/Home/Hero"
 import Layout from "../components/layout"
 import { graphql } from "gatsby"
 import SEO from "../components/seo"
+import SkipBinSizes from "../components/Home/SkipBinSizes"
 
 const Home = ({ data: { wpPage } }) => {
-  console.log(wpPage)
+  //console.log(wpPage)
   return (
     <Layout>
       <SEO
@@ -24,6 +25,10 @@ const Home = ({ data: { wpPage } }) => {
         heroTitle={wpPage.homeFields.heroTitle}
         showHeroButton={wpPage.homeFields.showHeroButton}
         heroImage={wpPage.homeFields.heroImage}
+      />
+      <SkipBinSizes
+        title={wpPage.homeFields.skipBinTitle}
+        content={wpPage.homeFields.skipBinContent}
       />
     </Layout>
   )
@@ -62,6 +67,8 @@ export const query = graphql`
             }
           }
         }
+        skipBinTitle
+        skipBinContent
       }
     }
   }

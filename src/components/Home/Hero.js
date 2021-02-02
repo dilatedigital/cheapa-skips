@@ -24,7 +24,7 @@ const Hero = ({
   }))
 
   return (
-    <div className="cs-container cs-hero mt-12 lg:mt-22 lg:flex lg:justify-between lg:items-center">
+    <div className="cs-container cs-hero mt-12 lg:mt-18 lg:flex lg:justify-between lg:items-center">
       <div className="cs-hero-texts">
         <h1 className="font-bold">{heroTitle}</h1>
         <div

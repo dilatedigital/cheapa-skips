@@ -5,10 +5,16 @@
 @layer base {
   * {
     font-family: "Kumbh Sans", sans-serif;
-    @apply antialiased;
+    @apply antialiased text-dark-grey;
   }
   p {
     @apply text-dark-grey;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold text-dark-green;
   }
 }
 
@@ -52,6 +58,15 @@
   @apply hidden lg:flex;
 }
 
+.cs-btn.cs-btn--outline {
+  @apply bg-transparent text-secondary border-solid border-secondary border transition;
+}
+
+.cs-btn.cs-btn.cs-btn--outline:hover,
+.each-bin:hover .cs-btn {
+  @apply bg-secondary text-white border-none;
+}
+
 /* HERO */
 
 .cs-hero-texts h1 {
@@ -64,7 +79,8 @@
   @apply text-slogan-sm text-dark-green lg:text-slogan-lg lg:max-w-500px;
 }
 
-.cs-hero-texts .hero-content p {
+.cs-hero-texts .hero-content p,
+.skip-bin-sizes p {
   @apply text-content-p;
 }
 
@@ -75,6 +91,39 @@
 .hero-image svg {
   width: 222px;
   height: 230px;
+}
+
+/* SKIP BIN SIZES */
+.each-bin svg {
+  width: 238px;
+  height: 247px;
+  @apply absolute;
+}
+
+.each-bin svg path {
+  @apply transition;
+}
+
+.each-bin:hover svg path {
+  @apply text-primary fill-current opacity-100;
+}
+
+.bin-specs {
+  max-width: 260px;
+  @apply mx-auto;
+}
+
+.bin-specs .flex {
+  @apply text-specs-p;
+}
+
+.bin-specs .spec-name {
+  width: 110px;
+  margin-right: 12px;
+}
+
+.bin-specs .spec-value {
+  @apply font-bold;
 }
 
 @media screen and (min-width: 1024px) {
