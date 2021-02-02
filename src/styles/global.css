@@ -94,6 +94,10 @@
 }
 
 /* SKIP BIN SIZES */
+.each-bin:not(:first-child) {
+  margin-top: 50px;
+}
+
 .each-bin svg {
   width: 238px;
   height: 247px;
@@ -109,7 +113,7 @@
 }
 
 .bin-specs {
-  max-width: 260px;
+  max-width: 285px;
   @apply mx-auto;
 }
 
@@ -126,9 +130,27 @@
   @apply font-bold;
 }
 
+@media screen and (min-width: 768px) {
+  .each-bin:not(:first-child) {
+    margin-top: 0;
+  }
+}
+
 @media screen and (min-width: 1024px) {
+  .hero-image svg {
+    width: 400px;
+    height: 450px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
   .hero-image svg {
     width: 603px;
     height: 625px;
+  }
+
+  .skip-bins-container {
+    max-width: 1574px;
+    @apply mx-auto;
   }
 }

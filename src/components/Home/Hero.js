@@ -24,7 +24,7 @@ const Hero = ({
   }))
 
   return (
-    <div className="cs-container cs-hero mt-12 lg:mt-18 lg:flex lg:justify-between lg:items-center">
+    <div className="cs-container cs-hero mt-12 xl:mt-18 md:flex md:justify-between md:items-center">
       <div className="cs-hero-texts">
         <h1 className="font-bold">{heroTitle}</h1>
         <div
@@ -45,7 +45,7 @@ const Hero = ({
         )}
       </div>
       <div
-        className="relative hero-image mt-8 justify-center lg:mt-0 lg:max-w-811px lg:flex lg:justify-end w-full"
+        className="relative hero-image mt-8 justify-center lg:mt-0 lg:max-w-400px xl:max-w-811px lg:flex lg:justify-end w-full"
         onMouseMove={({ clientX: x, clientY: y }) => set({ xy: calc(x, y) })}
       >
         <animated.div
@@ -56,12 +56,12 @@ const Hero = ({
         </animated.div>
         <animated.div
           style={{ transform: props.xy.interpolate(trans2) }}
-          className="max-w-270px mx-auto lg:mx-0 lg:max-w-full"
+          className="max-w-270px mx-auto lg:max-w-400px xl:mx-0 xl:max-w-full"
         >
           <GatsbyImage
             image={imageData}
             alt="Cheap Skips Bin"
-            className="mt-8 lg:mt-0"
+            className="mt-8 xl:mt-0"
           />
         </animated.div>
       </div>
