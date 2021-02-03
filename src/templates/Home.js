@@ -7,6 +7,7 @@ import SkipBinSizes from "../components/Home/SkipBinSizes"
 import Welcome from "../components/Home/Welcome"
 import WhatCanGo from "../components/Home/WhatCanGo"
 import WhyChooseUs from "../components/Home/WhyChooseUs"
+import HomeForm from "../components/Home/HomeForm"
 
 const Home = ({ data: { wpPage } }) => {
   //console.log(wpPage)
@@ -50,6 +51,10 @@ const Home = ({ data: { wpPage } }) => {
         whyChooseUsContent={wpPage.homeFields.whyChooseUsContent}
         whyChooseUsImage={wpPage.homeFields.whyChooseUsImage}
         whyChooseUsIcons={wpPage.homeFields.whyChooseUsIcons}
+      />
+      <HomeForm
+        bookNowTitle={wpPage.homeFields.bookNowTitle}
+        bookNowContent={wpPage.homeFields.bookNowContent}
       />
     </Layout>
   )
@@ -149,6 +154,8 @@ export const query = graphql`
           }
           name
         }
+        bookNowTitle
+        bookNowContent
       }
     }
   }

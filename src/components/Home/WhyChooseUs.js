@@ -10,13 +10,12 @@ const WhyChooseUs = ({
 }) => {
   const imageData = getImage(whyChooseUsImage.localFile)
   return (
-    <section className="cs-why pb-20 xl:flex xl:items-center">
+    <section className="cs-why pb-10 xl:flex xl:items-center">
       <div className="px-15px cs-why-content">
         <h3 className="text-h3-sm mb-4 lg:text-h3-lg">{whyChooseUsTitle}</h3>
         <div dangerouslySetInnerHTML={{ __html: whyChooseUsContent }} />
         <div className="mt-8 md:grid md:grid-cols-2 md:gap-8 xl:mt-14">
           {whyChooseUsIcons.map(eachIcon => {
-            console.log(eachIcon)
             return (
               <div key={eachIcon.id} className="each-reason flex items-center">
                 <div className="w-16">

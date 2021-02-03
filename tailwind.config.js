@@ -9,6 +9,7 @@ module.exports = {
         "dark-green": "#182B33",
         "dark-grey": "#363636",
         "circle-bg": "#0a6259",
+        "light-green": "#E6EFEE",
       },
       fontSize: {
         "menu-item": ["16px", "36px"],
