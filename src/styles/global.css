@@ -16,6 +16,11 @@
   h4 {
     @apply font-bold text-dark-green;
   }
+
+  section {
+    max-width: 1920px;
+    @apply mx-auto;
+  }
 }
 
 .container-lg {
@@ -82,7 +87,8 @@
 .cs-hero-texts .hero-content p,
 .skip-bin-sizes p,
 .cs-welcome p,
-.cs-whatCanGoContent p {
+.cs-whatCanGoContent p,
+.cs-why-content p {
   @apply text-content-p;
 }
 
@@ -139,8 +145,18 @@
 }
 
 .cs-welcome p:not(:last-child),
-.cs-whatCanGoContent p:not(:last-child) {
-  @apply mb-4;
+.cs-whatCanGoContent p:not(:last-child),
+.cs-why-content p:not(:last-child) {
+  @apply mb-8;
+}
+
+/*  WHY CHOOSE US SECTION */
+.cs-why .each-reason {
+  max-width: 290px;
+  @apply mx-auto;
+}
+.cs-why .each-reason:not(:last-child) {
+  @apply mb-8;
 }
 
 @media screen and (min-width: 768px) {
@@ -151,6 +167,10 @@
   .cs-welcome-image {
     max-width: 600px;
     height: auto;
+  }
+
+  .cs-why .each-reason:not(:last-child) {
+    @apply mb-0;
   }
 }
 
@@ -177,5 +197,10 @@
 
   .cs-welcome-content {
     max-width: 660px;
+  }
+
+  .cs-why-content {
+    max-width: 643px;
+    @apply ml-auto;
   }
 }

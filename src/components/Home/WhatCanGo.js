@@ -8,7 +8,7 @@ const WhatCanGo = ({
   whatCanGoIcons,
   whatCanGoButton,
 }) => {
-  console.log(whatCanGoButton)
+  //console.log(whatCanGoButton)
   return (
     <section className="cs-whatCanGo px-15px text-center py-20 xl:py-44">
       <h3 className="text-h3-sm mb-4 lg:text-h3-lg">{whatCanGoTitle}</h3>
@@ -16,10 +16,8 @@ const WhatCanGo = ({
         dangerouslySetInnerHTML={{ __html: whatCanGoContent }}
         className="cs-whatCanGoContent lg:max-w-795px lg:mx-auto"
       />
-      <div className="mt-7.5 grid grid-cols-3 gap-y-10 lg:grid-cols-6 xl:max-w-wcg-container xl:mx-auto xl:mt-90px">
+      <div className="mt-7.5 grid grid-cols-3 gap-y-10 lg:grid-cols-6 xl:max-w-wcg-container xl:mx-auto xl:mt-90px xl:gap-y-20">
         {whatCanGoIcons.map(eachIcon => {
-          //const imageData = getImage(eachIcon.localFile)
-          console.log(eachIcon)
           return (
             <div key={eachIcon.id}>
               <img

@@ -19,7 +19,7 @@ const Welcome = ({
       <div className="px-15px mt-10 cs-welcome-content xl:ml-18">
         <h3 className="text-h3-sm mb-4 lg:text-h3-lg">{welcomeTitle}</h3>
         <div dangerouslySetInnerHTML={{ __html: welcomeContent }} />
-        <div className="mt-4 xl:mt-11.5">
+        <div className="mt-8 xl:mt-11.5">
           <Button
             link={welcomeButton.welcomeButtonLink?.uri}
             text={welcomeButton.welcomeButtonText}

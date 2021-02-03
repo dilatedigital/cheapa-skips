@@ -6,6 +6,7 @@ import SEO from "../components/seo"
 import SkipBinSizes from "../components/Home/SkipBinSizes"
 import Welcome from "../components/Home/Welcome"
 import WhatCanGo from "../components/Home/WhatCanGo"
+import WhyChooseUs from "../components/Home/WhyChooseUs"
 
 const Home = ({ data: { wpPage } }) => {
   //console.log(wpPage)
@@ -43,6 +44,12 @@ const Home = ({ data: { wpPage } }) => {
         whatCanGoTitle={wpPage.homeFields.whatCanGoTitle}
         whatCanGoContent={wpPage.homeFields.whatCanGoContent}
         whatCanGoIcons={wpPage.homeFields.whatCanGoIcons}
+      />
+      <WhyChooseUs
+        whyChooseUsTitle={wpPage.homeFields.whyChooseUsTitle}
+        whyChooseUsContent={wpPage.homeFields.whyChooseUsContent}
+        whyChooseUsImage={wpPage.homeFields.whyChooseUsImage}
+        whyChooseUsIcons={wpPage.homeFields.whyChooseUsIcons}
       />
     </Layout>
   )
@@ -121,6 +128,26 @@ export const query = graphql`
               publicURL
             }
           }
+        }
+        whyChooseUsTitle
+        whyChooseUsContent
+        whyChooseUsImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          altText
+        }
+        whyChooseUsIcons {
+          icon {
+            altText
+            id
+            localFile {
+              publicURL
+            }
+          }
+          name
         }
       }
     }
