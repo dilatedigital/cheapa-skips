@@ -5,10 +5,17 @@ import ReactDatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 const ContactForm5 = () => {
-  const { register, handleSubmit, errors, formState, control } = useForm()
+  const {
+    register,
+    handleSubmit,
+    errors,
+    formState,
+    control,
+    watch,
+  } = useForm()
 
-  const [startDate, setStartDate] = useState(null)
-  const [endDate, setEndDate] = useState(null)
+  const deliveryDate = watch("deliveryDate")
+  const returnDate = watch("returnDate")
 
   const { isSubmitting } = formState
 
@@ -16,8 +23,6 @@ const ContactForm5 = () => {
 
   const onSubmit = data => {
     console.log(data)
-    console.log(startDate)
-    console.log(endDate)
     let bodyFormData = new FormData()
 
     bodyFormData.append("your-name", data.name)
@@ -40,7 +45,7 @@ const ContactForm5 = () => {
       })
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="cs-form">
       <div className="name-email">
         <div>
           <label htmlFor="name">Name</label>
@@ -155,15 +160,14 @@ const ContactForm5 = () => {
               rules={{ required: "Please select a delivery date." }}
               required
               defaultValue=""
-              onChange={value => setStartDate(value)}
               render={({ onChange, value }) => (
                 <ReactDatePicker
                   onChange={onChange}
                   selected={value}
                   selectsStart
                   minDate={new Date()}
-                  startDate={startDate}
-                  endDate={endDate}
+                  startDate={deliveryDate}
+                  endDate={returnDate}
                   placeholderText="Choose delivery date"
                   className={`${
                     errors.deliveryDate ? "ring-2 ring-red-500" : ""
@@ -186,15 +190,14 @@ const ContactForm5 = () => {
               rules={{ required: "Please select a delivery return date." }}
               required
               defaultValue=""
-              onChange={date => setEndDate(date)}
               render={({ onChange, value }) => (
                 <ReactDatePicker
                   onChange={onChange}
-                  selected={value}
+                  selected={deliveryDate > returnDate ? deliveryDate : value}
                   selectsEnd
-                  minDate={new Date()}
-                  startDate={startDate}
-                  endDate={endDate}
+                  minDate={deliveryDate}
+                  startDate={deliveryDate}
+                  endDate={returnDate}
                   placeholderText="Choose delivery return date"
                   className={`${
                     errors.returnDate ? "ring-2 ring-red-500" : ""

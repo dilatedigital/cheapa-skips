@@ -159,6 +159,16 @@
   @apply mb-8;
 }
 
+.cs-home-form .react-datepicker__day--selected,
+.cs-home-form .react-datepicker__day--in-range,
+.cs-home-form .react-datepicker__day--in-selecting-range:hover {
+  @apply bg-dark-green text-white;
+}
+
+.cs-home-form .react-datepicker__day--in-selecting-range {
+  @apply bg-secondary;
+}
+
 @media screen and (min-width: 768px) {
   .each-bin:not(:first-child) {
     margin-top: 0;
@@ -202,5 +212,10 @@
   .cs-why-content {
     max-width: 643px;
     @apply ml-auto;
+  }
+
+  .cs-form {
+    max-width: 812px;
+    @apply mx-auto;
   }
 }
