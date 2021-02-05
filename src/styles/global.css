@@ -159,6 +159,8 @@
   @apply mb-8;
 }
 
+/*  HOME FORM */
+
 .cs-home-form .react-datepicker__day--selected,
 .cs-home-form .react-datepicker__day--in-range,
 .cs-home-form .react-datepicker__day--in-selecting-range:hover {
@@ -167,6 +169,37 @@
 
 .cs-home-form .react-datepicker__day--in-selecting-range {
   @apply bg-secondary;
+}
+
+.cs-home-form {
+  @apply px-15px;
+}
+
+.cs-home-form label {
+  @apply text-dark-green text-base;
+}
+
+.cs-home-form input[type="text"],
+.cs-home-form input[type="email"],
+.cs-home-form select {
+  border: 1px solid #182b3347;
+  border-radius: 2px;
+  @apply px-4 py-2 focus:outline-none focus:ring-2 focus:ring-dark-green;
+}
+
+.cs-home-form select {
+  @apply appearance-none;
+}
+
+.cs-home-form .suburbs input {
+  @apply focus:ring-0;
+}
+
+.cs-home-form .react-datepicker-wrapper,
+.cs-home-form input[type="text"],
+.cs-home-form input[type="email"],
+.cs-home-form select {
+  @apply w-full;
 }
 
 @media screen and (min-width: 768px) {

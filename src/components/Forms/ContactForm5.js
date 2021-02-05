@@ -1,8 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import { useForm, Controller } from "react-hook-form"
 import axios from "axios"
 import ReactDatePicker from "react-datepicker"
+import ReactSelect from "react-select"
 import "react-datepicker/dist/react-datepicker.css"
+import suburbs from "../../data/suburbs"
 
 const ContactForm5 = () => {
   const {
@@ -21,8 +23,41 @@ const ContactForm5 = () => {
 
   const formLink = process.env.GATSBY_HOMEFORM
 
+  //declare options for suburb
+  let options = []
+
+  suburbs.map(item => {
+    options.push({
+      value: item,
+      label: item,
+    })
+  })
+
+  //styles for react-select
+  const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      padding: "0.5rem 1rem",
+      borderRadius: "2px",
+      boxShadow: state.isFocused ? "0 0 0 0.1rem #182B33" : 0,
+      borderColor: state.isFocused ? "#182B33" : "#182b3347",
+    }),
+    valueContainer: base => ({
+      ...base,
+      padding: 0,
+    }),
+    dropdownIndicator: base => ({
+      ...base,
+      padding: "0 0 0 0.5rem",
+    }),
+    clearIndicator: base => ({
+      ...base,
+      padding: "0 0.5rem 0 0",
+    }),
+  }
+
   const onSubmit = data => {
-    console.log(data)
+    //console.log(data)
     let bodyFormData = new FormData()
 
     bodyFormData.append("your-name", data.name)
@@ -32,6 +67,7 @@ const ContactForm5 = () => {
     bodyFormData.append("bin-size", data.bin)
     bodyFormData.append("delivery-date", data.deliveryDate)
     bodyFormData.append("return-date", data.returnDate)
+    bodyFormData.append("suburb", data.suburb.value)
 
     axios
       .post(formLink, bodyFormData)
@@ -54,9 +90,8 @@ const ContactForm5 = () => {
               type="text"
               id="name"
               name="name"
-              className={`${
-                errors.name ? "ring-2 ring-red-500" : ""
-              } focus:outline-none focus:ring-2 focus:ring-dark-green`}
+              placeholder="Name"
+              className={`${errors.name ? "ring-2 ring-red-500" : ""}`}
               ref={register({
                 required: "Name is required",
                 maxLength: {
@@ -80,9 +115,8 @@ const ContactForm5 = () => {
               type="email"
               id="email"
               name="email"
-              className={`${
-                errors.email ? "ring-2 ring-red-500" : ""
-              } focus:outline-none focus:ring-2 focus:ring-dark-green`}
+              placeholder="Email"
+              className={`${errors.email ? "ring-2 ring-red-500" : ""}`}
               ref={register({
                 required: "Email is required",
                 pattern: {
@@ -98,6 +132,34 @@ const ContactForm5 = () => {
           </div>
         </div>
       </div>
+      <div className="suburbs">
+        <div>
+          <label htmlFor="suburb">Suburbs</label>
+          <div>
+            <Controller
+              name="suburb"
+              id="suburb"
+              control={control}
+              rules={{ required: "Please select your suburb." }}
+              defaultValue=""
+              render={({ onChange }) => (
+                <ReactSelect
+                  onChange={onChange}
+                  options={options}
+                  isClearable
+                  isSearchable
+                  styles={customStyles}
+                  placeholder="Type your suburb name..."
+                  className={`${errors.suburb ? "ring-2 ring-red-500" : ""}`}
+                />
+              )}
+            />
+            {errors.suburb && errors.suburb.message && (
+              <p>{errors.suburb.message}</p>
+            )}
+          </div>
+        </div>
+      </div>
       <div className="waste-bin">
         <div>
           <label htmlFor="waste">Waste Type</label>
@@ -106,9 +168,7 @@ const ContactForm5 = () => {
               name="waste"
               id="waste"
               ref={register({ required: "Please select a waste type." })}
-              className={`${
-                errors.waste ? "ring-2 ring-red-500" : ""
-              } focus:outline-none focus:ring-2 focus:ring-dark-green`}
+              className={`${errors.waste ? "ring-2 ring-red-500" : ""}`}
               required
             >
               <option value="">Select Waste Type</option>
@@ -130,9 +190,7 @@ const ContactForm5 = () => {
               name="bin"
               id="bin"
               ref={register({ required: "Please select a bin size." })}
-              className={`${
-                errors.bin ? "ring-2 ring-red-500" : ""
-              } focus:outline-none focus:ring-2 focus:ring-dark-green`}
+              className={`${errors.bin ? "ring-2 ring-red-500" : ""}`}
               required
             >
               <option value="">Select Bin Size</option>
@@ -171,7 +229,7 @@ const ContactForm5 = () => {
                   placeholderText="Choose delivery date"
                   className={`${
                     errors.deliveryDate ? "ring-2 ring-red-500" : ""
-                  } focus:outline-none focus:ring-2 focus:ring-dark-green`}
+                  }`}
                 />
               )}
             />
@@ -193,7 +251,7 @@ const ContactForm5 = () => {
               render={({ onChange, value }) => (
                 <ReactDatePicker
                   onChange={onChange}
-                  selected={deliveryDate > returnDate ? deliveryDate : value}
+                  selected={value}
                   selectsEnd
                   minDate={deliveryDate}
                   startDate={deliveryDate}
@@ -201,7 +259,7 @@ const ContactForm5 = () => {
                   placeholderText="Choose delivery return date"
                   className={`${
                     errors.returnDate ? "ring-2 ring-red-500" : ""
-                  } focus:outline-none focus:ring-2 focus:ring-dark-green`}
+                  }`}
                 />
               )}
             />
