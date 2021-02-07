@@ -35,6 +35,10 @@ module.exports = {
          * Example : 'https://www.example-site.com/graphql'
          */
         url: process.env.GATSBY_WPGRAPHQL_URL,
+
+        schema: {
+          perPage: 30,
+        },
       },
     },
     {

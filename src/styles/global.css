@@ -195,11 +195,33 @@
   @apply focus:ring-0;
 }
 
+.cs-home-form .cs-form-control .relative svg {
+  @apply absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  right: 20px;
+}
+
+.cs-home-form .cs-form-control > div {
+  @apply mb-4;
+}
+
 .cs-home-form .react-datepicker-wrapper,
 .cs-home-form input[type="text"],
 .cs-home-form input[type="email"],
 .cs-home-form select {
   @apply w-full;
+}
+
+.cs-spinner svg {
+  @apply animate-spin -ml-1 mr-3 h-12 w-12;
+}
+.cs-spinner svg circle {
+  @apply opacity-25 stroke-current;
+}
+
+.cs-spinner svg path {
+  @apply text-primary fill-current;
 }
 
 @media screen and (min-width: 768px) {
@@ -212,8 +234,27 @@
     height: auto;
   }
 
-  .cs-why .each-reason:not(:last-child) {
+  .cs-why .each-reason:not(:last-child),
+  .cs-home-form .cs-form-control > div {
     @apply mb-0;
+  }
+
+  .cs-home-form .cs-form-control {
+    @apply flex justify-between;
+  }
+
+  .cs-home-form .cs-form-control.suburbs {
+    @apply block;
+  }
+
+  .cs-home-form .name-email > div,
+  .cs-home-form .waste-bin > div,
+  .cs-home-form .cs-dates > div {
+    width: 390px;
+  }
+
+  .cs-home-form .cs-form-control {
+    @apply mb-4;
   }
 }
 
