@@ -224,6 +224,20 @@
   @apply text-primary fill-current;
 }
 
+/* FOOTER */
+.assocs-logo {
+  max-width: 302px;
+  @apply justify-between;
+}
+
+.assocs-logo .assocs-logo--1 {
+  max-width: 105px;
+}
+
+.assocs-logo .assocs-logo--2 {
+  max-width: 168px;
+}
+
 @media screen and (min-width: 768px) {
   .each-bin:not(:first-child) {
     margin-top: 0;
@@ -250,7 +264,7 @@
   .cs-home-form .name-email > div,
   .cs-home-form .waste-bin > div,
   .cs-home-form .cs-dates > div {
-    width: 390px;
+    width: 340px;
   }
 
   .cs-home-form .cs-form-control {
@@ -265,6 +279,12 @@
   }
   .cs-welcome-image {
     @apply max-w-full;
+  }
+
+  .cs-home-form .name-email > div,
+  .cs-home-form .waste-bin > div,
+  .cs-home-form .cs-dates > div {
+    width: 390px;
   }
 }
 

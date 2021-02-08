@@ -105,7 +105,7 @@ const ContactForm5 = () => {
       {!isFormSubmitted && (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="cs-form mt-4 relative"
+          className="cs-form mt-8 relative"
         >
           <div className="name-email cs-form-control">
             <div>
@@ -165,12 +165,12 @@ const ContactForm5 = () => {
               <div>
                 <Controller
                   name="suburb"
-                  id="suburb"
                   control={control}
                   rules={{ required: "Please select your suburb." }}
                   defaultValue=""
                   render={({ onChange }) => (
                     <ReactSelect
+                      inputId="suburb"
                       onChange={onChange}
                       options={options}
                       isClearable
@@ -243,11 +243,10 @@ const ContactForm5 = () => {
           </div>
           <div className="cs-dates cs-form-control">
             <div>
-              <label htmlFor="delivery-date">Delivery Date</label>
+              <label htmlFor="deliveryDate">Delivery Date</label>
               <div className="relative">
                 <Controller
                   name="deliveryDate"
-                  id="delivery-date"
                   control={control}
                   rules={{ required: "Please select a delivery date." }}
                   required
@@ -261,6 +260,7 @@ const ContactForm5 = () => {
                       startDate={deliveryDate}
                       endDate={returnDate}
                       placeholderText="Choose delivery date"
+                      id="deliveryDate"
                       className={`${
                         errors.deliveryDate ? "ring-2 ring-red-500" : ""
                       }`}
@@ -274,11 +274,10 @@ const ContactForm5 = () => {
               </div>
             </div>
             <div>
-              <label htmlFor="return-date">Return Date</label>
+              <label htmlFor="returnDate">Return Date</label>
               <div className="relative">
                 <Controller
                   name="returnDate"
-                  id="return-date"
                   control={control}
                   rules={{ required: "Please select a delivery return date." }}
                   required
@@ -291,6 +290,7 @@ const ContactForm5 = () => {
                       minDate={deliveryDate}
                       startDate={deliveryDate}
                       endDate={returnDate}
+                      id="returnDate"
                       placeholderText="Choose delivery return date"
                       className={`${
                         errors.returnDate ? "ring-2 ring-red-500" : ""
