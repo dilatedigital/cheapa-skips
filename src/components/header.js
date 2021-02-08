@@ -34,8 +34,11 @@ const Header = () => {
   `)
 
   return (
-    <header className="container-lg flex items-center p-9">
-      <Logo />
+    <header className="container-lg flex items-center pt-4 lg:pt-9 cs-header">
+      <div className="max-w-logo-sm lg:max-w-full mr-auto lg:mr-0">
+        <Logo />
+      </div>
+
       <Menu menu={wpMenu} />
       <div className="mr-8">
         <a

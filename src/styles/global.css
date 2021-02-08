@@ -5,7 +5,21 @@
 @layer base {
   * {
     font-family: "Kumbh Sans", sans-serif;
-    @apply antialiased;
+    @apply antialiased text-dark-grey;
+  }
+  p {
+    @apply text-dark-grey;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold text-dark-green;
+  }
+
+  section {
+    max-width: 1920px;
+    @apply mx-auto;
   }
 }
 
@@ -13,7 +27,12 @@
   max-width: 1675px;
 }
 
-.container-lg {
+.cs-container {
+  max-width: 1393px;
+}
+
+.container-lg,
+.cs-container {
   @apply mx-auto w-full px-15px;
 }
 
@@ -38,4 +57,259 @@
 
 .cs-btn:hover {
   @apply bg-opacity-80;
+}
+
+.cs-header .cs-btn {
+  @apply hidden lg:flex;
+}
+
+.cs-btn.cs-btn--outline {
+  @apply bg-transparent text-secondary border-solid border-secondary border transition;
+}
+
+.cs-btn.cs-btn.cs-btn--outline:hover,
+.each-bin:hover .cs-btn {
+  @apply bg-secondary text-white border-none;
+}
+
+/* HERO */
+
+.cs-hero-texts h1 {
+  font-size: 18px;
+  line-height: 15px;
+  @apply text-dark-grey;
+}
+
+.cs-hero-texts h2 {
+  @apply text-slogan-sm text-dark-green lg:text-slogan-lg lg:max-w-500px;
+}
+
+.cs-hero-texts .hero-content p,
+.skip-bin-sizes p,
+.cs-welcome p,
+.cs-whatCanGoContent p,
+.cs-why-content p {
+  @apply text-content-p;
+}
+
+.cs-hero {
+  @apply lg:h-hero-lg;
+}
+
+.hero-image svg {
+  width: 222px;
+  height: 230px;
+}
+
+/* SKIP BIN SIZES */
+.each-bin:not(:first-child) {
+  margin-top: 50px;
+}
+
+.each-bin svg {
+  width: 238px;
+  height: 247px;
+  @apply absolute;
+}
+
+.each-bin svg path {
+  @apply transition;
+}
+
+.each-bin:hover svg path {
+  @apply text-primary fill-current opacity-100;
+}
+
+.bin-specs {
+  max-width: 285px;
+  @apply mx-auto;
+}
+
+.bin-specs .flex {
+  @apply text-specs-p;
+}
+
+.bin-specs .spec-name {
+  width: 110px;
+  margin-right: 12px;
+}
+
+.bin-specs .spec-value {
+  @apply font-bold;
+}
+
+/*  WELCOME SECTION */
+.cs-welcome-image {
+  max-width: 327px;
+  height: 236px;
+}
+
+.cs-welcome p:not(:last-child),
+.cs-whatCanGoContent p:not(:last-child),
+.cs-why-content p:not(:last-child) {
+  @apply mb-8;
+}
+
+/*  WHY CHOOSE US SECTION */
+.cs-why .each-reason {
+  max-width: 290px;
+  @apply mx-auto;
+}
+.cs-why .each-reason:not(:last-child) {
+  @apply mb-8;
+}
+
+/*  HOME FORM */
+
+.cs-home-form .react-datepicker__day--selected,
+.cs-home-form .react-datepicker__day--in-range,
+.cs-home-form .react-datepicker__day--in-selecting-range:hover {
+  @apply bg-dark-green text-white;
+}
+
+.cs-home-form .react-datepicker__day--in-selecting-range {
+  @apply bg-secondary;
+}
+
+.cs-home-form {
+  @apply px-15px;
+}
+
+.cs-home-form label {
+  @apply text-dark-green text-base;
+}
+
+.cs-home-form input[type="text"],
+.cs-home-form input[type="email"],
+.cs-home-form select {
+  border: 1px solid #182b3347;
+  border-radius: 2px;
+  @apply px-4 py-2 focus:outline-none focus:ring-2 focus:ring-dark-green;
+}
+
+.cs-home-form select {
+  @apply appearance-none;
+}
+
+.cs-home-form .suburbs input {
+  @apply focus:ring-0;
+}
+
+.cs-home-form .cs-form-control .relative svg {
+  @apply absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  right: 20px;
+}
+
+.cs-home-form .cs-form-control > div {
+  @apply mb-4;
+}
+
+.cs-home-form .react-datepicker-wrapper,
+.cs-home-form input[type="text"],
+.cs-home-form input[type="email"],
+.cs-home-form select {
+  @apply w-full;
+}
+
+.cs-spinner svg {
+  @apply animate-spin -ml-1 mr-3 h-12 w-12;
+}
+.cs-spinner svg circle {
+  @apply opacity-25 stroke-current;
+}
+
+.cs-spinner svg path {
+  @apply text-primary fill-current;
+}
+
+/* FOOTER */
+.assocs-logo {
+  max-width: 302px;
+  @apply justify-between;
+}
+
+.assocs-logo .assocs-logo--1 {
+  max-width: 105px;
+}
+
+.assocs-logo .assocs-logo--2 {
+  max-width: 168px;
+}
+
+@media screen and (min-width: 768px) {
+  .each-bin:not(:first-child) {
+    margin-top: 0;
+  }
+
+  .cs-welcome-image {
+    max-width: 600px;
+    height: auto;
+  }
+
+  .cs-why .each-reason:not(:last-child),
+  .cs-home-form .cs-form-control > div {
+    @apply mb-0;
+  }
+
+  .cs-home-form .cs-form-control {
+    @apply flex justify-between;
+  }
+
+  .cs-home-form .cs-form-control.suburbs {
+    @apply block;
+  }
+
+  .cs-home-form .name-email > div,
+  .cs-home-form .waste-bin > div,
+  .cs-home-form .cs-dates > div {
+    width: 340px;
+  }
+
+  .cs-home-form .cs-form-control {
+    @apply mb-4;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hero-image svg {
+    width: 400px;
+    height: 450px;
+  }
+  .cs-welcome-image {
+    @apply max-w-full;
+  }
+
+  .cs-home-form .name-email > div,
+  .cs-home-form .waste-bin > div,
+  .cs-home-form .cs-dates > div {
+    width: 390px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .hero-image svg {
+    width: 603px;
+    height: 625px;
+  }
+
+  .skip-bins-container {
+    max-width: 1574px;
+    @apply mx-auto;
+  }
+
+  .cs-welcome-content {
+    max-width: 660px;
+  }
+
+  .cs-why-content {
+    max-width: 643px;
+    @apply ml-auto;
+  }
+
+  .cs-form {
+    max-width: 812px;
+    @apply mx-auto;
+  }
 }

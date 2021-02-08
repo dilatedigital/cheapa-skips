@@ -28,14 +28,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        google: {
-          families: ["Kumbh Sans"],
-        },
-      },
-    },
-    {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
         /*
@@ -43,6 +35,10 @@ module.exports = {
          * Example : 'https://www.example-site.com/graphql'
          */
         url: process.env.GATSBY_WPGRAPHQL_URL,
+
+        schema: {
+          perPage: 30,
+        },
       },
     },
     {
@@ -70,5 +66,34 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      /* Include plugin */
+      resolve: "gatsby-omni-font-loader",
+
+      /* Plugin options */
+      options: {
+        /* Font loading mode */
+        mode: "async",
+
+        /* Enable font loading listener to handle FOUT */
+        enableListener: true,
+
+        /* Preconnect URL-s. This example is for Google Fonts */
+        preconnect: ["https://fonts.gstatic.com"],
+
+        /* Self-hosted fonts config. Add font files and font CSS files to "static" folder */
+
+        /* Web fonts. File link should point to font CSS file. */
+        web: [
+          {
+            /* Exact name of the font as defied in @font-face CSS rule */
+            name: "Kumbh Sans",
+            /* URL to the font CSS file with @font-face definition */
+            file:
+              "https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700",
+          },
+        ],
+      },
+    },
   ],
 }
