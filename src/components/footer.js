@@ -28,6 +28,35 @@ const Footer = () => {
           }
         }
       }
+      hireABin: wpMenu(slug: { eq: "hire-a-bin" }) {
+        name
+        menuItems {
+          nodes {
+            connectedNode {
+              node {
+                uri
+              }
+            }
+            label
+            id
+            url
+          }
+        }
+      }
+      company: wpMenu(slug: { eq: "company" }) {
+        name
+        menuItems {
+          nodes {
+            connectedNode {
+              node {
+                uri
+              }
+            }
+            label
+            id
+          }
+        }
+      }
     }
   `)
 
