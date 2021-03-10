@@ -32,7 +32,7 @@ export const query = graphql`
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: TRACED_SVG)
+                  gatsbyImageData(placeholder: TRACED_SVG, quality: 100)
                 }
               }
             }

@@ -238,6 +238,18 @@
   max-width: 168px;
 }
 
+.cs-footer-upper {
+  @apply border-b border-opacity-20 pb-8 lg:pb-50px;
+}
+
+.cs-footer-lower--socmed a:not(:last-child) {
+  @apply mr-8;
+}
+
+.cs-footer-lower--socmed a svg path {
+  @apply text-primary;
+}
+
 @media screen and (min-width: 768px) {
   .each-bin:not(:first-child) {
     margin-top: 0;
@@ -274,8 +286,12 @@
 
 @media screen and (min-width: 1024px) {
   .hero-image svg {
-    width: 400px;
+    width: 300px;
     height: 450px;
+  }
+
+  .main-img-container {
+    max-width: 330px;
   }
   .cs-welcome-image {
     @apply max-w-full;
@@ -285,6 +301,41 @@
   .cs-home-form .waste-bin > div,
   .cs-home-form .cs-dates > div {
     width: 390px;
+  }
+  .cs-form {
+    max-width: 812px;
+    @apply mx-auto;
+  }
+
+  .cs-footer-upper .cs-btn.mx-auto {
+    @apply mx-0;
+  }
+
+  .assocs-logo--1 {
+    @apply mr-8;
+  }
+
+  .footer-menus {
+    @apply mt-0 flex mx-8 justify-between;
+  }
+
+  .cs-footer-upper {
+    @apply justify-between flex;
+  }
+}
+
+@media screen and (min-width: 1185px) {
+  .footer-menus {
+    max-width: 590px;
+    @apply mx-0 w-full;
+  }
+
+  .main-img-container {
+    @apply max-w-400px;
+  }
+
+  .hero-image svg {
+    width: 400px;
   }
 }
 
@@ -307,9 +358,25 @@
     max-width: 643px;
     @apply ml-auto;
   }
+}
 
-  .cs-form {
-    max-width: 812px;
-    @apply mx-auto;
+@media screen and (min-width: 1570px) {
+  .footer-menus {
+    max-width: 780px;
+  }
+}
+
+@media screen and (min-width: 1640px) {
+  .cs-footer-upper {
+    justify-content: flex-start;
+  }
+
+  .footer-menus {
+    margin-left: 64px;
+    margin-right: 160px;
+  }
+
+  .cs-footer-lower {
+    padding-right: 275px;
   }
 }
