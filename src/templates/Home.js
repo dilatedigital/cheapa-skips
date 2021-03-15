@@ -33,6 +33,7 @@ const Home = ({ data: { wpPage } }) => {
       <SkipBinSizes
         title={wpPage.homeFields.skipBinTitle}
         content={wpPage.homeFields.skipBinContent}
+        binType="all"
       />
       <Welcome
         welcomeTitle={wpPage.homeFields.welcomeTitle}

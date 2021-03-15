@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { useForm, Controller } from "react-hook-form"
 import axios from "axios"
+import { ModalContext } from "../../context/ModalContext"
 import ReactDatePicker from "react-datepicker"
 import ReactSelect, { components } from "react-select"
 import SearchIcon from "../../images/search.svg"
@@ -9,16 +10,12 @@ import Calendar from "../../images/calendar.svg"
 import Loading from "../../images/loading.svg"
 import "react-datepicker/dist/react-datepicker.css"
 import suburbs from "../../data/suburbs"
+import PropTypes from "prop-types"
 
-const ContactForm5 = () => {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    formState,
-    control,
-    watch,
-  } = useForm()
+const ContactForm5 = ({ isModal }) => {
+  const { modalTitle, binSize } = useContext(ModalContext)
+
+  const { register, handleSubmit, errors, control, watch } = useForm()
 
   const [isFormSubmitting, setFormSubmit] = useState(false)
 
@@ -27,9 +24,7 @@ const ContactForm5 = () => {
   const deliveryDate = watch("deliveryDate")
   const returnDate = watch("returnDate")
 
-  const { isSubmitting } = formState
-
-  const formLink = process.env.GATSBY_HOMEFORM
+  const formLink = process.env.GATSBY_MODALFORM
 
   //declare options for suburb
   let options = []
@@ -77,14 +72,20 @@ const ContactForm5 = () => {
     setFormSubmit(true)
     let bodyFormData = new FormData()
 
-    bodyFormData.append("your-name", data.name)
+    bodyFormData.append("first-name", data.firstName)
+    bodyFormData.append("last-name", data.lastName)
     bodyFormData.append("your-email", data.email)
+    bodyFormData.append("your-phone", data.phone)
     bodyFormData.append("your-subject", data.subject)
     bodyFormData.append("waste-type", data.waste)
     bodyFormData.append("bin-size", data.bin)
     bodyFormData.append("delivery-date", data.deliveryDate)
     bodyFormData.append("return-date", data.returnDate)
     bodyFormData.append("suburb", data.suburb.value)
+    bodyFormData.append("your-message", data.message)
+    bodyFormData.append("payment-method", data.paymentMethod)
+    bodyFormData.append("bin-place", data.binPlace)
+    bodyFormData.append("agreed", data.terms)
 
     axios
       .post(formLink, bodyFormData)
@@ -107,58 +108,6 @@ const ContactForm5 = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="cs-form mt-8 relative"
         >
-          <div className="name-email cs-form-control">
-            <div>
-              <label htmlFor="name">Name</label>
-              <div>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Name"
-                  className={`${errors.name ? "ring-2 ring-red-500" : ""}`}
-                  ref={register({
-                    required: "Name is required",
-                    maxLength: {
-                      value: 80,
-                      message: "Name should not be more than 80 characters",
-                    },
-                    minLength: {
-                      value: 2,
-                      message: "Name must be at least 2 characters.",
-                    },
-                  })}
-                  required
-                />
-                {errors.name && errors.name.message && (
-                  <p>{errors.name.message}</p>
-                )}
-              </div>
-            </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <div>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Email"
-                  className={`${errors.email ? "ring-2 ring-red-500" : ""}`}
-                  ref={register({
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: "Invalid email address.",
-                    },
-                  })}
-                  required
-                />
-                {errors.email && errors.email.message && (
-                  <p>{errors.email.message}</p>
-                )}
-              </div>
-            </div>
-          </div>
           <div className="suburbs cs-form-control">
             <div>
               <label htmlFor="suburb">Suburb</label>
@@ -168,6 +117,7 @@ const ContactForm5 = () => {
                   control={control}
                   rules={{ required: "Please select your suburb." }}
                   defaultValue=""
+                  required
                   render={({ onChange }) => (
                     <ReactSelect
                       inputId="suburb"
@@ -223,6 +173,8 @@ const ContactForm5 = () => {
                   ref={register({ required: "Please select a bin size." })}
                   className={`${errors.bin ? "ring-2 ring-red-500" : ""}`}
                   required
+                  value={isModal ? binSize : ""}
+                  defaultValue={isModal ? binSize : ""}
                 >
                   <option value="">Select Bin Size</option>
                   <option value="2m3">2 Cubic Meter Bin (2m3)</option>
@@ -241,6 +193,30 @@ const ContactForm5 = () => {
               </div>
             </div>
           </div>
+
+          <div className="cs-textarea cs-form-control">
+            <div>
+              <label htmlFor="binPlace">
+                Where would you like your bin placed?
+              </label>
+              <div>
+                <textarea
+                  id="binPlace"
+                  name="binPlace"
+                  placeholder="Where would you like your bin placed?"
+                  className={`${errors.binPlace ? "ring-2 ring-red-500" : ""}`}
+                  ref={register({
+                    required: "This field is required",
+                  })}
+                  required
+                />
+                {errors.binPlace && errors.binPlace.message && (
+                  <p>{errors.binPlace.message}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
           <div className="cs-dates cs-form-control">
             <div>
               <label htmlFor="deliveryDate">Delivery Date</label>
@@ -261,6 +237,7 @@ const ContactForm5 = () => {
                       endDate={returnDate}
                       placeholderText="Choose delivery date"
                       id="deliveryDate"
+                      autoComplete="off"
                       className={`${
                         errors.deliveryDate ? "ring-2 ring-red-500" : ""
                       }`}
@@ -291,6 +268,7 @@ const ContactForm5 = () => {
                       startDate={deliveryDate}
                       endDate={returnDate}
                       id="returnDate"
+                      autoComplete="off"
                       placeholderText="Choose delivery return date"
                       className={`${
                         errors.returnDate ? "ring-2 ring-red-500" : ""
@@ -305,19 +283,190 @@ const ContactForm5 = () => {
               </div>
             </div>
           </div>
+          <div className="first-last cs-form-control">
+            <div>
+              <label htmlFor="firstName">First Name</label>
+              <div>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="First Name"
+                  className={`${errors.firstName ? "ring-2 ring-red-500" : ""}`}
+                  ref={register({
+                    required: "First name is required",
+                    maxLength: {
+                      value: 80,
+                      message:
+                        "First name should not be more than 80 characters",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "First name must be at least 2 characters.",
+                    },
+                  })}
+                  required
+                />
+                {errors.firstName && errors.firstName.message && (
+                  <p>{errors.firstName.message}</p>
+                )}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="lastName">Last Name</label>
+              <div>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Last Name"
+                  className={`${errors.lastName ? "ring-2 ring-red-500" : ""}`}
+                  ref={register({
+                    required: "First name is required",
+                    maxLength: {
+                      value: 80,
+                      message:
+                        "Last name should not be more than 80 characters",
+                    },
+                    minLength: {
+                      value: 2,
+                      message: "Last name must be at least 2 characters.",
+                    },
+                  })}
+                  required
+                />
+                {errors.lastName && errors.lastName.message && (
+                  <p>{errors.lastName.message}</p>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="email-phone cs-form-control">
+            <div>
+              <label htmlFor="email">Email</label>
+              <div>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  className={`${errors.email ? "ring-2 ring-red-500" : ""}`}
+                  ref={register({
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                      message: "Invalid email address.",
+                    },
+                  })}
+                  required
+                />
+                {errors.email && errors.email.message && (
+                  <p>{errors.email.message}</p>
+                )}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="phone">Phone</label>
+              <div>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  placeholder="Phone"
+                  className={`${errors.phone ? "ring-2 ring-red-500" : ""}`}
+                  ref={register({
+                    required: "Phone is required",
+                  })}
+                  required
+                />
+                {errors.phone && errors.phone.message && (
+                  <p>{errors.phone.message}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="payment-method cs-form-control">
+            <div>
+              <label htmlFor="paymentMethod">Payment Method</label>
+              <div className="relative">
+                <select
+                  name="paymentMethod"
+                  id="paymentMethod"
+                  ref={register({
+                    required: "Please select a payment method.",
+                  })}
+                  className={`${
+                    errors.paymentMethod ? "ring-2 ring-red-500" : ""
+                  }`}
+                  required
+                >
+                  <option value="">Select Payment Method</option>
+                  <option value="cash">Cash</option>
+                  <option value="card">Card</option>
+                  <option value="afterpay">Afterpay</option>
+                </select>
+                <ChevronDown />
+                {errors.paymentMethod && errors.paymentMethod.message && (
+                  <p>{errors.paymentMethod.message}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="cs-textarea cs-form-control">
+            <div>
+              <label htmlFor="message">Message</label>
+              <div>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Message"
+                  className={`${errors.message ? "ring-2 ring-red-500" : ""}`}
+                  ref={register()}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="form-note cs-form-control p-4">
+            <p class="text-secondary">
+              NOTE: Payment is to be made prior to or on delivery of skip bin.
+            </p>
+          </div>
+
+          <div className="terms-check cs-form-control">
+            <div>
+              <input
+                ref={register({ required: "This is required" })}
+                name="terms"
+                id={isModal ? "termsM" : "terms"}
+                type="checkbox"
+              />
+              <label htmlFor={isModal ? "termsM" : "terms"}>
+                I have read and agree to the{" "}
+                <a
+                  href="/sample-page"
+                  target="_blank"
+                  className="text-primary font-semibold"
+                >
+                  Terms & Conditions
+                </a>
+              </label>
+              {errors.terms && errors.terms.message && (
+                <p>{errors.terms.message}</p>
+              )}
+            </div>
+          </div>
+
           <input
             type="hidden"
             name="subject"
             ref={register}
-            defaultValue="Book a Bin"
+            defaultValue={isModal ? `Book a ${modalTitle}` : "Book a Bin"}
           />
-          <button
-            type="submit"
-            aria-label="Submit"
-            disabled={isSubmitting}
-            className="mt-8 cs-btn"
-          >
-            {isSubmitting ? "Submitting..." : "Submit"}
+          <button type="submit" aria-label="Submit" className="mt-8 cs-btn">
+            {isModal ? `Book a ${modalTitle}` : "Submit"}
           </button>
           {isFormSubmitting && (
             <div className="absolute bg-white bg-opacity-50 w-full h-full top-0 cs-spinner flex items-center justify-center">
@@ -333,6 +482,10 @@ const ContactForm5 = () => {
       )}
     </>
   )
+}
+
+ContactForm5.propTypes = {
+  isModal: PropTypes.bool,
 }
 
 export default ContactForm5

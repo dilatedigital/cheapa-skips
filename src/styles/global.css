@@ -31,9 +31,18 @@
   max-width: 1393px;
 }
 
+.inner-banner__img {
+  max-width: 1640px;
+}
+
 .container-lg,
-.cs-container {
+.cs-container,
+.inner-banner__img {
   @apply mx-auto w-full px-15px;
+}
+
+.inner-banner__img {
+  @apply px-0;
 }
 
 .menu {
@@ -80,15 +89,27 @@
   @apply text-dark-grey;
 }
 
-.cs-hero-texts h2 {
+.cs-hero-texts h2,
+.inner-banner h1,
+.calculator-container h1 {
   @apply text-slogan-sm text-dark-green lg:text-slogan-lg lg:max-w-500px;
+}
+
+.inner-banner h1 {
+  @apply lg:max-w-full;
+}
+
+.inner-banner__content {
+  max-width: 832px;
 }
 
 .cs-hero-texts .hero-content p,
 .skip-bin-sizes p,
 .cs-welcome p,
 .cs-whatCanGoContent p,
-.cs-why-content p {
+.cs-why-content p,
+.inner-banner__content p,
+.calculator-container p {
   @apply text-content-p;
 }
 
@@ -118,6 +139,10 @@
 
 .each-bin:hover svg path {
   @apply text-primary fill-current opacity-100;
+}
+
+.each-bin .cs-btn.cs-btn--outline {
+  max-width: 285px;
 }
 
 .bin-specs {
@@ -181,7 +206,8 @@
 
 .cs-home-form input[type="text"],
 .cs-home-form input[type="email"],
-.cs-home-form select {
+.cs-home-form select,
+.cs-home-form textarea {
   border: 1px solid #182b3347;
   border-radius: 2px;
   @apply px-4 py-2 focus:outline-none focus:ring-2 focus:ring-dark-green;
@@ -209,8 +235,20 @@
 .cs-home-form .react-datepicker-wrapper,
 .cs-home-form input[type="text"],
 .cs-home-form input[type="email"],
-.cs-home-form select {
+.cs-home-form select,
+.cs-home-form textarea,
+.cs-home-form .cs-textarea > div,
+.cs-home-form .payment-method > div {
   @apply w-full;
+}
+
+.cs-home-form .form-note {
+  background-color: #fd6f631a;
+  @apply rounded-sm border border-secondary;
+}
+
+.cs-textarea textarea {
+  @apply h-26;
 }
 
 .cs-spinner svg {
@@ -222,6 +260,51 @@
 
 .cs-spinner svg path {
   @apply text-primary fill-current;
+}
+
+.terms-check label {
+  @apply relative cursor-pointer inline-block pl-10;
+}
+
+.terms-check input {
+  @apply absolute opacity-0;
+}
+
+.terms-check label:before {
+  @apply rounded-sm absolute left-0;
+  content: "";
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: 1px solid #182b3347;
+}
+
+.terms-check label:after {
+  @apply absolute border-solid border-white hidden;
+  left: 10px;
+  top: 4px;
+  width: 6px;
+  height: 12px;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  content: "";
+  position: absolute;
+}
+
+.terms-check input:checked + label:after {
+  @apply block;
+}
+
+.terms-check label:hover:before,
+.terms-check input:checked + label:before {
+  @apply bg-primary;
+}
+
+.terms-check {
+  @apply mt-4;
 }
 
 /* FOOTER */
@@ -250,6 +333,75 @@
   @apply text-primary;
 }
 
+/*  INNER BANNER */
+.inner-banner {
+  @apply mt-50px lg:mt-26;
+}
+
+.inner-banner__content {
+  @apply mt-2;
+}
+
+.inner-banner__img {
+  @apply mt-8 lg:mt-70px;
+}
+
+/*  WASTE SECTION */
+.waste-section {
+  @apply py-10 md:flex md:items-center lg:py-150px;
+}
+
+.waste-section h2 {
+  @apply text-h3-sm lg:text-h3-lg;
+}
+
+.waste-section__content {
+  @apply mt-8 md:mt-0;
+}
+
+.waste-section__image {
+  @apply md:max-w-400px md:mr-12 lg:mr-120px lg:max-w-full;
+}
+
+.waste-section__content ul {
+  @apply mt-7;
+}
+
+.waste-section__content ul li {
+  @apply relative pl-10 text-left;
+}
+
+.waste-section__content ul li:after {
+  background-image: url(../../static/check.png);
+  @apply block absolute left-0 bg-cover;
+  content: "";
+  width: 24px;
+  height: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.waste-section__content ul li:not(:last-child) {
+  @apply mb-4;
+}
+
+.bin-sizes-container .recommended-bins:last-child {
+  @apply mt-12;
+}
+
+.main-calculator {
+  background: #ebf3f2;
+}
+
+/*  MODAL */
+.ReactModal__Content {
+  margin-top: 550px;
+}
+
+.modal-content .cs-btn {
+  max-width: 350px;
+}
+
 @media screen and (min-width: 768px) {
   .each-bin:not(:first-child) {
     margin-top: 0;
@@ -273,14 +425,19 @@
     @apply block;
   }
 
-  .cs-home-form .name-email > div,
+  .cs-home-form .first-last > div,
   .cs-home-form .waste-bin > div,
-  .cs-home-form .cs-dates > div {
+  .cs-home-form .cs-dates > div,
+  .cs-home-form .email-phone > div {
     width: 340px;
   }
 
   .cs-home-form .cs-form-control {
     @apply mb-4;
+  }
+
+  .ReactModal__Content {
+    margin-top: 200px;
   }
 }
 
@@ -297,14 +454,21 @@
     @apply max-w-full;
   }
 
-  .cs-home-form .name-email > div,
+  .cs-home-form .first-last > div,
   .cs-home-form .waste-bin > div,
-  .cs-home-form .cs-dates > div {
+  .cs-home-form .cs-dates > div,
+  .cs-home-form .email-phone > div {
     width: 390px;
   }
-  .cs-form {
+  .cs-form,
+  .modal-content__text {
     max-width: 812px;
     @apply mx-auto;
+  }
+
+  .modal-content__text h2 {
+    font-size: 28px;
+    line-height: 48px;
   }
 
   .cs-footer-upper .cs-btn.mx-auto {
@@ -321,6 +485,10 @@
 
   .cs-footer-upper {
     @apply justify-between flex;
+  }
+
+  .bin-sizes-container .recommended-bins:last-child {
+    margin-top: 250px;
   }
 }
 
@@ -358,6 +526,11 @@
     max-width: 643px;
     @apply ml-auto;
   }
+
+  .recommended-bins .skip-bins-container {
+    @apply gap-0 justify-between;
+    grid-template-columns: 300px 300px 300px;
+  }
 }
 
 @media screen and (min-width: 1570px) {
@@ -378,5 +551,11 @@
 
   .cs-footer-lower {
     padding-right: 275px;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1.5) {
+  .ReactModal__Content {
+    margin-top: 0;
   }
 }
