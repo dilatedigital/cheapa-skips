@@ -32,7 +32,7 @@ const EachBin = ({ node }) => {
         <div className="flex border-b border-opacity-20 pb-2 mb-4">
           <div className="spec-name">Starting at</div>
           <div className="spec-value text-secondary">
-            $ {node.skipBinSizesFields.price}
+            {`$ ${node.skipBinSizesFields.price}`}
           </div>
         </div>
         <div className="flex">

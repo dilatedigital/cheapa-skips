@@ -12,7 +12,7 @@ const SkipSizeCalculator = ({ inPage }) => {
   return (
     <div
       class={`calculator-container cs-container ${
-        inPage ? "mt-0" : "mt-12 lg:mt-42"
+        inPage ? "mt-0" : "mt-12 lg:mt-42 "
       }`}
     >
       {!inPage ? (
