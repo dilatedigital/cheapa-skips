@@ -444,12 +444,13 @@ const ContactForm5 = ({ isModal }) => {
                 type="checkbox"
               />
               <label htmlFor={isModal ? "termsM" : "terms"}>
-                I have read and agree to the{" "}
+                I have read and agree to the
                 <a
                   href="/sample-page"
                   target="_blank"
                   className="text-primary font-semibold"
                 >
+                  {" "}
                   Terms & Conditions
                 </a>
               </label>

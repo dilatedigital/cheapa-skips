@@ -198,8 +198,7 @@ const Footer = () => {
           </div>
           <div className="cs-footer-lower--copy lg:order-1">
             <p>
-              &copy;
-              {` ${new Date().getFullYear()} ${
+              {`© ${new Date().getFullYear()} ${
                 data.wp.siteGeneralSettings.siteSettingsFields.companyName
               }. All Rights Reserved.`}
             </p>
