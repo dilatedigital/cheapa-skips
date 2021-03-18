@@ -1,9 +1,10 @@
 import React, { useContext } from "react"
 import ContactForm5 from "./Forms/ContactForm5"
 import { ModalContext } from "../context/ModalContext"
+import Close from "../images/ios-close.svg"
 
 const ModalContents = () => {
-  const { modalTitle } = useContext(ModalContext)
+  const { modalTitle, closeModal } = useContext(ModalContext)
 
   return (
     <div className="cs-home-form modal-content">
@@ -13,6 +14,7 @@ const ModalContents = () => {
       </div>
 
       <ContactForm5 isModal={true} />
+      <Close className="close-modal" onClick={closeModal} />
     </div>
   )
 }

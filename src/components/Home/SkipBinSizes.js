@@ -3,7 +3,8 @@ import PropTypes from "prop-types"
 import { graphql, useStaticQuery } from "gatsby"
 import EachBin from "./EachBin"
 
-const SkipBinSizes = ({ title, content, binType }) => {
+const SkipBinSizes = ({ title, content, binType, page }) => {
+  let extraDiv = page ? true : false
   const { allWpBinSize, smallBins, largeBins } = useStaticQuery(query)
   let binSize
   if (binType === "small") {
@@ -29,9 +30,13 @@ const SkipBinSizes = ({ title, content, binType }) => {
         />
       )}
 
-      <div className="skip-bins-container mt-14 md:grid md:grid-cols-2 md:gap-12 lg:grid-cols-3 xl:mt-11 xl:gap-y-17">
+      <div
+        className={`skip-bins-container mt-14 md:grid md:grid-cols-2 md:gap-12 lg:grid-cols-3 xl:mt-11  ${
+          page === "calcu" ? "xl:gap-y-44" : "xl:gap-y-17"
+        }`}
+      >
         {binSize.edges.map(bin => {
-          return <EachBin key={bin.id} node={bin.node} />
+          return <EachBin key={bin.id} node={bin.node} extra={extraDiv} />
         })}
       </div>
     </section>
@@ -128,6 +133,7 @@ SkipBinSizes.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
   binType: PropTypes.string.isRequired,
+  page: PropTypes.string,
 }
 
 export default SkipBinSizes

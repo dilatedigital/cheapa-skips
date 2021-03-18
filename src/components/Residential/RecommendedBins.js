@@ -1,5 +1,5 @@
 import React from "react"
-import SkipBinSizes from "./Home/SkipBinSizes"
+import SkipBinSizes from "../Home/SkipBinSizes"
 import PropTypes from "prop-types"
 
 const RecommendedBins = ({ title, binType }) => {
