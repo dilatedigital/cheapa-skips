@@ -56,7 +56,7 @@ const Hero = ({
         </animated.div>
         <animated.div
           style={{ transform: props.xy.interpolate(trans2) }}
-          className="max-w-270px mx-auto lg:max-w-400px xl:mx-0 xl:max-w-full"
+          className="main-img-container max-w-270px mx-auto xl:mx-0 xl:max-w-full"
         >
           <GatsbyImage
             image={imageData}

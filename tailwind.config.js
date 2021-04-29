@@ -38,6 +38,9 @@ module.exports = {
         22: "96px",
         26: "100px",
         42: "10.5rem",
+        "50px": "50px",
+        "120px": "120px",
+        "150px": "150px",
       },
       maxWidth: {
         "logo-sm": "75px",
