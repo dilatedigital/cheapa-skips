@@ -29,17 +29,14 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-no-index`,
     {
-      resolve: `gatsby-source-wordpress-experimental`,
+      resolve: `gatsby-source-wordpress`,
       options: {
         /*
          * The full URL of the WordPress site's GraphQL API.
          * Example : 'https://www.example-site.com/graphql'
          */
         url: process.env.GATSBY_WPGRAPHQL_URL,
-
-        schema: {
-          perPage: 30,
-        },
+        verbose: true,
       },
     },
     {
