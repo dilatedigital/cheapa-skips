@@ -34,7 +34,8 @@
   max-width: 1393px;
 }
 
-.inner-banner__img {
+.inner-banner__img,
+.about-gallery {
   max-width: 1640px;
 }
 
@@ -117,7 +118,8 @@
 .cs-why-content p,
 .inner-banner__content p,
 .calculator-container p,
-.after-calc-content p {
+.after-calc-content p,
+.offer-content p {
   @apply text-content-p;
 }
 
@@ -184,17 +186,16 @@
 .cs-welcome p:not(:last-child),
 .cs-whatCanGoContent p:not(:last-child),
 .cs-why-content p:not(:last-child),
-.after-calc-content p:not(:last-child) {
+.after-calc-content p:not(:last-child),
+.offer-content p:not(:last-child),
+.cs-why .each-reason:not(:last-child) {
   @apply mb-8;
 }
 
 /*  WHY CHOOSE US SECTION */
 .cs-why .each-reason {
   max-width: 290px;
-  @apply mx-auto;
-}
-.cs-why .each-reason:not(:last-child) {
-  @apply mb-8;
+  @apply mx-auto w-full;
 }
 
 /*  HOME FORM */
@@ -371,7 +372,8 @@
   @apply py-10 md:flex md:items-center lg:py-150px;
 }
 
-.waste-section h2 {
+.waste-section h2,
+.about-offer-section h3 {
   @apply text-h3-sm lg:text-h3-lg;
 }
 
@@ -480,6 +482,32 @@
 
 .close-modal {
   @apply absolute top-5 right-5 cursor-pointer;
+}
+
+/* ABOUT */
+.about-offer-section {
+  @apply py-10 lg:py-150px;
+}
+
+.about-offer-section h3 {
+  @apply mb-4 lg:mb-7;
+}
+
+.offer-content {
+  max-width: 1240px;
+}
+
+.about-gallery {
+  @apply px-15px overflow-x-auto flex mb-10 lg:mb-36 xl:mb-48;
+}
+
+.about-gallery .gatsby-image-wrapper {
+  width: 300px;
+  @apply mr-4;
+}
+
+.about-gallery .image-2-3 {
+  @apply flex;
 }
 
 @media screen and (min-width: 768px) {
@@ -616,6 +644,23 @@
     top: 30px;
     right: 30px;
   }
+
+  .about-gallery .gatsby-image-wrapper {
+    @apply mr-0 w-full;
+  }
+
+  .about-gallery .image-2-3 {
+    @apply flex-col;
+  }
+
+  .about-gallery .image-1,
+  .about-gallery .image-2-3 {
+    margin-right: 10px;
+  }
+
+  .about-gallery .image-2-3 .gatsby-image-wrapper:first-child {
+    @apply mb-auto;
+  }
 }
 
 @media screen and (min-width: 1185px) {
@@ -691,6 +736,40 @@
 @media screen and (min-width: 1570px) {
   .footer-menus {
     max-width: 780px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .about-gallery,
+  .about-gallery .image-2-3 {
+    @apply justify-between;
+  }
+
+  .about-gallery {
+    @apply px-0;
+  }
+
+  .about-gallery .image-1,
+  .about-gallery .image-4 {
+    max-width: 600px;
+  }
+
+  .about-gallery .image-2-3 .gatsby-image-wrapper {
+    max-width: 395px;
+    max-height: 305px;
+  }
+
+  .about-gallery .image-1 .gatsby-image-wrapper {
+    height: 642px;
+  }
+
+  .about-gallery .image-1,
+  .about-gallery .image-2-3 {
+    @apply mr-0;
+  }
+
+  .about-gallery .image-2-3 .gatsby-image-wrapper:first-child {
+    @apply mb-0;
   }
 }
 

@@ -1,14 +1,49 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { graphql, useStaticQuery } from "gatsby"
 
-const WhyChooseUs = ({
-  whyChooseUsTitle,
-  whyChooseUsContent,
-  whyChooseUsImage,
-  whyChooseUsIcons,
-}) => {
+const WhyChooseUs = () => {
+  const data = useStaticQuery(graphql`
+    {
+      wp {
+        siteGeneralSettings {
+          siteSettingsFields {
+            whyChooseUsTitle
+            whyChooseUsContent
+            whyChooseUsImage {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              altText
+            }
+            whyChooseUsIcons {
+              icon {
+                altText
+                id
+                localFile {
+                  publicURL
+                }
+              }
+              name
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const whyChooseUsTitle =
+    data.wp.siteGeneralSettings.siteSettingsFields.whyChooseUsTitle
+  const whyChooseUsContent =
+    data.wp.siteGeneralSettings.siteSettingsFields.whyChooseUsContent
+  const whyChooseUsImage =
+    data.wp.siteGeneralSettings.siteSettingsFields.whyChooseUsImage
+  const whyChooseUsIcons =
+    data.wp.siteGeneralSettings.siteSettingsFields.whyChooseUsIcons
   const imageData = getImage(whyChooseUsImage.localFile)
+
   return (
     <section className="cs-why pb-10 xl:flex xl:items-center">
       <div className="px-15px cs-why-content">
@@ -36,13 +71,6 @@ const WhyChooseUs = ({
       </div>
     </section>
   )
-}
-
-WhyChooseUs.propTypes = {
-  whyChooseUsTitle: PropTypes.string.isRequired,
-  whyChooseUsContent: PropTypes.string.isRequired,
-  whyChooseUsImage: PropTypes.object.isRequired,
-  whyChooseUsIcons: PropTypes.array.isRequired,
 }
 
 export default WhyChooseUs

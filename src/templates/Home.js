@@ -135,28 +135,6 @@ export const query = graphql`
             }
           }
         }
-        whyChooseUsTitle
-        whyChooseUsContent
-        whyChooseUsImage {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          altText
-        }
-        whyChooseUsIcons {
-          icon {
-            altText
-            id
-            localFile {
-              publicURL
-            }
-          }
-          name
-        }
-        bookNowTitle
-        bookNowContent
       }
     }
   }
