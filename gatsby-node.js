@@ -37,6 +37,9 @@ exports.createPages = async ({ actions, graphql }) => {
       case "Calculator Template":
         template = path.resolve("./src/templates/SkipSizeCalculatorPage.js")
         break
+      case "About Template":
+        template = path.resolve("./src/templates/About.js")
+        break
       default:
         template = path.resolve("./src/templates/BasicPage.js")
     }
