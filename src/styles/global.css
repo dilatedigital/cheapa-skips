@@ -515,6 +515,9 @@
 }
 
 /* PRICING & SIZES */
+.add-equip-section {
+  @apply pb-8 xl:pb-42;
+}
 .all-bin {
   @apply py-20 xl:pt-52 xl:pb-42;
 }
