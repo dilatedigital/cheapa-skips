@@ -16,7 +16,9 @@
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  h5,
+  h6 {
     @apply font-bold text-dark-green;
   }
 
@@ -373,7 +375,9 @@
 }
 
 .waste-section h2,
-.about-offer-section h3 {
+.about-offer-section h3,
+.add-equip-section h3,
+.rated-wide h5 {
   @apply text-h3-sm lg:text-h3-lg;
 }
 
@@ -508,6 +512,83 @@
 
 .about-gallery .image-2-3 {
   @apply flex;
+}
+
+/* PRICING & SIZES */
+.all-bin {
+  @apply py-20 xl:pt-52 xl:pb-42;
+}
+.skip-bin-sizes.pricing-bins {
+  @apply pt-0;
+}
+.add-equip-section h3 {
+  @apply text-center;
+}
+
+.equipment {
+  @apply mx-auto mt-17 lg:flex lg:justify-between;
+  max-width: 1190px;
+}
+
+.rated-wide {
+  @apply flex mt-8 mx-auto w-full xl:justify-between;
+  max-width: 343px;
+}
+
+.rated-wide .rated {
+  @apply mr-8;
+}
+
+.rated-wide h6 {
+  @apply text-lg;
+}
+
+.equipment__info {
+  @apply mt-8 max-w-xs mx-auto lg:max-w-full lg:mx-0 lg:mt-0;
+}
+
+.equipment__info .pricing-name {
+  width: 130px;
+  @apply mr-8 xl:mr-32;
+}
+
+.equipment__info .info-title-bar {
+  @apply border-b;
+  border-color: rgb(54 54 54 / 20%);
+}
+
+.info-title-bar h4 {
+  @apply text-2xl pb-4 lg:text-h3-sm lg:pb-4;
+}
+
+.info-pricing {
+  @apply pt-4 lg:pt-8;
+}
+
+.info-pricing .notes {
+  @apply mt-4 mb-5 lg:mt-6 lg:mb-7;
+}
+
+.info-pricing .requirements p {
+  @apply text-secondary;
+}
+
+.info-pricing .requirements {
+  @apply mb-8;
+}
+
+.info-pricing h5,
+.pricing {
+  @apply xl:text-bin-title;
+}
+
+.pricing {
+  @apply xl:mt-6;
+}
+
+.info-pricing .notes p,
+.info-pricing .requirements p {
+  @apply xl:text-lg;
 }
 
 @media screen and (min-width: 768px) {
@@ -661,6 +742,10 @@
   .about-gallery .image-2-3 .gatsby-image-wrapper:first-child {
     @apply mb-auto;
   }
+
+  .equipment__image {
+    @apply mr-14;
+  }
 }
 
 @media screen and (min-width: 1185px) {
@@ -701,6 +786,18 @@
   .recommended-bins .skip-bins-container {
     @apply gap-0 justify-between;
     grid-template-columns: 300px 300px 300px;
+  }
+
+  .equipment__info .pricing-name {
+    width: 150px;
+  }
+
+  .pricing .flex:not(:last-child) {
+    @apply mb-5;
+  }
+
+  .equipment__image {
+    @apply mr-0;
   }
 }
 
