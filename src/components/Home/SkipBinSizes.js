@@ -19,8 +19,8 @@ const SkipBinSizes = ({ title, content, binType, page }) => {
   return (
     <section
       className={`text-center px-15px skip-bin-sizes ${
-        binType === "all" ? "py-20 xl:pt-52 xl:pb-42" : "py-0 xl:py-0"
-      } `}
+        binType === "all" ? "all-bin" : "py-0 xl:py-0"
+      } ${page === "pricing" ? "pricing-bins" : ""}`}
     >
       {title && <h3 className="text-h3-sm lg:text-h3-lg">{title}</h3>}
       {content && (
