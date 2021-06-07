@@ -43,6 +43,9 @@ exports.createPages = async ({ actions, graphql }) => {
       case "Pricing Template":
         template = path.resolve("./src/templates/PricingSizes.js")
         break
+      case "Contact Template":
+        template = path.resolve("./src/templates/Contact.js")
+        break
       default:
         template = path.resolve("./src/templates/BasicPage.js")
     }
