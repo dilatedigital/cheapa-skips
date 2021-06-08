@@ -4,6 +4,7 @@ import InnerBanner from "../components/Residential/InnerBanner"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ContactInfo from "../components/Contact/ContactInfo"
+import ContactMapInfo from "../components/Contact/ContactMapInfo"
 
 const About = ({ data: { wpPage } }) => {
   //console.log(location)
@@ -23,7 +24,8 @@ const About = ({ data: { wpPage } }) => {
         content={wpPage.content}
         image={wpPage.featuredImage}
       />
-      <ContactInfo />
+      <ContactInfo formContent={wpPage.contactPageFields.contactFormContent} />
+      <ContactMapInfo />
     </Layout>
   )
 }
@@ -51,6 +53,9 @@ export const query = graphql`
             }
           }
         }
+      }
+      contactPageFields {
+        contactFormContent
       }
     }
   }

@@ -121,7 +121,8 @@
 .inner-banner__content p,
 .calculator-container p,
 .after-calc-content p,
-.offer-content p {
+.offer-content p,
+.contact-text p {
   @apply text-content-p;
 }
 
@@ -175,7 +176,9 @@
   margin-right: 12px;
 }
 
-.bin-specs .spec-value {
+.bin-specs .spec-value,
+.contact-info .info-title,
+.contact-map-info .info-title {
   @apply font-bold;
 }
 
@@ -377,7 +380,8 @@
 .waste-section h2,
 .about-offer-section h3,
 .add-equip-section h3,
-.rated-wide h5 {
+.rated-wide h5,
+.contact-content h2 {
   @apply text-h3-sm lg:text-h3-lg;
 }
 
@@ -555,7 +559,8 @@
   @apply mr-8 xl:mr-32;
 }
 
-.equipment__info .info-title-bar {
+.equipment__info .info-title-bar,
+.contact-info {
   @apply border-b;
   border-color: rgb(54 54 54 / 20%);
 }
@@ -592,6 +597,72 @@
 .info-pricing .notes p,
 .info-pricing .requirements p {
   @apply xl:text-lg;
+}
+
+/* CONTACT PAGE */
+.contact-info {
+  @apply mt-9 lg:mt-150px md:flex justify-between pb-9;
+}
+
+.contact-info .each-info:not(:first-child) {
+  @apply mt-4 md:mt-0;
+}
+
+.contact-map-info .each-info:first-child {
+  @apply mt-6;
+}
+
+.contact-info .each-info,
+.contact-map-info .each-info {
+  @apply text-bin-title leading-9;
+}
+
+.contact-content {
+  @apply pt-9 md:pt-14 lg:flex lg:justify-between pb-9 lg:pb-28;
+}
+
+.contact-content br {
+  @apply hidden lg:block;
+}
+
+.contact-text p {
+  @apply mt-4;
+  max-width: 355px;
+}
+
+.contact-content .cs-home-form.cs-form,
+.contact-content-success {
+  @apply px-0 mx-0 mt-8 lg:mt-0;
+}
+
+.contact-content-success {
+  max-width: 830px;
+}
+
+.contact-content .cs-home-form.cs-form .cs-form-control > div {
+  max-width: 350px;
+  @apply w-full;
+}
+
+.contact-content .cs-home-form.cs-form .cs-form-control.cs-textarea > div {
+  @apply max-w-full;
+}
+
+.contact-map-info {
+  box-shadow: 0px 15px 34px #12121214;
+  border-radius: 4px;
+  padding: 40px 20px;
+  @apply bg-white lg:absolute z-10;
+}
+
+.contact-map-info h3 {
+  @apply text-primary;
+  font-size: 32px;
+  line-height: 22px;
+}
+
+.contact-map-info .map-info--company {
+  margin-bottom: 26px;
 }
 
 @media screen and (min-width: 768px) {
@@ -637,6 +708,12 @@
 
   .recommended .each-bin-mt {
     @apply mt-10;
+  }
+
+  .contact-map-info {
+    max-width: 433px;
+    padding: 57px 55px 42px;
+    @apply mx-auto;
   }
 }
 
@@ -749,6 +826,23 @@
   .equipment__image {
     @apply mr-14;
   }
+
+  .contact-content .cs-home-form.cs-form .cs-form-control > div {
+    max-width: 290px;
+  }
+
+  .contact-content .cs-textarea textarea {
+    height: 180px;
+  }
+
+  .contact-content .cs-form {
+    max-width: 600px;
+    @apply w-full;
+  }
+
+  .contact-map-info {
+    @apply top-26 left-26;
+  }
 }
 
 @media screen and (min-width: 1185px) {
@@ -763,6 +857,12 @@
 
   .hero-image svg {
     width: 400px;
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  .contact-content .cs-home-form.cs-form .cs-form-control > div {
+    max-width: 400px;
   }
 }
 
@@ -801,6 +901,10 @@
 
   .equipment__image {
     @apply mr-0;
+  }
+
+  .contact-text .cs-form {
+    max-width: 830px;
   }
 }
 
@@ -870,6 +974,10 @@
 
   .about-gallery .image-2-3 .gatsby-image-wrapper:first-child {
     @apply mb-0;
+  }
+
+  .contact-map-info {
+    left: 447px;
   }
 }
 

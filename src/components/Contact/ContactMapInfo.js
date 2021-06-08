@@ -1,14 +1,14 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import PropTypes from "prop-types"
-import ContactPageForm from "../Forms/ContactPageForm"
+import Map from "./Map"
 
-const ContactInfo = ({ formContent }) => {
+const ContactMapInfo = () => {
   const data = useStaticQuery(graphql`
     {
       wp {
         siteGeneralSettings {
           siteSettingsFields {
+            companyName
             email
             phone
             address {
@@ -28,21 +28,18 @@ const ContactInfo = ({ formContent }) => {
       siteGeneralSettings: { siteSettingsFields: settings },
     },
   } = data
+  const company = settings.companyName
   const email = settings.email
   const phone = settings.phone
   const mapLink = settings.address.googleMapLink
   const addressNumber = settings.address.number
   const suburb = settings.address.suburb
   const postalCode = settings.address.postalCode
-
   return (
-    <div className="cs-container">
-      <div className="contact-info">
-        <div className="each-info">
-          <div className="info-title">Email</div>
-          <div className="info-value">
-            <a href={`mailto:${email}`}>{email}</a>
-          </div>
+    <section className="contact-map relative">
+      <div className="contact-map-info">
+        <div className="map-info--company">
+          <h3>{company}</h3>
         </div>
         <div className="each-info">
           <div className="info-title">Phone</div>
@@ -50,7 +47,13 @@ const ContactInfo = ({ formContent }) => {
             <a href={`tel:${phone}`}>{phone}</a>
           </div>
         </div>
-        <div className="each-info">
+        <div className="each-info mt-5">
+          <div className="info-title">Email</div>
+          <div className="info-value">
+            <a href={`mailto:${email}`}>{email}</a>
+          </div>
+        </div>
+        <div className="each-info mt-5">
           <div className="info-title">Address</div>
           <div className="info-value">
             <a href={`${mapLink}`} target="_blank" rel="noreferrer">
@@ -59,19 +62,9 @@ const ContactInfo = ({ formContent }) => {
           </div>
         </div>
       </div>
-      <div className="contact-content">
-        <div
-          dangerouslySetInnerHTML={{ __html: formContent }}
-          className="contact-text"
-        />
-        <ContactPageForm />
-      </div>
-    </div>
+      <Map />
+    </section>
   )
 }
 
-ContactInfo.propTypes = {
-  formContent: PropTypes.string.isRequired,
-}
-
-export default ContactInfo
+export default ContactMapInfo
