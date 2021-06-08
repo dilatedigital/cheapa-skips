@@ -903,7 +903,7 @@
     @apply mr-0;
   }
 
-  .contact-text .cs-form {
+  .contact-content .cs-form {
     max-width: 830px;
   }
 }
