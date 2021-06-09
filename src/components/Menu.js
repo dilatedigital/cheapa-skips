@@ -10,7 +10,7 @@ const Menu = ({ menu }) => {
     <ul className="hidden xl:flex menu max-w-menu-desktop w-full justify-between mr-auto">
       {menuItems.map(menuItem => {
         return (
-          <li key={menuItem.key} className="flex items-center">
+          <li key={menuItem.key} className="flex items-center main-menu-item">
             <UniversalLink
               to={
                 menuItem.connectedNode
