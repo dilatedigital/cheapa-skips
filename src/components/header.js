@@ -1,9 +1,12 @@
 import { graphql, useStaticQuery } from "gatsby"
-import React from "react"
+import React, { useContext } from "react"
 import Logo from "./Logo"
 import Menu from "./Menu"
 import Phone from "../images/phone-call.svg"
 import Button from "./Button"
+import Burger from "../images/burger.svg"
+import { MenuContext } from "../context/MenuContext"
+import MobileMenu from "./Menu/MobileMenu"
 
 const Header = () => {
   const { wpMenu, wp } = useStaticQuery(graphql`
@@ -33,6 +36,8 @@ const Header = () => {
     }
   `)
 
+  const { toggleMenu } = useContext(MenuContext)
+
   return (
     <header className="container-lg flex items-center pt-4 lg:pt-9 cs-header">
       <div className="max-w-logo-sm lg:max-w-full mr-auto lg:mr-0">
@@ -49,7 +54,15 @@ const Header = () => {
           {wp.siteGeneralSettings.siteSettingsFields.phone}
         </a>
       </div>
+      <button
+        onClick={toggleMenu}
+        aria-label="Open Mobile Menu"
+        className="menu-btn"
+      >
+        <Burger className="fill-current text-white" />
+      </button>
       <Button link="/" outline={false} text="Book a Bin" />
+      <MobileMenu menu={wpMenu} />
     </header>
   )
 }
