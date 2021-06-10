@@ -63,6 +63,49 @@
   @apply fill-current text-primary;
 }
 
+.main-menu-item:hover .submenu {
+  @apply block;
+}
+
+.mobile-menu-container {
+  @apply h-full top-0 fixed bg-white z-40 w-full xl:hidden transform transition overflow-scroll;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.mobile-menu-active {
+  @apply translate-x-0;
+}
+
+.mobile-menu-inactive {
+  @apply -translate-x-full;
+}
+
+.submenu {
+  @apply hidden absolute bg-white shadow-2xl transition-all py-4 rounded-lg top-6;
+  width: 200px;
+}
+
+.main-menu-item {
+  @apply flex items-center relative;
+}
+
+.mobile-menu-container .menu-item > a {
+  @apply font-bold;
+}
+
+.close-btn-container {
+  @apply absolute right-5 top-10 z-50;
+}
+
+.mobile-menu-ul {
+  padding: 130px 20px 0;
+}
+
+.menu-open {
+  @apply overflow-hidden;
+}
+
 .cs-btn {
   @apply bg-secondary text-white w-full flex items-center justify-center font-bold text-phone-header transition focus:ring-2 focus:ring-primary;
   max-width: 150px;
@@ -85,6 +128,14 @@
 .cs-btn.cs-btn.cs-btn--outline:hover,
 .each-bin:hover .cs-btn {
   @apply bg-secondary text-white border-none;
+}
+
+.mobile-submenu li:not(:last-child) {
+  @apply mb-4;
+}
+
+.cs-logo {
+  z-index: 99;
 }
 
 /* HERO */
