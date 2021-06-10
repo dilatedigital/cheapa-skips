@@ -22,11 +22,11 @@ const MobileMenuLi = props => {
   return (
     <li
       key={props.menuItem.key}
-      className="items-center relative menu-item mb-30px"
+      className="items-center relative menu-item mb-6"
     >
       <div className="flex justify-between">
         <UniversalLink
-          className="text-lg"
+          className="text-lg font-bold"
           to={
             props.menuItem.connectedNode
               ? props.menuItem.connectedNode.node.uri
@@ -50,7 +50,7 @@ const MobileMenuLi = props => {
 
       {props.menuItem.children.length > 0 && (
         <ul
-          className={`w-250px bg-transparent transition-all px-4 border-l border-gray-200 ${
+          className={`mobile-submenu bg-transparent transition-all px-4 border-l border-gray-200 ${
             props.isOpen ? "mt-4 max-h-full" : "max-h-0 overflow-hidden"
           }`}
         >
@@ -59,7 +59,7 @@ const MobileMenuLi = props => {
               <li key={subItem.key}>
                 <UniversalLink
                   to={subItem.url}
-                  className="font-pop text-ct-black text-mobile-submenu"
+                  className="text-lg text-mobile-submenu"
                   onKeyDown={props.toggleMenu}
                   onClick={props.toggleMenu}
                 >
