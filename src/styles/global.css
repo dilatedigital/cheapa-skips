@@ -69,6 +69,8 @@
 
 .mobile-menu-container {
   @apply h-full top-0 fixed bg-white z-40 w-full xl:hidden transform transition overflow-scroll;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .mobile-menu-active {
@@ -90,6 +92,18 @@
 
 .mobile-menu-container .menu-item > a {
   @apply font-bold;
+}
+
+.close-btn-container {
+  @apply absolute right-5 top-10 z-50;
+}
+
+.mobile-menu-ul {
+  padding: 130px 20px 0;
+}
+
+.menu-open {
+  @apply overflow-hidden;
 }
 
 .cs-btn {
@@ -114,6 +128,14 @@
 .cs-btn.cs-btn.cs-btn--outline:hover,
 .each-bin:hover .cs-btn {
   @apply bg-secondary text-white border-none;
+}
+
+.mobile-submenu li:not(:last-child) {
+  @apply mb-4;
+}
+
+.cs-logo {
+  z-index: 99;
 }
 
 /* HERO */
