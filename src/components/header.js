@@ -61,7 +61,7 @@ const Header = () => {
       >
         <Burger className="fill-current text-white" />
       </button>
-      <Button link="/" outline={false} text="Book a Bin" />
+      <Button link="/contact/" outline={false} text="Book a Bin" />
       <MobileMenu menu={wpMenu} />
     </header>
   )
