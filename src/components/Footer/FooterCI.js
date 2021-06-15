@@ -21,7 +21,7 @@ const FooterCI = ({ phone, email }) => {
         </li>
         <li>
           <Button
-            link="/"
+            link="/contact/"
             outline={false}
             text="Book a Bin"
             alignment="center"

@@ -51,7 +51,7 @@ const AdditionalEquipment = ({ node }) => {
                 <p key={requirement.requirement}>{requirement.requirement}</p>
               ))}
             </div>
-            <Button text="Book Now" />
+            <Button link="/contact/" text="Book Now" />
           </div>
         </div>
       </div>
