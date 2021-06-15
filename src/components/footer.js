@@ -162,7 +162,7 @@ const Footer = () => {
         </div>
         <div className="cs-footer-lower pt-8 text-center lg:text-left lg:flex lg:items-center lg:justify-between">
           <div className="cs-footer-lower--terms lg:order-2">
-            <Link to="/">Terms and Conditions</Link>
+            <Link to="/terms-conditions">Terms and Conditions</Link>
           </div>
           <div className="cs-footer-lower--socmed my-8 text-lg flex justify-center lg:order-3">
             {data.wp.siteGeneralSettings.siteSettingsFields.facebook && (
