@@ -55,10 +55,15 @@ const MobileMenuLi = props => {
           }`}
         >
           {props.menuItem.children.map(subItem => {
+            //console.log(subItem)
             return (
               <li key={subItem.key}>
                 <UniversalLink
-                  to={subItem.url}
+                  to={
+                    subItem.connectedNode
+                      ? subItem.connectedNode.node.uri
+                      : subItem.url
+                  }
                   className="text-lg text-mobile-submenu"
                   onKeyDown={props.toggleMenu}
                   onClick={props.toggleMenu}
