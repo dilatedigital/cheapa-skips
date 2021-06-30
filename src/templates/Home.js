@@ -8,6 +8,7 @@ import Welcome from "../components/Home/Welcome"
 import WhatCanGo from "../components/Home/WhatCanGo"
 import WhyChooseUs from "../components/Home/WhyChooseUs"
 import HomeForm from "../components/Home/HomeForm"
+import Products from "../components/Products"
 
 const Home = ({ data: { wpPage } }) => {
   //console.log(wpPage)
@@ -30,7 +31,12 @@ const Home = ({ data: { wpPage } }) => {
         showHeroButton={wpPage.homeFields.showHeroButton}
         heroImage={wpPage.homeFields.heroImage}
       />
-      <SkipBinSizes
+      {/* <SkipBinSizes
+        title={wpPage.homeFields.skipBinTitle}
+        content={wpPage.homeFields.skipBinContent}
+        binType="all"
+      /> */}
+      <Products
         title={wpPage.homeFields.skipBinTitle}
         content={wpPage.homeFields.skipBinContent}
         binType="all"
