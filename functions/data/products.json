@@ -1,0 +1,114 @@
+[
+  {
+    "sku": "001",
+    "name": "2 Cubic Meter Bin (2m3)",
+    "description": "1.8 X 1.4 X 0.9M",
+    "trailer_loads": "2x",
+    "wheelie_bins": "8x",
+    "image": {
+      "url": "https://suspicious-bohr-740709.netlify.app/static/ee64d7dc86c1f5d7130635dfb094b07e/c5f46/bin.webp",
+      "key": "bin.png"
+    },
+    "amount": 16000,
+    "unit_amount": 160,
+    "currency": "aud"
+  },
+  {
+    "sku": "002",
+    "name": "3 Cubic Meter Bin (3m3)",
+    "description": "1.8 X 1.4 X 1.25M",
+    "trailer_loads": "3x",
+    "wheelie_bins": "12x",
+    "image": {
+      "url": "https://suspicious-bohr-740709.netlify.app/static/ee64d7dc86c1f5d7130635dfb094b07e/c5f46/bin.webp",
+      "key": "bin.png"
+    },
+    "amount": 20000,
+    "unit_amount": 200,
+    "currency": "aud"
+  },
+  {
+    "sku": "003",
+    "name": "4 Cubic Meter Bin (4m3)",
+    "description": "2.4 X 1.4 X 1.25M",
+    "trailer_loads": "4x",
+    "wheelie_bins": "16x",
+    "image": {
+      "url": "https://suspicious-bohr-740709.netlify.app/static/ee64d7dc86c1f5d7130635dfb094b07e/c5f46/bin.webp",
+      "key": "bin.png"
+    },
+    "amount": 25000,
+    "unit_amount": 250,
+    "currency": "aud"
+  },
+  {
+    "sku": "004",
+    "name": "5 Cubic Meter Bin (5m3)",
+    "description": "2.95 X 1.4 X 1.25M",
+    "trailer_loads": "5x",
+    "wheelie_bins": "24x",
+    "image": {
+      "url": "https://suspicious-bohr-740709.netlify.app/static/ee64d7dc86c1f5d7130635dfb094b07e/c5f46/bin.webp",
+      "key": "bin.png"
+    },
+    "amount": 25000,
+    "unit_amount": 250,
+    "currency": "aud"
+  },
+  {
+    "sku": "005",
+    "name": "6 Cubic Meter Bin (6m3)",
+    "description": "3.2 X 1.7 X 1.25M",
+    "trailer_loads": "6x",
+    "wheelie_bins": "24x",
+    "image": {
+      "url": "https://suspicious-bohr-740709.netlify.app/static/ee64d7dc86c1f5d7130635dfb094b07e/c5f46/bin.webp",
+      "key": "bin.png"
+    },
+    "amount": 37000,
+    "unit_amount": 370,
+    "currency": "aud"
+  },
+  {
+    "sku": "006",
+    "name": "8 Cubic Meter Bin (8m3)",
+    "description": "3.8 X 1.7 X 1.40M",
+    "trailer_loads": "8x",
+    "wheelie_bins": "36x",
+    "image": {
+      "url": "https://suspicious-bohr-740709.netlify.app/static/ee64d7dc86c1f5d7130635dfb094b07e/c5f46/bin.webp",
+      "key": "bin.png"
+    },
+    "amount": 45000,
+    "unit_amount": 450,
+    "currency": "aud"
+  },
+  {
+    "sku": "007",
+    "name": "9 Cubic Meter Bin (9m3)",
+    "description": "3.8 X 1.7 X 1.50M",
+    "trailer_loads": "9x",
+    "wheelie_bins": "36x",
+    "image": {
+      "url": "https://suspicious-bohr-740709.netlify.app/static/ee64d7dc86c1f5d7130635dfb094b07e/c5f46/bin.webp",
+      "key": "bin.png"
+    },
+    "amount": 51000,
+    "unit_amount": 510,
+    "currency": "aud"
+  },
+  {
+    "sku": "008",
+    "name": "10 Cubic Meter Bin (10m3)",
+    "description": "4.8 X 1.7 X 1.60M",
+    "trailer_loads": "10x",
+    "wheelie_bins": "40x",
+    "image": {
+      "url": "https://suspicious-bohr-740709.netlify.app/static/ee64d7dc86c1f5d7130635dfb094b07e/c5f46/bin.webp",
+      "key": "bin.png"
+    },
+    "amount": 56000,
+    "unit_amount": 560,
+    "currency": "aud"
+  }
+]
