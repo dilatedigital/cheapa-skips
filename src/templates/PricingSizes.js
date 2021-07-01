@@ -3,8 +3,9 @@ import { graphql } from "gatsby"
 import InnerBanner from "../components/Residential/InnerBanner"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import SkipBinSizes from "../components/Home/SkipBinSizes"
+//import SkipBinSizes from "../components/Home/SkipBinSizes"
 import AdditionalEquipment from "../components/Pricing/AdditionalEquipment"
+import Products from "../components/Products"
 
 const PricingSizes = ({ data: { wpPage } }) => {
   return (
@@ -23,7 +24,8 @@ const PricingSizes = ({ data: { wpPage } }) => {
         content={wpPage.content}
         image={wpPage.featuredImage}
       />
-      <SkipBinSizes binType="all" page="pricing" />
+      {/* <SkipBinSizes binType="all" page="pricing" /> */}
+      <Products binType="all" page="pricing" />
       <AdditionalEquipment node={wpPage.pricingSizesFields} />
     </Layout>
   )
