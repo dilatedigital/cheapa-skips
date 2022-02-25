@@ -63,7 +63,8 @@ export const query = graphql`
             dimensions
             trailerLoads
             wheelieBins
-            price
+            amount
+            unitAmount
             alias
           }
           id
@@ -91,7 +92,8 @@ export const query = graphql`
             dimensions
             trailerLoads
             wheelieBins
-            price
+            amount
+            unitAmount
             alias
           }
           id
@@ -119,7 +121,8 @@ export const query = graphql`
             dimensions
             trailerLoads
             wheelieBins
-            price
+            amount
+            unitAmount
             alias
           }
           id
