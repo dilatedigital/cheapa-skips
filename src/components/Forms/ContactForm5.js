@@ -84,6 +84,10 @@ const ContactForm5 = ({ isModal }) => {
     bodyFormData.append("suburb", data.suburb.value)
     bodyFormData.append("your-message", data.message)
     bodyFormData.append("payment-method", data.paymentMethod)
+    bodyFormData.append("name-on-card", data.nameOnCard)
+    bodyFormData.append("card-number", data.cardNumber)
+    bodyFormData.append("card-expiry", data.cardExpiry)
+    bodyFormData.append("three-digits", data.threeDigits)
     bodyFormData.append("bin-place", data.binPlace)
     bodyFormData.append("agreed", data.terms)
 
@@ -409,6 +413,105 @@ const ContactForm5 = ({ isModal }) => {
                 <ChevronDown />
                 {errors.paymentMethod && errors.paymentMethod.message && (
                   <p>{errors.paymentMethod.message}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="first-last cs-form-control">
+            <div>
+              <label htmlFor="nameOnCard">Name on Card</label>
+              <div>
+                <input
+                  type="text"
+                  id="nameOnCard"
+                  name="nameOnCard"
+                  placeholder="Name on Card"
+                  className={`${
+                    errors.nameOnCard ? "ring-2 ring-red-500" : ""
+                  }`}
+                  ref={register({
+                    minLength: {
+                      value: 2,
+                      message: "Name on Card must be at least 2 characters.",
+                    },
+                  })}
+                />
+                {errors.nameOnCard && errors.nameOnCard.message && (
+                  <p>{errors.nameOnCard.message}</p>
+                )}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="cardNumber">Card Number</label>
+              <div>
+                <input
+                  type="text"
+                  id="cardNumber"
+                  name="cardNumber"
+                  placeholder="Card Number"
+                  className={`${
+                    errors.cardNumber ? "ring-2 ring-red-500" : ""
+                  }`}
+                  ref={register({
+                    minLength: {
+                      value: 2,
+                      message: "Card Number must be at least 2 characters.",
+                    },
+                  })}
+                />
+                {errors.cardNumber && errors.cardNumber.message && (
+                  <p>{errors.cardNumber.message}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="first-last cs-form-control">
+            <div>
+              <label htmlFor="cardExpiry">Card Expiry</label>
+              <div>
+                <input
+                  type="text"
+                  id="cardExpiry"
+                  name="cardExpiry"
+                  placeholder="Card Expiry"
+                  className={`${
+                    errors.cardExpiry ? "ring-2 ring-red-500" : ""
+                  }`}
+                  ref={register({
+                    minLength: {
+                      value: 2,
+                      message: "Card expiry must be at least 2 characters.",
+                    },
+                  })}
+                />
+                {errors.cardExpiry && errors.cardExpiry.message && (
+                  <p>{errors.cardExpiry.message}</p>
+                )}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="threeDigits">Three Digits on Reverse</label>
+              <div>
+                <input
+                  type="text"
+                  id="threeDigits"
+                  name="threeDigits"
+                  placeholder="Three digits on reverse"
+                  className={`${
+                    errors.threeDigits ? "ring-2 ring-red-500" : ""
+                  }`}
+                  ref={register({
+                    minLength: {
+                      value: 2,
+                      message:
+                        "Three digits on reverse must be at least 2 characters.",
+                    },
+                  })}
+                />
+                {errors.threeDigits && errors.threeDigits.message && (
+                  <p>{errors.threeDigits.message}</p>
                 )}
               </div>
             </div>
