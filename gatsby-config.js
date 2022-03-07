@@ -93,5 +93,13 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-recaptcha`,
+      options: {
+        async: false,
+        defer: false,
+        args: `?onload=onloadCallback&render=explicit`,
+      },
+    },
   ],
 }
