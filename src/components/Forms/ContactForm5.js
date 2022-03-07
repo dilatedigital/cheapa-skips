@@ -130,6 +130,12 @@ const ContactForm5 = ({ isModal }) => {
       {!isFormSubmitted && (
         <GoogleReCaptchaProvider
           reCaptchaKey={process.env.GATSBY_RECAPTCHA_KEY}
+          scriptProps={{
+            async: false, // optional, default to false,
+            defer: true, // optional, default to false
+            appendTo: "body", // optional, default to "head", can be "head" or "body",
+            nonce: undefined, // optional, default undefined
+          }}
         >
           <form
             onSubmit={handleSubmit(onSubmit)}
