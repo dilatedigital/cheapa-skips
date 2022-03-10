@@ -105,9 +105,9 @@ const Footer = () => {
     }
   `)
 
-  const logo1ImageData = getImage(
-    data.wp.themeFooterSettings.siteFooterFields.logo1.localFile
-  )
+  const logo1ImageData = data.wp.themeFooterSettings.siteFooterFields.logo1
+    ? getImage(data.wp.themeFooterSettings.siteFooterFields.logo1.localFile)
+    : ""
   const logo2ImageData = data.wp.themeFooterSettings.siteFooterFields.logo2
     ? getImage(data.wp.themeFooterSettings.siteFooterFields.logo2.localFile)
     : ""
