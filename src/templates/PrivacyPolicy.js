@@ -1,9 +1,8 @@
 import { graphql } from "gatsby"
 import React from "react"
-import InnerBanner from "../components/Residential/InnerBanner"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import AboutOfferSection from "../components/About/AboutOfferSection"
+import TermsSection from "../components/TermsSection"
 
 const About = ({ data: { wpPage } }) => {
   //console.log(location)
@@ -18,12 +17,7 @@ const About = ({ data: { wpPage } }) => {
             : null
         }
       />
-      <InnerBanner
-        title={wpPage.title}
-        content={wpPage.content}
-        image={wpPage.featuredImage}
-      />
-      <AboutOfferSection content={wpPage.content} />
+      <TermsSection title={wpPage.title} content={wpPage.content} />
     </Layout>
   )
 }
