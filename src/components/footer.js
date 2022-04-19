@@ -105,14 +105,15 @@ const Footer = () => {
     }
   `)
 
-  const logo1ImageData = getImage(
-    data.wp.themeFooterSettings.siteFooterFields.logo1.localFile
-  )
-  const logo2ImageData = getImage(
-    data.wp.themeFooterSettings.siteFooterFields.logo2.localFile
-  )
+  const logo1ImageData = data.wp.themeFooterSettings.siteFooterFields.logo1
+    ? getImage(data.wp.themeFooterSettings.siteFooterFields.logo1.localFile)
+    : ""
+  const logo2ImageData = data.wp.themeFooterSettings.siteFooterFields.logo2
+    ? getImage(data.wp.themeFooterSettings.siteFooterFields.logo2.localFile)
+    : ""
 
   //console.log(data.wp.siteGeneralSettings)
+  //console.log(logo2ImageData)
 
   return (
     <>
@@ -123,22 +124,27 @@ const Footer = () => {
               <Logo />
             </div>
             <div className="assocs-logo mt-7 flex md:mx-auto lg:mx-0">
-              <div className="assocs-logo--1">
-                <GatsbyImage
-                  image={logo1ImageData}
-                  alt={
-                    data.wp.themeFooterSettings.siteFooterFields.logo1.altText
-                  }
-                />
-              </div>
-              <div className="assocs-logo--2">
-                <GatsbyImage
-                  image={logo2ImageData}
-                  alt={
-                    data.wp.themeFooterSettings.siteFooterFields.logo2.altText
-                  }
-                />
-              </div>
+              {logo1ImageData && (
+                <div className="assocs-logo--1">
+                  <GatsbyImage
+                    image={logo1ImageData}
+                    alt={
+                      data.wp.themeFooterSettings.siteFooterFields.logo1.altText
+                    }
+                  />
+                </div>
+              )}
+
+              {logo2ImageData && (
+                <div className="assocs-logo--2">
+                  <GatsbyImage
+                    image={logo2ImageData}
+                    alt={
+                      data.wp.themeFooterSettings.siteFooterFields.logo2.altText
+                    }
+                  />
+                </div>
+              )}
             </div>
           </div>
           <div className="footer-menus mt-4 grid gap-y-4 gap-x-12 grid-cols-2 md:grid-cols-3">
