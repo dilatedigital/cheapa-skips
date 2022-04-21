@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-const InnerBanner = ({ title, content, image }) => {
+const InnerBanner = ({ title, content, image, showBanner }) => {
   const { node } = image
   const imageData = getImage(node.localFile)
   //console.log(node)
@@ -15,9 +15,11 @@ const InnerBanner = ({ title, content, image }) => {
           className="inner-banner__content"
         />
       </div>
-      <div className="inner-banner__img">
-        <GatsbyImage image={imageData} alt={node.altText} />
-      </div>
+      {showBanner && (
+        <div className="inner-banner__img">
+          <GatsbyImage image={imageData} alt={node.altText} />
+        </div>
+      )}
     </div>
   )
 }
@@ -26,6 +28,11 @@ InnerBanner.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   image: PropTypes.object,
+  showBanner: PropTypes.bool,
+}
+
+InnerBanner.defaultProps = {
+  showBanner: true,
 }
 
 export default InnerBanner

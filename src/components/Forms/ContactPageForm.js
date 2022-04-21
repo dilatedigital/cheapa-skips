@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 import { useForm, Controller } from "react-hook-form"
 import axios from "axios"
 import Loading from "../../images/loading.svg"
@@ -7,7 +8,7 @@ import {
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3"
 
-const ContactPageForm = () => {
+const ContactPageForm = ({ withSuburb }) => {
   const { register, handleSubmit, errors, control, watch } = useForm()
 
   const [token, setToken] = useState()
@@ -27,7 +28,9 @@ const ContactPageForm = () => {
 
   const [isFormSubmitted, setFormSubmitted] = useState(false)
 
-  const formLink = process.env.GATSBY_CONTAGEPAGE
+  const formLink = withSuburb
+    ? process.env.GATSBY_SERVICEPAGE
+    : process.env.GATSBY_CONTAGEPAGE
 
   const onSubmit = (data, e) => {
     setFormSubmit(true)
@@ -40,6 +43,9 @@ const ContactPageForm = () => {
     bodyFormData.append("your-phone", data.phone)
     bodyFormData.append("your-message", data.message)
     bodyFormData.append("g-recaptcha-response", token)
+    if (withSuburb) {
+      bodyFormData.append("suburb", data.suburb)
+    }
 
     axios
       .post(formLink, bodyFormData)
@@ -71,6 +77,31 @@ const ContactPageForm = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="cs-form relative cs-home-form"
           >
+            {withSuburb && (
+              <div className="mb-4">
+                <label htmlFor="suburb">Confirm your Suburb / Location</label>
+                <div>
+                  <input
+                    type="text"
+                    id="suburb"
+                    name="suburb"
+                    placeholder="Confirm your Suburb / Location"
+                    className={`${errors.suburb ? "ring-2 ring-red-500" : ""}`}
+                    ref={register({
+                      required: "Suburb is required",
+                      minLength: {
+                        value: 2,
+                        message: "Suburb must be at least 2 characters.",
+                      },
+                    })}
+                    required
+                  />
+                  {errors.suburb && errors.suburb.message && (
+                    <p>{errors.suburb.message}</p>
+                  )}
+                </div>
+              </div>
+            )}
             <div className="cs-form-control">
               <div>
                 <label htmlFor="firstName">First Name</label>
@@ -218,3 +249,11 @@ const ContactPageForm = () => {
 }
 
 export default ContactPageForm
+
+ContactPageForm.propTypes = {
+  withSuburb: PropTypes.bool,
+}
+
+ContactPageForm.defaultProps = {
+  withSuburb: false,
+}
