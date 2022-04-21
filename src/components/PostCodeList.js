@@ -2,7 +2,6 @@ import React from "react"
 import { useQuery, gql } from "@apollo/client"
 import Loading from "../images/loading.svg"
 import NoPostcodeFound from "./NoPostcodeFound"
-import { array } from "prop-types"
 
 const searchPosts = gql`
   query POSTS_SEARCH_QUERY($searchTerm: String!) {

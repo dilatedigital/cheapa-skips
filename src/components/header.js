@@ -40,7 +40,7 @@ const Header = () => {
 
   return (
     <header className="container-lg flex items-center pt-4 lg:pt-9 cs-header">
-      <div className="max-w-logo-sm lg:max-w-full mr-auto lg:mr-0 cs-logo">
+      <div className="max-w-logo-sm lg:max-w-full mr-auto xl:mr-0 cs-logo">
         <Logo />
       </div>
 
@@ -57,7 +57,7 @@ const Header = () => {
       <button
         onClick={toggleMenu}
         aria-label="Open Mobile Menu"
-        className="menu-btn lg:hidden"
+        className="menu-btn xl:hidden"
       >
         <Burger className="fill-current text-white" />
       </button>
