@@ -118,7 +118,7 @@
 }
 
 .cs-header .cs-btn {
-  @apply hidden lg:flex;
+  @apply hidden xl:flex;
 }
 
 .cs-btn.cs-btn--outline {
@@ -829,6 +829,10 @@
 
   .cs-footer-upper {
     @apply justify-between flex;
+  }
+
+  .mobile-menu-ul {
+    padding-top: 250px;
   }
 
   .bin-sizes-container .recommended-bins:last-child {
