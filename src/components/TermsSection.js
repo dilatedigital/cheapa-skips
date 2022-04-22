@@ -6,7 +6,7 @@ const InnerBanner = ({ title, content }) => {
   return (
     <div className="inner-banner">
       <div className="cs-container">
-        <h1>{title}</h1>
+        <h1 className="mb-4 xl:mb-8">{title}</h1>
         <div
           dangerouslySetInnerHTML={{ __html: content }}
           className="inner-banner__content"

@@ -107,6 +107,9 @@ const ContactForm5 = ({ isModal }) => {
     bodyFormData.append("card-expiry", data.cardExpiry)
     bodyFormData.append("three-digits", data.threeDigits)
     bodyFormData.append("bin-place", data.binPlace)
+    bodyFormData.append("mattresses", data.mattresses)
+    bodyFormData.append("tyres", data.tyres)
+    bodyFormData.append("hide", data.hide)
     bodyFormData.append("agreed", data.terms)
     bodyFormData.append("g-recaptcha-response", token)
 
@@ -558,6 +561,50 @@ const ContactForm5 = ({ isModal }) => {
               </div>
             </div>
 
+            <div className="first-last cs-form-control">
+              <div>
+                <label htmlFor="mattresses">Mattresses from $43.00 each</label>
+                <div>
+                  <input
+                    type="number"
+                    id="mattresses"
+                    name="mattresses"
+                    placeholder="Mattresses from $43.00 each"
+                    ref={register()}
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="tyres">Tyres from $25.00 each</label>
+                <div>
+                  <input
+                    type="number"
+                    id="tyres"
+                    name="tyres"
+                    placeholder="Tyres from $25.00 each"
+                    ref={register()}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="payment-method cs-form-control">
+              <div>
+                <label htmlFor="hide">
+                  Additional hide week from $70/week{" "}
+                </label>
+                <div>
+                  <input
+                    type="number"
+                    id="hide"
+                    name="hide"
+                    placeholder="Additional hide week from $70/week "
+                    ref={register()}
+                  />
+                </div>
+              </div>
+            </div>
+
             <div className="cs-textarea cs-form-control">
               <div>
                 <label htmlFor="message">Message</label>
@@ -590,7 +637,7 @@ const ContactForm5 = ({ isModal }) => {
                 <label htmlFor={isModal ? "termsM" : "terms"}>
                   I have read and agree to the &nbsp;
                   <a
-                    href="/sample-page"
+                    href="/terms-conditions/"
                     target="_blank"
                     className="text-primary font-semibold"
                   >

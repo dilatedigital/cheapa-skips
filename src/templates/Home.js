@@ -30,16 +30,17 @@ const Home = ({ data: { wpPage } }) => {
         showHeroButton={wpPage.homeFields.showHeroButton}
         heroImage={wpPage.homeFields.heroImage}
       />
-      <SkipBinSizes
-        title={wpPage.homeFields.skipBinTitle}
-        content={wpPage.homeFields.skipBinContent}
-        binType="all"
-      />
       <Welcome
         welcomeTitle={wpPage.homeFields.welcomeTitle}
         welcomeContent={wpPage.homeFields.welcomeContent}
         welcomeImage={wpPage.homeFields.welcomeImage}
         welcomeButton={wpPage.homeFields.welcomeButton}
+        welcomeHome={true}
+      />
+      <SkipBinSizes
+        title={wpPage.homeFields.skipBinTitle}
+        content={wpPage.homeFields.skipBinContent}
+        binType="all"
       />
       <WhatCanGo
         whatCanGoButton={wpPage.homeFields.whatCanGoButton}

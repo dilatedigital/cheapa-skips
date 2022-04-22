@@ -4,7 +4,7 @@ import InnerBanner from "../components/Residential/InnerBanner"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import SkipBinSizes from "../components/Home/SkipBinSizes"
-import AdditionalEquipment from "../components/Pricing/AdditionalEquipment"
+import Welcome from "../components/Home/Welcome"
 
 const PricingSizes = ({ data: { wpPage } }) => {
   return (
@@ -24,7 +24,11 @@ const PricingSizes = ({ data: { wpPage } }) => {
         image={wpPage.featuredImage}
       />
       <SkipBinSizes binType="all" page="pricing" />
-      <AdditionalEquipment node={wpPage.pricingSizesFields} />
+      <Welcome
+        welcomeTitle={wpPage.pricingSizesFields.title}
+        welcomeImage={wpPage.pricingSizesFields.image}
+        welcomeContent={wpPage.pricingSizesFields.content}
+      />
     </Layout>
   )
 }
@@ -76,6 +80,16 @@ export const query = graphql`
           }
           notes {
             note
+          }
+        }
+        title
+        content
+        image {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
           }
         }
       }
