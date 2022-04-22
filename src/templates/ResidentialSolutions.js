@@ -4,7 +4,6 @@ import InnerBanner from "../components/Residential/InnerBanner"
 import Layout from "../components/layout"
 import RecommendedBins from "../components/Residential/RecommendedBins"
 import SEO from "../components/seo"
-import SkipSizeCalculator from "../components/Calculator/SkipSizeCalculator"
 import WasteSection from "../components/Residential/WasteSection"
 import AfterFormCTA from "../components/Residential/AfterFormCTA"
 
@@ -41,7 +40,6 @@ const ResidentialSolutions = ({ data: { wpPage }, location }) => {
         />
       </div>
       <section className="bg-gradient-to-b from-white to-light-green">
-        <SkipSizeCalculator inPage={false} pathName={location.pathname} />
         <AfterFormCTA content={wpPage.residentialFields.afterFormCta} />
       </section>
     </Layout>

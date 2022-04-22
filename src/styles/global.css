@@ -160,9 +160,9 @@
   @apply lg:max-w-full;
 }
 
-.inner-banner__content {
+/* .inner-banner__content {
   max-width: 832px;
-}
+} */
 
 .cs-hero-texts .hero-content p,
 .skip-bin-sizes p,
@@ -276,6 +276,7 @@
 
 .cs-home-form input[type="text"],
 .cs-home-form input[type="email"],
+.cs-home-form input[type="number"],
 .cs-home-form select,
 .cs-home-form textarea,
 .main-calculator select,
@@ -302,6 +303,10 @@
   right: 20px;
 }
 
+p a {
+  @apply underline;
+}
+
 .cs-home-form .cs-form-control > div {
   @apply mb-4;
 }
@@ -309,6 +314,7 @@
 .cs-home-form .react-datepicker-wrapper,
 .cs-home-form input[type="text"],
 .cs-home-form input[type="email"],
+.cs-home-form input[type="number"],
 .cs-home-form select,
 .cs-home-form textarea,
 .cs-home-form .cs-textarea > div,
@@ -808,6 +814,10 @@
   .cs-home-form .cs-dates > div,
   .cs-home-form .email-phone > div {
     width: 390px;
+  }
+
+  .cs-home-form .first-last.three-inputs > div {
+    width: 300px;
   }
   .cs-form,
   .modal-content__text {
