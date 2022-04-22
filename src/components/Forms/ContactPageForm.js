@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { useForm, Controller } from "react-hook-form"
 import axios from "axios"
 import Loading from "../../images/loading.svg"
+import ChevronDown from "../../images/arrow-down.svg"
 import {
   GoogleReCaptchaProvider,
   GoogleReCaptcha,
@@ -42,6 +43,7 @@ const ContactPageForm = ({ withSuburb }) => {
     bodyFormData.append("your-email", data.email)
     bodyFormData.append("your-phone", data.phone)
     bodyFormData.append("your-message", data.message)
+    bodyFormData.append("bin-size", data.binSize)
     bodyFormData.append("g-recaptcha-response", token)
     if (withSuburb) {
       bodyFormData.append("suburb", data.suburb)
@@ -204,6 +206,36 @@ const ContactPageForm = ({ withSuburb }) => {
                   />
                   {errors.phone && errors.phone.message && (
                     <p>{errors.phone.message}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="cs-textarea cs-form-control">
+              <div>
+                <label htmlFor="binSize">What bin size do you need?</label>
+                <div className="relative">
+                  <select
+                    name="binSize"
+                    id="binSize"
+                    ref={register({
+                      required: "Please select a bin size.",
+                    })}
+                    className={`${errors.binSize ? "ring-2 ring-red-500" : ""}`}
+                    required
+                  >
+                    <option value="">Select a bin size</option>
+                    <option value="2m3">2m3</option>
+                    <option value="3m3">3m3</option>
+                    <option value="4m3">4m3</option>
+                    <option value="5m3">5m3</option>
+                    <option value="6m3">6m3</option>
+                    <option value="8m3">8m3</option>
+                    <option value="9m3">9m3</option>
+                    <option value="10m3">10m3</option>
+                  </select>
+                  <ChevronDown />
+                  {errors.binSize && errors.binSize.message && (
+                    <p>{errors.binSize.message}</p>
                   )}
                 </div>
               </div>

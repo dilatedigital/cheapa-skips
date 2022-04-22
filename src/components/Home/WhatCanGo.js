@@ -10,7 +10,7 @@ const WhatCanGo = ({
 }) => {
   //console.log(whatCanGoButton)
   return (
-    <section className="cs-whatCanGo px-15px text-center py-20 xl:py-44">
+    <section className="cs-whatCanGo px-15px text-center py-20 lg:pb-44 lg:pt-0">
       <h3 className="text-h3-sm mb-4 lg:text-h3-lg">{whatCanGoTitle}</h3>
       <div
         dangerouslySetInnerHTML={{ __html: whatCanGoContent }}
