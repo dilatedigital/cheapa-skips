@@ -176,9 +176,9 @@ const Footer = () => {
             email={data.wp.siteGeneralSettings.siteSettingsFields.email}
             btnLink={
               data.wp.siteGeneralSettings.siteSettingsFields
-                .book_now_button_link
+                .book_now_button_link.uri
                 ? data.wp.siteGeneralSettings.siteSettingsFields
-                    .book_now_button_link
+                    .book_now_button_link.uri
                 : "/contact/"
             }
           />
@@ -188,9 +188,9 @@ const Footer = () => {
             <Link
               to={
                 data.wp.siteGeneralSettings.siteSettingsFields
-                  .terms_conditions_link
+                  .terms_conditions_link.uri
                   ? data.wp.siteGeneralSettings.siteSettingsFields
-                      .terms_conditions_link
+                      .terms_conditions_link.uri
                   : "/terms-conditions/"
               }
             >
