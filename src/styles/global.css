@@ -333,6 +333,10 @@ p a {
   @apply h-26;
 }
 
+.book-now-content-container p {
+  @apply mb-4 last:mb-0;
+}
+
 .cs-spinner svg {
   @apply animate-spin -ml-1 mr-3 h-12 w-12;
 }
