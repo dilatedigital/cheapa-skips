@@ -69,6 +69,8 @@ const Footer = () => {
             facebook
             twitter
             youtube
+            book_now_button_link
+            terms_conditions_link
           }
         }
       }
@@ -164,11 +166,28 @@ const Footer = () => {
           <FooterCI
             phone={data.wp.siteGeneralSettings.siteSettingsFields.phone}
             email={data.wp.siteGeneralSettings.siteSettingsFields.email}
+            btnLink={
+              data.wp.siteGeneralSettings.siteSettingsFields
+                .book_now_button_link
+                ? data.wp.siteGeneralSettings.siteSettingsFields
+                    .book_now_button_link
+                : "/contact/"
+            }
           />
         </div>
         <div className="cs-footer-lower pt-8 text-center lg:text-left lg:flex lg:items-center lg:justify-between">
           <div className="cs-footer-lower--terms lg:order-2">
-            <Link to="/terms-conditions">Terms and Conditions</Link>
+            <Link
+              to={
+                data.wp.siteGeneralSettings.siteSettingsFields
+                  .terms_conditions_link
+                  ? data.wp.siteGeneralSettings.siteSettingsFields
+                      .terms_conditions_link
+                  : "/terms-conditions/"
+              }
+            >
+              Terms and Conditions
+            </Link>
           </div>
           <div className="cs-footer-lower--socmed my-8 text-lg flex justify-center lg:order-3">
             {data.wp.siteGeneralSettings.siteSettingsFields.facebook && (
