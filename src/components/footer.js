@@ -69,8 +69,16 @@ const Footer = () => {
             facebook
             twitter
             youtube
-            book_now_button_link
-            terms_conditions_link
+            book_now_button_link {
+              ... on WpPage {
+                uri
+              }
+            }
+            terms_conditions_link {
+              ... on WpPage {
+                uri
+              }
+            }
           }
         }
       }

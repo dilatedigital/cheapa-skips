@@ -30,7 +30,11 @@ const Header = () => {
         siteGeneralSettings {
           siteSettingsFields {
             phone
-            book_now_button_link
+            book_now_button_link {
+              ... on WpPage {
+                uri
+              }
+            }
           }
         }
       }
