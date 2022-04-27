@@ -21,7 +21,7 @@ const EachBin = ({ node, extra }) => {
       wp {
         siteGeneralSettings {
           siteSettingsFields {
-            each_bin_button_text
+            eachBinButtonText
           }
         }
       }
@@ -82,10 +82,9 @@ const EachBin = ({ node, extra }) => {
           </div>
           <div className="mt-7.5">
             <div className="cs-btn cs-btn--outline">
-              {data.wp.siteGeneralSettings.siteSettingsFields
-                .each_bin_button_text
+              {data.wp.siteGeneralSettings.siteSettingsFields.eachBinButtonText
                 ? data.wp.siteGeneralSettings.siteSettingsFields
-                    .each_bin_button_text
+                    .eachBinButtonText
                 : "Book Now"}
             </div>
           </div>
