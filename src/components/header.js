@@ -31,7 +31,7 @@ const Header = () => {
           siteSettingsFields {
             phone
             book_now_button_link {
-              ... on Page {
+              ... on WpPage {
                 uri
               }
             }

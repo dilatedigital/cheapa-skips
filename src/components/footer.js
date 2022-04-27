@@ -70,12 +70,12 @@ const Footer = () => {
             twitter
             youtube
             book_now_button_link {
-              ... on Page {
+              ... on WpPage {
                 uri
               }
             }
             terms_conditions_link {
-              ... on Page {
+              ... on WpPage {
                 uri
               }
             }
