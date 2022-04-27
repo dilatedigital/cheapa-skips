@@ -69,13 +69,13 @@ const Footer = () => {
             facebook
             twitter
             youtube
-            book_now_button_link {
-              ... on Page {
+            bookNowButtonLink {
+              ... on WpPage {
                 uri
               }
             }
-            terms_conditions_link {
-              ... on Page {
+            termsConditionsLink {
+              ... on WpPage {
                 uri
               }
             }
@@ -188,9 +188,9 @@ const Footer = () => {
             <Link
               to={
                 data.wp.siteGeneralSettings.siteSettingsFields
-                  .terms_conditions_link.uri
+                  .termsConditionsLink.uri
                   ? data.wp.siteGeneralSettings.siteSettingsFields
-                      .terms_conditions_link.uri
+                      .termsConditionsLink.uri
                   : "/terms-conditions/"
               }
             >
