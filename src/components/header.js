@@ -30,7 +30,7 @@ const Header = () => {
         siteGeneralSettings {
           siteSettingsFields {
             phone
-            book_now_button_link {
+            bookNowButtonLink {
               ... on WpPage {
                 uri
               }
@@ -68,8 +68,8 @@ const Header = () => {
       </button>
       <Button
         link={
-          wp.siteGeneralSettings.siteSettingsFields.book_now_button_link.uri
-            ? wp.siteGeneralSettings.siteSettingsFields.book_now_button_link.uri
+          wp.siteGeneralSettings.siteSettingsFields.bookNowButtonLink.uri
+            ? wp.siteGeneralSettings.siteSettingsFields.bookNowButtonLink.uri
             : "/contact/"
         }
         outline={false}
