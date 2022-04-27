@@ -178,7 +178,7 @@ const Footer = () => {
               data.wp.siteGeneralSettings.siteSettingsFields
                 .book_now_button_link
                 ? data.wp.siteGeneralSettings.siteSettingsFields
-                    .book_now_button_link
+                    .book_now_button_link.uri
                 : "/contact/"
             }
           />
@@ -190,7 +190,7 @@ const Footer = () => {
                 data.wp.siteGeneralSettings.siteSettingsFields
                   .terms_conditions_link
                   ? data.wp.siteGeneralSettings.siteSettingsFields
-                      .terms_conditions_link
+                      .terms_conditions_link.uri
                   : "/terms-conditions/"
               }
             >
