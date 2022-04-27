@@ -109,7 +109,7 @@ const ContactForm5 = ({ isModal }) => {
     bodyFormData.append("bin-place", data.binPlace)
     bodyFormData.append("mattresses", data.mattresses)
     bodyFormData.append("tyres", data.tyres)
-    bodyFormData.append("hide", data.hide)
+    bodyFormData.append("hire", data.hire)
     bodyFormData.append("agreed", data.terms)
     bodyFormData.append("g-recaptcha-response", token)
 
@@ -452,7 +452,7 @@ const ContactForm5 = ({ isModal }) => {
                     <option value="">Select Payment Method</option>
                     <option value="cash">Cash</option>
                     <option value="card">Card</option>
-                    <option value="afterpay">Afterpay</option>
+                    {/* <option value="afterpay">Afterpay</option> */}
                   </select>
                   <ChevronDown />
                   {errors.paymentMethod && errors.paymentMethod.message && (
@@ -590,15 +590,13 @@ const ContactForm5 = ({ isModal }) => {
 
             <div className="payment-method cs-form-control">
               <div>
-                <label htmlFor="hide">
-                  Additional hide week from $70/week{" "}
-                </label>
+                <label htmlFor="hire">Additional hire week from $70/week</label>
                 <div>
                   <input
                     type="number"
-                    id="hide"
-                    name="hide"
-                    placeholder="Additional hide week from $70/week "
+                    id="hire"
+                    name="hire"
+                    placeholder="Additional hire week from $70/week"
                     ref={register()}
                   />
                 </div>

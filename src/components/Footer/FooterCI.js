@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Phone from "../../images/phone-call.svg"
 import Button from "../Button"
 
-const FooterCI = ({ phone, email }) => {
+const FooterCI = ({ phone, email, btnLink }) => {
   return (
     <div className="mt-8 lg:mt-0">
       <ul>
@@ -21,7 +21,7 @@ const FooterCI = ({ phone, email }) => {
         </li>
         <li>
           <Button
-            link="/contact/"
+            link={btnLink}
             outline={false}
             text="Book a Bin"
             alignment="center"

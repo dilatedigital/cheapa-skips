@@ -30,6 +30,11 @@ const Header = () => {
         siteGeneralSettings {
           siteSettingsFields {
             phone
+            bookNowButtonLink {
+              ... on WpPage {
+                uri
+              }
+            }
           }
         }
       }
@@ -61,7 +66,15 @@ const Header = () => {
       >
         <Burger className="fill-current text-white" />
       </button>
-      <Button link="/contact/" outline={false} text="Book a Bin" />
+      <Button
+        link={
+          wp.siteGeneralSettings.siteSettingsFields.bookNowButtonLink.uri
+            ? wp.siteGeneralSettings.siteSettingsFields.bookNowButtonLink.uri
+            : "/contact/"
+        }
+        outline={false}
+        text="Book a Bin"
+      />
       <MobileMenu menu={wpMenu} />
     </header>
   )

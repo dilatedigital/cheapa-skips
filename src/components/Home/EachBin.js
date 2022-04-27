@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import CircleBg from "../../images/circle.svg"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { ModalContext } from "../../context/ModalContext"
+import { graphql, useStaticQuery } from "gatsby"
 
 const EachBin = ({ node, extra }) => {
   const imageData = getImage(node.featuredImage.node.localFile)
@@ -14,6 +15,18 @@ const EachBin = ({ node, extra }) => {
     setTitle(node.title)
     setSize(alias)
   }
+
+  const data = useStaticQuery(graphql`
+    {
+      wp {
+        siteGeneralSettings {
+          siteSettingsFields {
+            eachBinButtonText
+          }
+        }
+      }
+    }
+  `)
 
   return (
     <div
@@ -69,7 +82,10 @@ const EachBin = ({ node, extra }) => {
           </div>
           <div className="mt-7.5">
             <div className="cs-btn cs-btn--outline">
-              Enquire for personal quote
+              {data.wp.siteGeneralSettings.siteSettingsFields.eachBinButtonText
+                ? data.wp.siteGeneralSettings.siteSettingsFields
+                    .eachBinButtonText
+                : "Book Now"}
             </div>
           </div>
         </div>
