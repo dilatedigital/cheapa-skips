@@ -68,7 +68,7 @@ const Header = () => {
       </button>
       <Button
         link={
-          wp.siteGeneralSettings.siteSettingsFields.book_now_button_link
+          wp.siteGeneralSettings.siteSettingsFields.book_now_button_link.uri
             ? wp.siteGeneralSettings.siteSettingsFields.book_now_button_link.uri
             : "/contact/"
         }
