@@ -175,10 +175,10 @@ const Footer = () => {
             phone={data.wp.siteGeneralSettings.siteSettingsFields.phone}
             email={data.wp.siteGeneralSettings.siteSettingsFields.email}
             btnLink={
-              data.wp.siteGeneralSettings.siteSettingsFields
-                .book_now_button_link.uri
+              data.wp.siteGeneralSettings.siteSettingsFields.bookNowButtonLink
+                .uri
                 ? data.wp.siteGeneralSettings.siteSettingsFields
-                    .book_now_button_link.uri
+                    .bookNowButtonLink.uri
                 : "/contact/"
             }
           />
