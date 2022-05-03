@@ -429,6 +429,10 @@ p a {
   @apply mt-2;
 }
 
+.inner-banner__content p {
+  @apply mb-2 last:mb-0;
+}
+
 .inner-banner__img {
   @apply mt-8 lg:mt-70px;
 }
@@ -455,7 +459,7 @@ p a {
 }
 
 .waste-section__content ul {
-  @apply mt-7;
+  @apply mt-7 mb-8 last:mb-0;
 }
 
 .waste-section__content ul li {
