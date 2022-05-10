@@ -267,7 +267,7 @@
 }
 
 .cs-home-form {
-  @apply px-15px xl:mt-40;
+  @apply px-15px;
 }
 
 .cs-home-form label {
@@ -540,9 +540,9 @@ p a {
 }
 
 /*  MODAL */
-.ReactModal__Content {
+/* .ReactModal__Content {
   margin-top: 550px;
-}
+} */
 
 .modal-content .cs-btn {
   max-width: 350px;

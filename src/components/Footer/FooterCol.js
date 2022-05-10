@@ -21,7 +21,7 @@ const FooterCol = ({ title, menuItems, generalSiteFields }) => {
                 key={menuItem.id}
                 className={menuItemsLen === i + 1 ? "mb-0" : "mb-4"}
               >
-                {menuItem.connectedNode.node ? (
+                {menuItem.connectedNode ? (
                   <Link to={menuItem.connectedNode.node.uri}>
                     {menuItem.label}
                   </Link>

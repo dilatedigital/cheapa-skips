@@ -21,12 +21,13 @@ const modalStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+    transform: "translateX(-50%)",
     borderRadius: "2px",
     maxWidth: "912px",
     width: "100%",
     minHeight: "500px",
     padding: "60px 0",
+    top: "0",
   },
 }
 
