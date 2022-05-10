@@ -8,7 +8,7 @@ const FooterCol = ({ title, menuItems, generalSiteFields }) => {
   if (menuItems) {
     menuItemsLen = menuItems.nodes.length
   }
-  console.log(menuItems)
+  //console.log(menuItems)
 
   return (
     <div className="mt-8 lg:mt-0">
