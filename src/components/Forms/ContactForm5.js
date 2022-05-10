@@ -569,6 +569,7 @@ const ContactForm5 = ({ isModal }) => {
                     type="number"
                     id="mattresses"
                     name="mattresses"
+                    min="0"
                     placeholder="Mattresses from $43.00 each"
                     ref={register()}
                   />
@@ -581,6 +582,7 @@ const ContactForm5 = ({ isModal }) => {
                     type="number"
                     id="tyres"
                     name="tyres"
+                    min="0"
                     placeholder="Tyres from $25.00 each"
                     ref={register()}
                   />
@@ -596,6 +598,7 @@ const ContactForm5 = ({ isModal }) => {
                     type="number"
                     id="hire"
                     name="hire"
+                    min="0"
                     placeholder="Additional hire week from $70/week"
                     ref={register()}
                   />
