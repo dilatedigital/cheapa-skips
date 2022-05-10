@@ -8,7 +8,7 @@ const FooterCol = ({ title, menuItems, generalSiteFields }) => {
   if (menuItems) {
     menuItemsLen = menuItems.nodes.length
   }
-  //console.log(menuItems)
+  console.log(menuItems)
 
   return (
     <div className="mt-8 lg:mt-0">
@@ -21,7 +21,7 @@ const FooterCol = ({ title, menuItems, generalSiteFields }) => {
                 key={menuItem.id}
                 className={menuItemsLen === i + 1 ? "mb-0" : "mb-4"}
               >
-                {menuItem.connectedNode ? (
+                {menuItem.connectedNode.node ? (
                   <Link to={menuItem.connectedNode.node.uri}>
                     {menuItem.label}
                   </Link>
