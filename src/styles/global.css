@@ -333,6 +333,10 @@ p a {
   @apply h-26;
 }
 
+.book-now-content-container p {
+  @apply mb-4 last:mb-0;
+}
+
 .cs-spinner svg {
   @apply animate-spin -ml-1 mr-3 h-12 w-12;
 }
@@ -425,6 +429,10 @@ p a {
   @apply mt-2;
 }
 
+.inner-banner__content p {
+  @apply mb-2 last:mb-0;
+}
+
 .inner-banner__img {
   @apply mt-8 lg:mt-70px;
 }
@@ -451,7 +459,7 @@ p a {
 }
 
 .waste-section__content ul {
-  @apply mt-7;
+  @apply mt-7 mb-8 last:mb-0;
 }
 
 .waste-section__content ul li {
@@ -532,9 +540,9 @@ p a {
 }
 
 /*  MODAL */
-.ReactModal__Content {
+/* .ReactModal__Content {
   margin-top: 550px;
-}
+} */
 
 .modal-content .cs-btn {
   max-width: 350px;

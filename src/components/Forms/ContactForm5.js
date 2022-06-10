@@ -15,6 +15,7 @@ import {
   GoogleReCaptchaProvider,
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3"
+import { useStaticQuery, graphql } from "gatsby"
 
 const ContactForm5 = ({ isModal }) => {
   const [token, setToken] = useState()
@@ -22,6 +23,27 @@ const ContactForm5 = ({ isModal }) => {
     submitting: false,
     status: null,
   })
+
+  //editable form labels
+  const data = useStaticQuery(graphql`
+    {
+      wp {
+        siteGeneralSettings {
+          siteSettingsFields {
+            additionalHireLabel
+            mattressesLabel
+            tyresLabel
+          }
+        }
+      }
+    }
+  `)
+
+  const additionalHire =
+    data.wp.siteGeneralSettings.siteSettingsFields.additionalHireLabel
+  const mattresses =
+    data.wp.siteGeneralSettings.siteSettingsFields.mattressesLabel
+  const tyres = data.wp.siteGeneralSettings.siteSettingsFields.tyresLabel
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -563,25 +585,27 @@ const ContactForm5 = ({ isModal }) => {
 
             <div className="first-last cs-form-control">
               <div>
-                <label htmlFor="mattresses">Mattresses from $43.00 each</label>
+                <label htmlFor="mattresses">{mattresses}</label>
                 <div>
                   <input
                     type="number"
                     id="mattresses"
                     name="mattresses"
-                    placeholder="Mattresses from $43.00 each"
+                    min="0"
+                    placeholder={mattresses}
                     ref={register()}
                   />
                 </div>
               </div>
               <div>
-                <label htmlFor="tyres">Tyres from $25.00 each</label>
+                <label htmlFor="tyres">{tyres}</label>
                 <div>
                   <input
                     type="number"
                     id="tyres"
                     name="tyres"
-                    placeholder="Tyres from $25.00 each"
+                    min="0"
+                    placeholder={tyres}
                     ref={register()}
                   />
                 </div>
@@ -590,13 +614,14 @@ const ContactForm5 = ({ isModal }) => {
 
             <div className="payment-method cs-form-control">
               <div>
-                <label htmlFor="hire">Additional hire week from $70/week</label>
+                <label htmlFor="hire">{additionalHire}</label>
                 <div>
                   <input
                     type="number"
                     id="hire"
                     name="hire"
-                    placeholder="Additional hire week from $70/week"
+                    min="0"
+                    placeholder={additionalHire}
                     ref={register()}
                   />
                 </div>

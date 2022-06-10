@@ -16,17 +16,17 @@ const modalStyles = {
     overflow: "scroll",
   },
   content: {
-    top: "50%",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
+    transform: "translateX(-50%)",
     borderRadius: "2px",
     maxWidth: "912px",
     width: "100%",
     minHeight: "500px",
     padding: "60px 0",
+    top: "0",
   },
 }
 
@@ -175,10 +175,10 @@ const Footer = () => {
             phone={data.wp.siteGeneralSettings.siteSettingsFields.phone}
             email={data.wp.siteGeneralSettings.siteSettingsFields.email}
             btnLink={
-              data.wp.siteGeneralSettings.siteSettingsFields
-                .book_now_button_link.uri
+              data.wp.siteGeneralSettings.siteSettingsFields.bookNowButtonLink
+                .uri
                 ? data.wp.siteGeneralSettings.siteSettingsFields
-                    .book_now_button_link.uri
+                    .bookNowButtonLink.uri
                 : "/contact/"
             }
           />
