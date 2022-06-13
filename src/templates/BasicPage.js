@@ -1,5 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
+import ContactForm6 from "../components/Forms/ContactForm6"
 import Layout from "../components/layout"
 
 const BasicPage = ({
