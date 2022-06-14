@@ -279,11 +279,7 @@ const ContactForm5 = ({ isModal }) => {
                   required
                   defaultValue=""
                 />
-                <Script strategy={ScriptStrategy.idle}>
-                  {`
-                  datepicker()
-                  `}
-                </Script>
+                <Script strategy={ScriptStrategy.idle}></Script>
                 <Calendar />
                 {errors.deliveryDate && errors.deliveryDate.message && (
                   <p>{errors.deliveryDate.message}</p>
