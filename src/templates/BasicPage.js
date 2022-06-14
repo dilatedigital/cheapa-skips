@@ -1,5 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
+import ContactForm6 from "../components/Forms/ContactForm6"
 import Layout from "../components/layout"
 
 const BasicPage = ({
@@ -16,6 +17,7 @@ const BasicPage = ({
       <div className="h-screen">
         <h4>Cheapa SKips</h4>
       </div>
+      <ContactForm6 />
     </Layout>
   )
 }
