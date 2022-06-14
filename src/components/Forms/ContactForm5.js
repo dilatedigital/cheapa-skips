@@ -106,7 +106,6 @@ const ContactForm5 = ({ isModal }) => {
     setFormSubmit(true)
     let bodyFormData = new FormData()
     const form = e.target
-
     window.grecaptcha.ready(() => {
       window.grecaptcha
         .execute(process.env.GATSBY_RECAPTCHA_KEY, { action: "submit" })
