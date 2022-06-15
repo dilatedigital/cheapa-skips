@@ -152,15 +152,27 @@ const ContactForm5 = ({ isModal }) => {
     <>
       <Script
         src="https://unpkg.com/js-datepicker"
+        id={isModal ? "id1" : "id2"}
         onLoad={() => {
-          const start = window.datepicker("#deliveryDate", {
-            id: isModal ? 1 : 2,
-            minDate: new Date(),
-          })
-          const end = window.datepicker("#returnDate", { id: isModal ? 1 : 2 })
+          if (isModal) {
+            const start = window.datepicker("#deliveryDate1", {
+              id: 1,
+              minDate: new Date(),
+            })
+            const end = window.datepicker("#returnDate1", { id: 1 })
 
-          start.getRange()
-          end.getRange()
+            start.getRange()
+            end.getRange()
+          } else {
+            const start2 = window.datepicker("#deliveryDate2", {
+              id: 2,
+              minDate: new Date(),
+            })
+            const end2 = window.datepicker("#returnDate2", { id: 2 })
+
+            start2.getRange()
+            end2.getRange()
+          }
         }}
       />
 
@@ -284,7 +296,7 @@ const ContactForm5 = ({ isModal }) => {
               <div className="relative">
                 <input
                   type="text"
-                  id="deliveryDate"
+                  id={isModal ? "deliveryDate1" : "deliveryDate2"}
                   name="deliveryDate"
                   placeholder="Choose a delivery date"
                   ref={register({
@@ -302,7 +314,7 @@ const ContactForm5 = ({ isModal }) => {
               <div className="relative">
                 <input
                   type="text"
-                  id="returnDate"
+                  id={isModal ? "returnDate1" : "returnDate2"}
                   name="returnDate"
                   placeholder="Choose a return date"
                   ref={register({
