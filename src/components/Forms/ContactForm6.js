@@ -153,7 +153,20 @@ const ContactForm5 = ({ isModal }) => {
 
   return (
     <>
-      <Script src="https://unpkg.com/js-datepicker" />
+      <Script
+        src="https://unpkg.com/js-datepicker"
+        onLoad={() => {
+          const start = window.datepicker("#deliveryDate", {
+            id: 1,
+            minDate: new Date(),
+          })
+          const end = window.datepicker("#returnDate", { id: 1 })
+
+          start.getRange()
+          end.getRange()
+        }}
+      />
+
       {!isFormSubmitted && (
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -272,14 +285,15 @@ const ContactForm5 = ({ isModal }) => {
             <div>
               <label htmlFor="deliveryDate">Delivery Date</label>
               <div className="relative">
-                <Controller
+                <input
+                  type="text"
+                  id="deliveryDate"
                   name="deliveryDate"
-                  control={control}
-                  rules={{ required: "Please select a delivery date." }}
-                  required
-                  defaultValue=""
+                  placeholder="Choose a delivery date"
+                  ref={register({
+                    required: "Please select a delivery date.",
+                  })}
                 />
-                <Script strategy={ScriptStrategy.idle}></Script>
                 <Calendar />
                 {errors.deliveryDate && errors.deliveryDate.message && (
                   <p>{errors.deliveryDate.message}</p>
@@ -289,14 +303,14 @@ const ContactForm5 = ({ isModal }) => {
             <div>
               <label htmlFor="returnDate">Return Date</label>
               <div className="relative">
-                <Controller
+                <input
+                  type="text"
+                  id="returnDate"
                   name="returnDate"
-                  control={control}
-                  rules={{
-                    required: "Please select a delivery return date.",
-                  }}
-                  required
-                  defaultValue=""
+                  placeholder="Choose a return date"
+                  ref={register({
+                    required: "Please select a return date.",
+                  })}
                 />
                 <Calendar />
                 {errors.returnDate && errors.returnDate.message && (

@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react"
 import { useForm, Controller } from "react-hook-form"
 import axios from "axios"
 import { ModalContext } from "../../context/ModalContext"
-import ReactDatePicker from "react-datepicker"
 import ReactSelect, { components } from "react-select"
 import SearchIcon from "../../images/search.svg"
 import ChevronDown from "../../images/arrow-down.svg"
@@ -11,7 +10,8 @@ import Loading from "../../images/loading.svg"
 import "react-datepicker/dist/react-datepicker.css"
 import suburbs from "../../data/suburbs"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Script } from "gatsby"
+import "../../styles/datepicker.css"
 
 const ContactForm5 = ({ isModal }) => {
   const [serverState, setServerState] = useState({
@@ -54,9 +54,6 @@ const ContactForm5 = ({ isModal }) => {
   const [isFormSubmitting, setFormSubmit] = useState(false)
 
   const [isFormSubmitted, setFormSubmitted] = useState(false)
-
-  const deliveryDate = watch("deliveryDate")
-  const returnDate = watch("returnDate")
 
   const formLink = process.env.GATSBY_MODALFORM
 
@@ -106,6 +103,7 @@ const ContactForm5 = ({ isModal }) => {
     setFormSubmit(true)
     let bodyFormData = new FormData()
     const form = e.target
+
     window.grecaptcha.ready(() => {
       window.grecaptcha
         .execute(process.env.GATSBY_RECAPTCHA_KEY, { action: "submit" })
@@ -152,6 +150,20 @@ const ContactForm5 = ({ isModal }) => {
 
   return (
     <>
+      <Script
+        src="https://unpkg.com/js-datepicker"
+        onLoad={() => {
+          const start = window.datepicker("#deliveryDate", {
+            id: isModal ? 1 : 2,
+            minDate: new Date(),
+          })
+          const end = window.datepicker("#returnDate", { id: isModal ? 1 : 2 })
+
+          start.getRange()
+          end.getRange()
+        }}
+      />
+
       {!isFormSubmitted && (
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -270,28 +282,14 @@ const ContactForm5 = ({ isModal }) => {
             <div>
               <label htmlFor="deliveryDate">Delivery Date</label>
               <div className="relative">
-                <Controller
+                <input
+                  type="text"
+                  id="deliveryDate"
                   name="deliveryDate"
-                  control={control}
-                  rules={{ required: "Please select a delivery date." }}
-                  required
-                  defaultValue=""
-                  render={({ onChange, value }) => (
-                    <ReactDatePicker
-                      onChange={onChange}
-                      selected={value}
-                      selectsStart
-                      minDate={new Date()}
-                      startDate={deliveryDate}
-                      endDate={returnDate}
-                      placeholderText="Choose delivery date"
-                      id="deliveryDate"
-                      autoComplete="off"
-                      className={`${
-                        errors.deliveryDate ? "ring-2 ring-red-500" : ""
-                      }`}
-                    />
-                  )}
+                  placeholder="Choose a delivery date"
+                  ref={register({
+                    required: "Please select a delivery date.",
+                  })}
                 />
                 <Calendar />
                 {errors.deliveryDate && errors.deliveryDate.message && (
@@ -302,30 +300,14 @@ const ContactForm5 = ({ isModal }) => {
             <div>
               <label htmlFor="returnDate">Return Date</label>
               <div className="relative">
-                <Controller
+                <input
+                  type="text"
+                  id="returnDate"
                   name="returnDate"
-                  control={control}
-                  rules={{
-                    required: "Please select a delivery return date.",
-                  }}
-                  required
-                  defaultValue=""
-                  render={({ onChange, value }) => (
-                    <ReactDatePicker
-                      onChange={onChange}
-                      selected={value}
-                      selectsEnd
-                      minDate={deliveryDate}
-                      startDate={deliveryDate}
-                      endDate={returnDate}
-                      id="returnDate"
-                      autoComplete="off"
-                      placeholderText="Choose delivery return date"
-                      className={`${
-                        errors.returnDate ? "ring-2 ring-red-500" : ""
-                      }`}
-                    />
-                  )}
+                  placeholder="Choose a return date"
+                  ref={register({
+                    required: "Please select a return date.",
+                  })}
                 />
                 <Calendar />
                 {errors.returnDate && errors.returnDate.message && (
