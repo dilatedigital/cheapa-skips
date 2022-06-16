@@ -19,6 +19,8 @@ const ContactForm5 = ({ isModal }) => {
     status: null,
   })
 
+  const [captchaLoaded, setCatpchaLoaded] = useState(false)
+
   //editable form labels
   const data = useStaticQuery(graphql`
     {
@@ -49,7 +51,13 @@ const ContactForm5 = ({ isModal }) => {
 
   const { modalTitle, binSize } = useContext(ModalContext)
 
-  const { register, handleSubmit, errors, control, watch } = useForm()
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors, isDirty },
+  } = useForm()
 
   const [isFormSubmitting, setFormSubmit] = useState(false)
 
@@ -98,6 +106,8 @@ const ContactForm5 = ({ isModal }) => {
       padding: "0 0.5rem 0 0",
     }),
   }
+
+  const captchaKey = `https://www.google.com/recaptcha/api.js?render=${process.env.GATSBY_RECAPTCHA_KEY}`
 
   const onSubmit = (data, e) => {
     setFormSubmit(true)
@@ -148,6 +158,10 @@ const ContactForm5 = ({ isModal }) => {
     })
   }
 
+  if (isDirty) {
+    setCatpchaLoaded(true)
+  }
+
   return (
     <>
       <Script
@@ -175,7 +189,7 @@ const ContactForm5 = ({ isModal }) => {
           }
         }}
       />
-
+      {isDirty && captchaLoaded && <Script src={captchaKey} />}
       {!isFormSubmitted && (
         <form
           onSubmit={handleSubmit(onSubmit)}

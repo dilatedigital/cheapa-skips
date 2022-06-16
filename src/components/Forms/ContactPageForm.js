@@ -4,14 +4,23 @@ import { useForm, Controller } from "react-hook-form"
 import axios from "axios"
 import Loading from "../../images/loading.svg"
 import ChevronDown from "../../images/arrow-down.svg"
+import { Script } from "gatsby"
 
 const ContactPageForm = ({ withSuburb }) => {
-  const { register, handleSubmit, errors, control, watch } = useForm()
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors, isDirty },
+  } = useForm()
 
   const [serverState, setServerState] = useState({
     submitting: false,
     status: null,
   })
+
+  const [captchaLoaded, setCatpchaLoaded] = useState(false)
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -64,8 +73,16 @@ const ContactPageForm = ({ withSuburb }) => {
         })
     })
   }
+
+  const captchaKey = `https://www.google.com/recaptcha/api.js?render=${process.env.GATSBY_RECAPTCHA_KEY}`
+
+  if (isDirty) {
+    setCatpchaLoaded(true)
+  }
+
   return (
     <>
+      {isDirty && captchaLoaded && <Script src={captchaKey} />}
       {!isFormSubmitted && (
         <form
           onSubmit={handleSubmit(onSubmit)}

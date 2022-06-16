@@ -13,9 +13,6 @@ const BasicPage = ({
         <h2>{title}</h2>
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </div>
-      <div className="h-screen">
-        <h4>Cheapa SKips</h4>
-      </div>
     </Layout>
   )
 }
