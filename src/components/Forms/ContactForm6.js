@@ -10,7 +10,7 @@ import Loading from "../../images/loading.svg"
 import "react-datepicker/dist/react-datepicker.css"
 import suburbs from "../../data/suburbs"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql, Script, ScriptStrategy } from "gatsby"
+import { useStaticQuery, graphql, Script } from "gatsby"
 import "../../styles/datepicker.css"
 
 const ContactForm5 = ({ isModal }) => {
@@ -18,6 +18,8 @@ const ContactForm5 = ({ isModal }) => {
     submitting: false,
     status: null,
   })
+
+  const [captchaLoaded, setCatpchaLoaded] = useState(false)
 
   //editable form labels
   const data = useStaticQuery(graphql`
@@ -49,14 +51,17 @@ const ContactForm5 = ({ isModal }) => {
 
   const { modalTitle, binSize } = useContext(ModalContext)
 
-  const { register, handleSubmit, errors, control, watch } = useForm()
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors, isDirty },
+  } = useForm()
 
   const [isFormSubmitting, setFormSubmit] = useState(false)
 
   const [isFormSubmitted, setFormSubmitted] = useState(false)
-
-  const deliveryDate = watch("deliveryDate")
-  const returnDate = watch("returnDate")
 
   const formLink = process.env.GATSBY_MODALFORM
 
@@ -101,6 +106,8 @@ const ContactForm5 = ({ isModal }) => {
       padding: "0 0.5rem 0 0",
     }),
   }
+
+  const captchaKey = `https://www.google.com/recaptcha/api.js?render=${process.env.GATSBY_RECAPTCHA_KEY}`
 
   const onSubmit = (data, e) => {
     setFormSubmit(true)
@@ -151,9 +158,39 @@ const ContactForm5 = ({ isModal }) => {
     })
   }
 
+  if (isDirty) {
+    setCatpchaLoaded(true)
+    console.log(captchaLoaded)
+  }
+
   return (
     <>
-      <Script src="https://unpkg.com/js-datepicker" />
+      <Script
+        src="https://unpkg.com/js-datepicker"
+        id={isModal ? "id1" : "id2"}
+        onLoad={() => {
+          if (isModal) {
+            const start = window.datepicker("#deliveryDate1", {
+              id: 1,
+              minDate: new Date(),
+            })
+            const end = window.datepicker("#returnDate1", { id: 1 })
+
+            start.getRange()
+            end.getRange()
+          } else {
+            const start2 = window.datepicker("#deliveryDate2", {
+              id: 2,
+              minDate: new Date(),
+            })
+            const end2 = window.datepicker("#returnDate2", { id: 2 })
+
+            start2.getRange()
+            end2.getRange()
+          }
+        }}
+      />
+      {isDirty && captchaLoaded && <Script src={captchaKey} />}
       {!isFormSubmitted && (
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -272,14 +309,15 @@ const ContactForm5 = ({ isModal }) => {
             <div>
               <label htmlFor="deliveryDate">Delivery Date</label>
               <div className="relative">
-                <Controller
+                <input
+                  type="text"
+                  id={isModal ? "deliveryDate1" : "deliveryDate2"}
                   name="deliveryDate"
-                  control={control}
-                  rules={{ required: "Please select a delivery date." }}
-                  required
-                  defaultValue=""
+                  placeholder="Choose a delivery date"
+                  ref={register({
+                    required: "Please select a delivery date.",
+                  })}
                 />
-                <Script strategy={ScriptStrategy.idle}></Script>
                 <Calendar />
                 {errors.deliveryDate && errors.deliveryDate.message && (
                   <p>{errors.deliveryDate.message}</p>
@@ -289,14 +327,14 @@ const ContactForm5 = ({ isModal }) => {
             <div>
               <label htmlFor="returnDate">Return Date</label>
               <div className="relative">
-                <Controller
+                <input
+                  type="text"
+                  id={isModal ? "returnDate1" : "returnDate2"}
                   name="returnDate"
-                  control={control}
-                  rules={{
-                    required: "Please select a delivery return date.",
-                  }}
-                  required
-                  defaultValue=""
+                  placeholder="Choose a return date"
+                  ref={register({
+                    required: "Please select a return date.",
+                  })}
                 />
                 <Calendar />
                 {errors.returnDate && errors.returnDate.message && (
