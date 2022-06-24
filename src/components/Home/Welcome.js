@@ -18,7 +18,7 @@ const Welcome = ({
         welcomeHome ? "mt-24 lg:mt-26 xl:mt-32" : ""
       }`}
     >
-      <div className="cs-welcome-image">
+      <div className="cs-welcome-image hidden lg:block">
         <GatsbyImage image={imageData} alt={welcomeImage.altText} />
       </div>
       <div className="px-15px mt-10 cs-welcome-content xl:ml-18 xl:mt-0">

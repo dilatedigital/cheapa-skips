@@ -70,9 +70,7 @@ function PostCodeLists({ searchTerm }) {
         <table class="w-full border-collapse">
           <thead className="text-left">
             <tr>
-              <th className="pb-7" style={"min-width: 144px;"}>
-                Postcode
-              </th>
+              <th className="pb-7 lg:min-w-[144px]">Postcode</th>
               <th className="pb-7">Suburb</th>
               <th className="pb-7">2m3</th>
               <th className="pb-7">3m3</th>
