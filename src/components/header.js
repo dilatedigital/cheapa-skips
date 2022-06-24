@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Script } from "gatsby"
 import React, { useContext } from "react"
 import Logo from "./Logo"
 import Menu from "./Menu"
@@ -41,42 +41,54 @@ const Header = () => {
     }
   `)
 
-  const { toggleMenu } = useContext(MenuContext)
+  const { toggleMenu, closeMenu } = useContext(MenuContext)
 
   return (
-    <header className="container-lg flex items-center pt-4 lg:pt-9 cs-header">
-      <div className="max-w-logo-sm lg:max-w-full mr-auto xl:mr-0 cs-logo">
-        <Logo />
-      </div>
+    <>
+      <Script>
+        {`
+          const scroller = document.querySelector("#___gatsby");
+          
+          scroller.addEventListener("scroll", event => {
+            console.log(scroller.scrollTop)
+          })
+        `}
+      </Script>
 
-      <Menu menu={wpMenu} />
-      <div className="mr-8">
-        <a
-          href={`tel:${wp.siteGeneralSettings.siteSettingsFields.phone}`}
-          className="text-phone-header text-primary font-bold flex items-center"
+      <header className="container-lg flex items-center pt-4 lg:pt-9 cs-header">
+        <div className="max-w-logo-sm lg:max-w-full mr-auto xl:mr-0 cs-logo">
+          <Logo closeMenu={closeMenu} />
+        </div>
+
+        <Menu menu={wpMenu} />
+        <div className="mr-8">
+          <a
+            href={`tel:${wp.siteGeneralSettings.siteSettingsFields.phone}`}
+            className="text-phone-header text-primary font-bold flex items-center"
+          >
+            <Phone className="mr-3" />
+            {wp.siteGeneralSettings.siteSettingsFields.phone}
+          </a>
+        </div>
+        <button
+          onClick={toggleMenu}
+          aria-label="Open Mobile Menu"
+          className="menu-btn xl:hidden"
         >
-          <Phone className="mr-3" />
-          {wp.siteGeneralSettings.siteSettingsFields.phone}
-        </a>
-      </div>
-      <button
-        onClick={toggleMenu}
-        aria-label="Open Mobile Menu"
-        className="menu-btn xl:hidden"
-      >
-        <Burger className="fill-current text-white" />
-      </button>
-      <Button
-        link={
-          wp.siteGeneralSettings.siteSettingsFields.bookNowButtonLink.uri
-            ? wp.siteGeneralSettings.siteSettingsFields.bookNowButtonLink.uri
-            : "/contact/"
-        }
-        outline={false}
-        text="Book a Bin"
-      />
-      <MobileMenu menu={wpMenu} />
-    </header>
+          <Burger className="fill-current text-white" />
+        </button>
+        <Button
+          link={
+            wp.siteGeneralSettings.siteSettingsFields.bookNowButtonLink.uri
+              ? wp.siteGeneralSettings.siteSettingsFields.bookNowButtonLink.uri
+              : "/contact/"
+          }
+          outline={false}
+          text="Book a Bin"
+        />
+        <MobileMenu menu={wpMenu} />
+      </header>
+    </>
   )
 }
 

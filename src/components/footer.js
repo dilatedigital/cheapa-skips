@@ -53,6 +53,8 @@ const Footer = () => {
                 }
               }
             }
+            showDilate
+            dilateContent
           }
         }
         siteGeneralSettings {
@@ -237,6 +239,15 @@ const Footer = () => {
             </p>
           </div>
         </div>
+        {data.wp.themeFooterSettings.siteFooterFields.showDilate && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html:
+                data.wp.themeFooterSettings.siteFooterFields.dilateContent,
+            }}
+            className="text-center p-[20px] dilate-content"
+          />
+        )}
       </footer>
       <Modal
         isOpen={isModalOpen}

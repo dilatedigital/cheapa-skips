@@ -32,7 +32,11 @@ const MobileMenuLi = props => {
               ? props.menuItem.connectedNode.node.uri
               : props.menuItem.url
           }
-          onClick={props.toggleMenu}
+          onClick={
+            props.menuItem.connectedNode
+              ? props.toggleMenu
+              : () => handleClick(props.menuItem.id)
+          }
           onKeyDown={props.toggleMenu}
         >
           {props.menuItem.title}
