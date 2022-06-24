@@ -256,6 +256,10 @@
 
 /*  HOME FORM */
 
+section.cs-home-form {
+  @apply max-w-full;
+}
+
 .cs-home-form .react-datepicker__day--selected,
 .cs-home-form .react-datepicker__day--in-range,
 .cs-home-form .react-datepicker__day--in-selecting-range:hover {
@@ -417,6 +421,10 @@ p a {
 
 .cs-footer-lower--socmed a svg path {
   @apply text-primary;
+}
+
+.dilate-content a {
+  @apply no-underline;
 }
 
 /*  INNER BANNER */
