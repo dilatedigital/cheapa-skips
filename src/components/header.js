@@ -1,5 +1,5 @@
-import { graphql, useStaticQuery, Script } from "gatsby"
-import React, { useContext } from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import React, { useContext, useEffect, useState } from "react"
 import Logo from "./Logo"
 import Menu from "./Menu"
 import Phone from "../images/phone-call.svg"
@@ -41,21 +41,28 @@ const Header = () => {
     }
   `)
 
+  const [offset, setOffset] = useState(0)
+  const [stickyClass, setStickyClass] = useState("")
+
   const { toggleMenu, closeMenu } = useContext(MenuContext)
+
+  useEffect(() => {
+    if (typeof window !== `undefined`) {
+      window.onscroll = () => {
+        setOffset(window.pageYOffset)
+      }
+    }
+  }, [])
+
+  //console.log(offset)
+
+  offset > 200 ? setStickyClass("sticky-nav") : setStickyClass("")
 
   return (
     <>
-      <Script>
-        {`
-          const scroller = document.querySelector("#___gatsby");
-          
-          scroller.addEventListener("scroll", event => {
-            console.log(scroller.scrollTop)
-          })
-        `}
-      </Script>
-
-      <header className="container-lg flex items-center pt-4 lg:pt-9 cs-header">
+      <header
+        className={`container-lg flex items-center pt-4 lg:pt-9 cs-header ${stickyClass}`}
+      >
         <div className="max-w-logo-sm lg:max-w-full mr-auto xl:mr-0 cs-logo">
           <Logo closeMenu={closeMenu} />
         </div>
