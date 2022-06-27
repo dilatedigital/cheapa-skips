@@ -2,6 +2,7 @@ import React from "react"
 import { useQuery, gql } from "@apollo/client"
 import Loading from "../images/loading.svg"
 import NoPostcodeFound from "./NoPostcodeFound"
+import DoubleDown from "../images/double-chevron-down.svg"
 
 const searchPosts = gql`
   query POSTS_SEARCH_QUERY($searchTerm: String!) {
@@ -54,77 +55,80 @@ function PostCodeLists({ searchTerm }) {
   }
 
   return (
-    <div className="posts-list relative overflow-x-scroll xl:overflow-hidden">
-      {data.postcodes.nodes.forEach(
-        post => (searchLength += post.postCodeFields.info.length)
-      )}
-      <div className="cs-container">
-        <p
-          className="text-center text-bin-title text my-5 2xl:my-50px"
-          style={"color: #a7a7a7"}
-        >
-          {`${searchLength} ${
-            searchLength > 1 ? "results" : "result"
-          } for "${searchTerm}"`}
-        </p>
-        <table class="w-full border-collapse">
-          <thead className="text-left">
-            <tr>
-              <th className="pb-7 lg:min-w-[144px]">Postcode</th>
-              <th className="pb-7">Suburb</th>
-              <th className="pb-7">2m3</th>
-              <th className="pb-7">3m3</th>
-              <th className="pb-7">4m3</th>
-              <th className="pb-7">5m3</th>
-              <th className="pb-7">6m3</th>
-              <th className="pb-7">8m3</th>
-              <th className="pb-7">9m3</th>
-              <th className="pb-7">10m3</th>
-            </tr>
-          </thead>
-          <tbody className="border-b border-t border-dark-green border-opacity-20">
-            {data.postcodes.nodes.map(post => {
-              let postCode = post.title
-              return post.postCodeFields.info.map((item, i) => {
-                return (
-                  <tr
-                    key={i}
-                    className="border-b last:border-b-0 hover:bg-gray-100"
-                  >
-                    <td className="py-3">{postCode}</td>
-                    <td>{item.suburb}</td>
-                    <td>
-                      <span>from </span>${item.price2m3}
-                    </td>
-                    <td>
-                      <span>from </span>${item.price3m3}
-                    </td>
-                    <td>
-                      <span>from </span>${item.price4m3}
-                    </td>
-                    <td>
-                      <span>from </span>${item.price5m3}
-                    </td>
-                    <td>
-                      <span>from </span>${item.price6m3}
-                    </td>
-                    <td>
-                      <span>from </span>${item.price8m3}
-                    </td>
-                    <td>
-                      <span>from </span>${item.price9m3}
-                    </td>
-                    <td>
-                      <span>from </span>${item.price10m3}
-                    </td>
-                  </tr>
-                )
-              })
-            })}
-          </tbody>
-        </table>
+    <>
+      <DoubleDown className="absolute right-[10px] top-[-10px] z-50 w-[24px] animate-bounce lg:right-[-30px]" />
+      <div className="posts-list relative overflow-x-scroll xl:overflow-hidden">
+        {data.postcodes.nodes.forEach(
+          post => (searchLength += post.postCodeFields.info.length)
+        )}
+        <div className="cs-container">
+          <p
+            className="text-center text-bin-title text my-5 2xl:my-50px"
+            style={"color: #a7a7a7"}
+          >
+            {`${searchLength} ${
+              searchLength > 1 ? "results" : "result"
+            } for "${searchTerm}"`}
+          </p>
+          <table class="w-full border-collapse">
+            <thead className="text-left">
+              <tr>
+                <th className="pb-7 lg:min-w-[144px]">Postcode</th>
+                <th className="pb-7">Suburb</th>
+                <th className="pb-7">2m3</th>
+                <th className="pb-7">3m3</th>
+                <th className="pb-7">4m3</th>
+                <th className="pb-7">5m3</th>
+                <th className="pb-7">6m3</th>
+                <th className="pb-7">8m3</th>
+                <th className="pb-7">9m3</th>
+                <th className="pb-7">10m3</th>
+              </tr>
+            </thead>
+            <tbody className="border-b border-t border-dark-green border-opacity-20">
+              {data.postcodes.nodes.map(post => {
+                let postCode = post.title
+                return post.postCodeFields.info.map((item, i) => {
+                  return (
+                    <tr
+                      key={i}
+                      className="border-b last:border-b-0 hover:bg-gray-100"
+                    >
+                      <td className="py-3">{postCode}</td>
+                      <td>{item.suburb}</td>
+                      <td>
+                        <span>from </span>${item.price2m3}
+                      </td>
+                      <td>
+                        <span>from </span>${item.price3m3}
+                      </td>
+                      <td>
+                        <span>from </span>${item.price4m3}
+                      </td>
+                      <td>
+                        <span>from </span>${item.price5m3}
+                      </td>
+                      <td>
+                        <span>from </span>${item.price6m3}
+                      </td>
+                      <td>
+                        <span>from </span>${item.price8m3}
+                      </td>
+                      <td>
+                        <span>from </span>${item.price9m3}
+                      </td>
+                      <td>
+                        <span>from </span>${item.price10m3}
+                      </td>
+                    </tr>
+                  )
+                })
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
