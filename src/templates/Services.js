@@ -55,7 +55,7 @@ const Services = ({ data: { wpPage } }) => {
           handleSearchTermChange={handleSearchTermChange}
           handleSubmit={handleSubmit}
         />
-        <div className="relative">
+        <div className="relative max-w-[1393px] mx-auto">
           <PostCodeLists searchTerm={debouncedSearchTerm} />
         </div>
       </ApolloProvider>

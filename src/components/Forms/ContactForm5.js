@@ -616,15 +616,22 @@ const ContactForm5 = ({ isModal }) => {
           <div className="first-last cs-form-control">
             <div>
               <label htmlFor="hire">{additionalHire}</label>
-              <div>
-                <input
-                  type="number"
-                  id="hire"
+              <div className="relative">
+                <select
                   name="hire"
-                  min="0"
-                  placeholder={additionalHire}
-                  ref={register()}
-                />
+                  id="hire"
+                  ref={register({})}
+                  required
+                  className={`${errors.hire ? "ring-2 ring-red-500" : ""}`}
+                >
+                  <option value="">Select Answer</option>
+                  <option value="1 Week">1 Week</option>
+                  <option value="2 Weeks">2 Weeks</option>
+                  <option value="3 Weeks">3 Weeks</option>
+                  <option value="4 Weeks">4 Weeks</option>
+                  <option value="more">More</option>
+                </select>
+                <ChevronDown />
               </div>
             </div>
             <div>
