@@ -30,6 +30,7 @@ const ContactForm5 = ({ isModal }) => {
             additionalHireLabel
             mattressesLabel
             tyresLabel
+            dropDoorLabel
           }
         }
       }
@@ -41,6 +42,8 @@ const ContactForm5 = ({ isModal }) => {
   const mattresses =
     data.wp.siteGeneralSettings.siteSettingsFields.mattressesLabel
   const tyres = data.wp.siteGeneralSettings.siteSettingsFields.tyresLabel
+  const dropDoorLabel =
+    data.wp.siteGeneralSettings.siteSettingsFields.dropDoorLabel
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -141,6 +144,7 @@ const ContactForm5 = ({ isModal }) => {
           bodyFormData.append("mattresses", data.mattresses)
           bodyFormData.append("tyres", data.tyres)
           bodyFormData.append("hire", data.hire)
+          bodyFormData.append("drop-door", data.dropdoor)
           bodyFormData.append("agreed", data.terms)
           bodyFormData.append("token", token)
 
@@ -609,7 +613,7 @@ const ContactForm5 = ({ isModal }) => {
             </div>
           </div>
 
-          <div className="payment-method cs-form-control">
+          <div className="first-last cs-form-control">
             <div>
               <label htmlFor="hire">{additionalHire}</label>
               <div>
@@ -623,6 +627,28 @@ const ContactForm5 = ({ isModal }) => {
                 />
               </div>
             </div>
+            <div>
+              <label htmlFor="dropdoor">{dropDoorLabel}</label>
+              <div className="relative">
+                <select
+                  name="dropdoor"
+                  id="dropdoor"
+                  ref={register({
+                    required: "Please select if drop door is required.",
+                  })}
+                  required
+                  className={`${errors.dropdoor ? "ring-2 ring-red-500" : ""}`}
+                >
+                  <option value="">Select Answer</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <ChevronDown />
+                {errors.dropdoor && errors.dropdoor.message && (
+                  <p>{errors.dropdoor.message}</p>
+                )}
+              </div>
+            </div>
           </div>
 
           <div className="cs-textarea cs-form-control">
@@ -634,7 +660,7 @@ const ContactForm5 = ({ isModal }) => {
                   name="message"
                   placeholder="Message"
                   className={`${errors.message ? "ring-2 ring-red-500" : ""}`}
-                  ref={register()}
+                  ref={register({ required: "Drop door is required" })}
                 />
               </div>
             </div>

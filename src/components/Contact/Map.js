@@ -3,7 +3,12 @@ import GoogleMapReact from "google-map-react"
 import MapPin from "../../images/map-pin.svg"
 
 const AnyReactComponent = () => (
-  <div style={{ transform: "translate(-50%, -50%)", position: "absolute" }}>
+  <div
+    style={{
+      transform: "translate(-50%, -50%)",
+      position: "absolute",
+    }}
+  >
     <MapPin />
   </div>
 )
