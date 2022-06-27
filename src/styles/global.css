@@ -32,6 +32,10 @@
   max-width: 1675px;
 }
 
+.sticky-nav {
+  @apply fixed w-full bg-white z-50 pb-[10px] pt-[10px] border-b border-b-[#eaeaea] lg:relative lg:bg-transparent lg:pt-9 lg:pb-0 lg:border-0;
+}
+
 .cs-container {
   max-width: 1393px;
 }
