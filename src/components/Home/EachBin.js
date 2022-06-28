@@ -13,7 +13,7 @@ const EachBin = ({ node, extra }) => {
   const handleClick = alias => {
     openModal()
     setTitle(node.title)
-    setSize(alias)
+    setSize(node.title)
   }
 
   const data = useStaticQuery(graphql`
