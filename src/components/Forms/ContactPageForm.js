@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form"
 import axios from "axios"
 import Loading from "../../images/loading.svg"
 import ChevronDown from "../../images/arrow-down.svg"
-import { Script } from "gatsby"
+import { Script, useStaticQuery, graphql } from "gatsby"
 
 const ContactPageForm = ({ withSuburb }) => {
   const {
@@ -21,6 +21,21 @@ const ContactPageForm = ({ withSuburb }) => {
   })
 
   const [captchaLoaded, setCatpchaLoaded] = useState(false)
+
+  //editable form labels
+  const data = useStaticQuery(graphql`
+    {
+      wp {
+        siteGeneralSettings {
+          siteSettingsFields {
+            binSize {
+              size
+            }
+          }
+        }
+      }
+    }
+  `)
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -79,6 +94,8 @@ const ContactPageForm = ({ withSuburb }) => {
   if (isDirty) {
     setCatpchaLoaded(true)
   }
+
+  const binSizes = data.wp.siteGeneralSettings.siteSettingsFields.binSize
 
   return (
     <>
@@ -229,14 +246,13 @@ const ContactPageForm = ({ withSuburb }) => {
                   required
                 >
                   <option value="">Select a bin size</option>
-                  <option value="2m3">2m3</option>
-                  <option value="3m3">3m3</option>
-                  <option value="4m3">4m3</option>
-                  <option value="5m3">5m3</option>
-                  <option value="6m3">6m3</option>
-                  <option value="8m3">8m3</option>
-                  <option value="9m3">9m3</option>
-                  <option value="10m3">10m3</option>
+                  {binSizes.map(function (item, i) {
+                    return (
+                      <option value={item.size} key={i}>
+                        {item.size}
+                      </option>
+                    )
+                  })}
                 </select>
                 <ChevronDown />
                 {errors.binSize && errors.binSize.message && (

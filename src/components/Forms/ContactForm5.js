@@ -31,6 +31,9 @@ const ContactForm5 = ({ isModal }) => {
             mattressesLabel
             tyresLabel
             dropDoorLabel
+            binSize {
+              size
+            }
           }
         }
       }
@@ -44,6 +47,9 @@ const ContactForm5 = ({ isModal }) => {
   const tyres = data.wp.siteGeneralSettings.siteSettingsFields.tyresLabel
   const dropDoorLabel =
     data.wp.siteGeneralSettings.siteSettingsFields.dropDoorLabel
+  const binSizes = data.wp.siteGeneralSettings.siteSettingsFields.binSize
+
+  console.log(binSizes)
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -169,6 +175,13 @@ const ContactForm5 = ({ isModal }) => {
     setCatpchaLoaded(true)
   }
 
+  const validate = value => {
+    const matches = value.match(
+      /^(?:0\.(?:0[0-9]|[0-9]\d?)|[0-9]\d*(?:\.\d{1,2})?)(?:e[+-]?\d+)?$/
+    )
+    return matches?.length > 0 || "Not a Number"
+  }
+
   return (
     <>
       {isDirty && captchaLoaded && <Script src={captchaKey} />}
@@ -246,14 +259,14 @@ const ContactForm5 = ({ isModal }) => {
                   defaultValue={isModal ? binSize : ""}
                 >
                   <option value="">Select Bin Size</option>
-                  <option value="2m3">2 Cubic Meter Bin (2m3)</option>
-                  <option value="3m3">3 Cubic Meter Bin (3m3)</option>
-                  <option value="4m3">4 Cubic Meter Bin (4m3)</option>
-                  <option value="5m3">5 Cubic Meter Bin (5m3)</option>
-                  <option value="6m3">6 Cubic Meter Bin (6m3)</option>
-                  <option value="8m3">8 Cubic Meter Bin (8m3)</option>
-                  <option value="9m3">9 Cubic Meter Bin (9m3)</option>
-                  <option value="10m3">10 Cubic Meter Bin (10m3)</option>
+
+                  {binSizes.map(function (item, i) {
+                    return (
+                      <option value={item.size} key={i}>
+                        {item.size}
+                      </option>
+                    )
+                  })}
                 </select>
                 <ChevronDown />
                 {errors.bin && errors.bin.message && (
@@ -513,10 +526,11 @@ const ContactForm5 = ({ isModal }) => {
               <label htmlFor="cardNumber">Card Number</label>
               <div>
                 <input
-                  type="text"
+                  type="number"
                   id="cardNumber"
                   name="cardNumber"
                   placeholder="Card Number"
+                  rules={{ validate }}
                   className={`${
                     errors.cardNumber ? "ring-2 ring-red-500" : ""
                   }`}
@@ -539,10 +553,11 @@ const ContactForm5 = ({ isModal }) => {
               <label htmlFor="cardExpiry">Card Expiry</label>
               <div>
                 <input
-                  type="text"
+                  type="number"
                   id="cardExpiry"
                   name="cardExpiry"
                   placeholder="Card Expiry"
+                  rules={{ validate }}
                   className={`${
                     errors.cardExpiry ? "ring-2 ring-red-500" : ""
                   }`}
@@ -562,13 +577,14 @@ const ContactForm5 = ({ isModal }) => {
               <label htmlFor="threeDigits">Three Digits on Reverse</label>
               <div>
                 <input
-                  type="text"
+                  type="number"
                   id="threeDigits"
                   name="threeDigits"
                   placeholder="Three digits on reverse"
                   className={`${
                     errors.threeDigits ? "ring-2 ring-red-500" : ""
                   }`}
+                  rules={{ validate }}
                   ref={register({
                     minLength: {
                       value: 2,
