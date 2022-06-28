@@ -311,6 +311,17 @@ section.cs-home-form {
   right: 20px;
 }
 
+.cs-form input::-webkit-outer-spin-button,
+.cs-form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.cs-form input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 p a {
   @apply underline;
 }
