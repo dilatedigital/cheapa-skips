@@ -34,6 +34,9 @@ const ContactForm5 = ({ isModal }) => {
             binSize {
               size
             }
+            wasteType {
+              type
+            }
           }
         }
       }
@@ -48,8 +51,8 @@ const ContactForm5 = ({ isModal }) => {
   const dropDoorLabel =
     data.wp.siteGeneralSettings.siteSettingsFields.dropDoorLabel
   const binSizes = data.wp.siteGeneralSettings.siteSettingsFields.binSize
-
-  console.log(binSizes)
+  const wasteTypeOptions =
+    data.wp.siteGeneralSettings.siteSettingsFields.wasteType
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -140,6 +143,8 @@ const ContactForm5 = ({ isModal }) => {
           bodyFormData.append("delivery-date", data.deliveryDate)
           bodyFormData.append("return-date", data.returnDate)
           bodyFormData.append("suburb", data.suburb.value)
+          bodyFormData.append("address", data.address)
+          bodyFormData.append("postcode", data.postcode)
           bodyFormData.append("your-message", data.message)
           bodyFormData.append("payment-method", data.paymentMethod)
           bodyFormData.append("name-on-card", data.nameOnCard)
@@ -190,8 +195,29 @@ const ContactForm5 = ({ isModal }) => {
           onSubmit={handleSubmit(onSubmit)}
           className="cs-form mt-8 relative"
         >
-          <div className="suburbs cs-form-control">
-            <div>
+          <div className="address cs-form-control">
+            <div className="w-full">
+              <label htmlFor="address">Address</label>
+              <div>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  placeholder="Address"
+                  className={`${errors.address ? "ring-2 ring-red-500" : ""}`}
+                  ref={register({
+                    required: "Address is required",
+                  })}
+                  required
+                />
+                {errors.address && errors.address.message && (
+                  <p>{errors.address.message}</p>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="first-last cs-form-control">
+            <div className="suburbs">
               <label htmlFor="suburb">Suburb</label>
               <div>
                 <Controller
@@ -221,6 +247,25 @@ const ContactForm5 = ({ isModal }) => {
                 )}
               </div>
             </div>
+            <div>
+              <label htmlFor="postcode">Postcode</label>
+              <div>
+                <input
+                  type="text"
+                  id="postcode"
+                  name="postcode"
+                  placeholder="Postcode"
+                  className={`${errors.postcode ? "ring-2 ring-red-500" : ""}`}
+                  ref={register({
+                    required: "postcode is required",
+                  })}
+                  required
+                />
+                {errors.postcode && errors.postcode.message && (
+                  <p>{errors.postcode.message}</p>
+                )}
+              </div>
+            </div>
           </div>
           <div className="waste-bin cs-form-control">
             <div>
@@ -234,11 +279,13 @@ const ContactForm5 = ({ isModal }) => {
                   required
                 >
                   <option value="">Select Waste Type</option>
-                  <option value="General Waste">General Waste</option>
-                  <option value="Mixed Heavy">Mixed Heavy Waste</option>
-                  <option value="Cleanfill/Hardfill">Cleanfill/Hardfill</option>
-                  <option value="Green Garden Waste">Green Garden Waste</option>
-                  <option value="Soil/Dirt">Soil/Dirt</option>
+                  {wasteTypeOptions.map(function (item, i) {
+                    return (
+                      <option value={item.type} key={i}>
+                        {item.type}
+                      </option>
+                    )
+                  })}
                 </select>
                 <ChevronDown />
                 {errors.waste && errors.waste.message && (
@@ -319,6 +366,7 @@ const ContactForm5 = ({ isModal }) => {
                       endDate={returnDate}
                       placeholderText="Choose delivery date"
                       id="deliveryDate"
+                      dateFormat="dd mmmm yyyy"
                       autoComplete="off"
                       className={`${
                         errors.deliveryDate ? "ring-2 ring-red-500" : ""
@@ -343,6 +391,7 @@ const ContactForm5 = ({ isModal }) => {
                   }}
                   required
                   defaultValue=""
+                  dateFormat="dd mmmm yyyy"
                   render={({ onChange, value }) => (
                     <ReactDatePicker
                       onChange={onChange}
@@ -683,7 +732,7 @@ const ContactForm5 = ({ isModal }) => {
                   name="message"
                   placeholder="Message"
                   className={`${errors.message ? "ring-2 ring-red-500" : ""}`}
-                  ref={register({ required: "Drop door is required" })}
+                  ref={register()}
                 />
               </div>
             </div>
