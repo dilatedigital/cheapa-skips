@@ -2,13 +2,13 @@ import { graphql } from "gatsby"
 import React from "react"
 import InnerBanner from "../components/Residential/InnerBanner"
 import Layout from "../components/layout"
-import RecommendedBins from "../components/Residential/RecommendedBins"
 import SEO from "../components/seo"
 import WasteSection from "../components/Residential/WasteSection"
 import AfterFormCTA from "../components/Residential/AfterFormCTA"
+import RelatedBins from "../components/Residential/RelatedBins"
 
 const ResidentialSolutions = ({ data: { wpPage }, location }) => {
-  //console.log(location)
+  //console.log(wpPage)
   return (
     <Layout>
       <SEO
@@ -30,13 +30,13 @@ const ResidentialSolutions = ({ data: { wpPage }, location }) => {
         content={wpPage.residentialFields.wasteContent}
       />
       <div className="cs-container bin-sizes-container">
-        <RecommendedBins
+        <RelatedBins
           title={wpPage.residentialFields.largeBinsTitle}
-          binType="large"
+          bins={wpPage.residentialFields.relatedBins}
         />
-        <RecommendedBins
+        <RelatedBins
           title={wpPage.residentialFields.smallBinsTitle}
-          binType="small"
+          bins={wpPage.residentialFields.relatedBinsCopy}
         />
       </div>
       <section className="bg-gradient-to-b from-white to-light-green">
@@ -83,6 +83,52 @@ export const query = graphql`
         smallBinsTitle
         largeBinsTitle
         afterFormCta
+        relatedBins {
+          ... on WpBinSize {
+            id
+            featuredImage {
+              node {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(placeholder: TRACED_SVG, quality: 100)
+                  }
+                }
+              }
+            }
+            title
+            skipBinSizesFields {
+              dimensions
+              trailerLoads
+              wheelieBins
+              price
+              alias
+            }
+          }
+        }
+        relatedBinsCopy {
+          ... on WpBinSize {
+            id
+            featuredImage {
+              node {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(placeholder: TRACED_SVG, quality: 100)
+                  }
+                }
+              }
+            }
+            title
+            skipBinSizesFields {
+              dimensions
+              trailerLoads
+              wheelieBins
+              price
+              alias
+            }
+          }
+        }
       }
     }
   }
