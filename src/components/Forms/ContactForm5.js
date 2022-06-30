@@ -197,7 +197,7 @@ const ContactForm5 = ({ isModal }) => {
         >
           <div className="address cs-form-control">
             <div className="w-full">
-              <label htmlFor="address">Address</label>
+              <label htmlFor="address">Address*</label>
               <div>
                 <input
                   type="text"
@@ -218,7 +218,7 @@ const ContactForm5 = ({ isModal }) => {
           </div>
           <div className="first-last cs-form-control">
             <div className="suburbs">
-              <label htmlFor="suburb">Suburb</label>
+              <label htmlFor="suburb">Suburb*</label>
               <div>
                 <Controller
                   name="suburb"
@@ -248,7 +248,7 @@ const ContactForm5 = ({ isModal }) => {
               </div>
             </div>
             <div>
-              <label htmlFor="postcode">Postcode</label>
+              <label htmlFor="postcode">Postcode*</label>
               <div>
                 <input
                   type="text"
@@ -269,7 +269,7 @@ const ContactForm5 = ({ isModal }) => {
           </div>
           <div className="waste-bin cs-form-control">
             <div>
-              <label htmlFor="waste">Waste Type</label>
+              <label htmlFor="waste">Waste Type*</label>
               <div className="relative">
                 <select
                   name="waste"
@@ -294,7 +294,7 @@ const ContactForm5 = ({ isModal }) => {
               </div>
             </div>
             <div>
-              <label htmlFor="bin">Bin Size</label>
+              <label htmlFor="bin">Bin Size*</label>
               <div className="relative">
                 <select
                   name="bin"
@@ -326,7 +326,7 @@ const ContactForm5 = ({ isModal }) => {
           <div className="cs-textarea cs-form-control">
             <div>
               <label htmlFor="binPlace">
-                Where would you like your bin placed?
+                Where would you like your bin placed?*
               </label>
               <div>
                 <textarea
@@ -348,7 +348,7 @@ const ContactForm5 = ({ isModal }) => {
 
           <div className="cs-dates cs-form-control">
             <div>
-              <label htmlFor="deliveryDate">Delivery Date</label>
+              <label htmlFor="deliveryDate">Delivery Date*</label>
               <div className="relative">
                 <Controller
                   name="deliveryDate"
@@ -381,7 +381,7 @@ const ContactForm5 = ({ isModal }) => {
               </div>
             </div>
             <div>
-              <label htmlFor="returnDate">Return Date</label>
+              <label htmlFor="returnDate">Return Date*</label>
               <div className="relative">
                 <Controller
                   name="returnDate"
@@ -418,7 +418,7 @@ const ContactForm5 = ({ isModal }) => {
           </div>
           <div className="first-last cs-form-control">
             <div>
-              <label htmlFor="firstName">First Name</label>
+              <label htmlFor="firstName">First Name*</label>
               <div>
                 <input
                   type="text"
@@ -446,7 +446,7 @@ const ContactForm5 = ({ isModal }) => {
               </div>
             </div>
             <div>
-              <label htmlFor="lastName">Last Name</label>
+              <label htmlFor="lastName">Last Name*</label>
               <div>
                 <input
                   type="text"
@@ -455,7 +455,7 @@ const ContactForm5 = ({ isModal }) => {
                   placeholder="Last Name"
                   className={`${errors.lastName ? "ring-2 ring-red-500" : ""}`}
                   ref={register({
-                    required: "First name is required",
+                    required: "Last name is required",
                     maxLength: {
                       value: 80,
                       message:
@@ -476,7 +476,7 @@ const ContactForm5 = ({ isModal }) => {
           </div>
           <div className="email-phone cs-form-control">
             <div>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email*</label>
               <div>
                 <input
                   type="email"
@@ -499,7 +499,7 @@ const ContactForm5 = ({ isModal }) => {
               </div>
             </div>
             <div>
-              <label htmlFor="phone">Phone</label>
+              <label htmlFor="phone">Phone*</label>
               <div>
                 <input
                   type="text"
@@ -521,7 +521,7 @@ const ContactForm5 = ({ isModal }) => {
 
           <div className="payment-method cs-form-control">
             <div>
-              <label htmlFor="paymentMethod">Payment Method</label>
+              <label htmlFor="paymentMethod">Payment Method*</label>
               <div className="relative">
                 <select
                   name="paymentMethod"
@@ -686,7 +686,6 @@ const ContactForm5 = ({ isModal }) => {
                   name="hire"
                   id="hire"
                   ref={register({})}
-                  required
                   className={`${errors.hire ? "ring-2 ring-red-500" : ""}`}
                 >
                   <option value="">Select Answer</option>
@@ -700,7 +699,7 @@ const ContactForm5 = ({ isModal }) => {
               </div>
             </div>
             <div>
-              <label htmlFor="dropdoor">{dropDoorLabel}</label>
+              <label htmlFor="dropdoor">{dropDoorLabel}*</label>
               <div className="relative">
                 <select
                   name="dropdoor"
