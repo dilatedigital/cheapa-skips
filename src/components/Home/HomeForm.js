@@ -22,14 +22,12 @@ const HomeForm = () => {
     data.wp.siteGeneralSettings.siteSettingsFields.bookNowContent
   return (
     <section className="cs-home-form pt-10 pb-20 bg-gradient-to-b from-white to-light-green lg:py-32">
-      <div className="px-15px text-center mx-auto" style={"max-width: 812px;"}>
-        <h3 className="text-h3-sm mb-4 lg:text-h3-lg">{bookNowTitle}</h3>
-        <div
-          dangerouslySetInnerHTML={{ __html: bookNowContent }}
-          className="book-now-content-container"
-        />
+      <div>
+        <h3 className="text-h3-sm text-center mb-4 lg:text-h3-lg">
+          {bookNowTitle}
+        </h3>
       </div>
-      <ContactForm5 />
+      <ContactForm5 bookNowContent={bookNowContent} />
     </section>
   )
 }
