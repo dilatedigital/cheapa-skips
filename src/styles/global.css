@@ -311,6 +311,10 @@ section.cs-home-form {
   right: 20px;
 }
 
+.cs-form-control p.error {
+  @apply mt-1 text-red-500;
+}
+
 .cs-form input::-webkit-outer-spin-button,
 .cs-form input::-webkit-inner-spin-button {
   -webkit-appearance: none;
