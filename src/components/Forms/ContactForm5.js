@@ -129,7 +129,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
     let bodyFormData = new FormData()
     const form = e.target
     //console.log(data)
-
+    //console.log(data.deliveryDate.toLocaleString())
     window.grecaptcha.ready(() => {
       window.grecaptcha
         .execute(process.env.GATSBY_RECAPTCHA_KEY, { action: "submit" })
@@ -141,8 +141,11 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
           bodyFormData.append("your-subject", data.subject)
           bodyFormData.append("waste-type", data.waste)
           bodyFormData.append("bin-size", data.bin)
-          bodyFormData.append("delivery-date", data.deliveryDate)
-          bodyFormData.append("return-date", data.returnDate)
+          bodyFormData.append(
+            "delivery-date",
+            data.deliveryDate.toLocaleString()
+          )
+          bodyFormData.append("return-date", data.returnDate.toLocaleString())
           bodyFormData.append("suburb", data.suburb.value)
           bodyFormData.append("address", data.address)
           bodyFormData.append("postcode", data.postcode)
@@ -371,7 +374,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                         onChange={onChange}
                         selected={value}
                         selectsStart
-                        minDate={new Date()}
+                        minDate={new Date().toDateString}
                         startDate={deliveryDate}
                         endDate={returnDate}
                         placeholderText="Choose delivery date"
