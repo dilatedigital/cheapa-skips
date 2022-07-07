@@ -696,16 +696,27 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
 
             <div className="first-last cs-form-control">
               <div>
-                <label htmlFor="mattresses">{mattresses}</label>
-                <div>
-                  <input
-                    type="number"
-                    id="mattresses"
-                    name="mattresses"
-                    min="0"
-                    placeholder={mattresses}
-                    ref={register()}
-                  />
+                <label htmlFor="dropdoor">{dropDoorLabel}*</label>
+                <div className="relative">
+                  <select
+                    name="dropdoor"
+                    id="dropdoor"
+                    ref={register({
+                      required: "Please select if drop door is required.",
+                    })}
+                    required
+                    className={`${
+                      errors.dropdoor ? "ring-2 ring-red-500" : ""
+                    }`}
+                  >
+                    <option value="">Select Answer</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                  <ChevronDown />
+                  {errors.dropdoor && errors.dropdoor.message && (
+                    <p class="error">{errors.dropdoor.message}</p>
+                  )}
                 </div>
               </div>
               <div>
@@ -744,27 +755,16 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                 </div>
               </div>
               <div>
-                <label htmlFor="dropdoor">{dropDoorLabel}*</label>
-                <div className="relative">
-                  <select
-                    name="dropdoor"
-                    id="dropdoor"
-                    ref={register({
-                      required: "Please select if drop door is required.",
-                    })}
-                    required
-                    className={`${
-                      errors.dropdoor ? "ring-2 ring-red-500" : ""
-                    }`}
-                  >
-                    <option value="">Select Answer</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                  </select>
-                  <ChevronDown />
-                  {errors.dropdoor && errors.dropdoor.message && (
-                    <p class="error">{errors.dropdoor.message}</p>
-                  )}
+                <label htmlFor="mattresses">{mattresses}</label>
+                <div>
+                  <input
+                    type="number"
+                    id="mattresses"
+                    name="mattresses"
+                    min="0"
+                    placeholder={mattresses}
+                    ref={register()}
+                  />
                 </div>
               </div>
             </div>
