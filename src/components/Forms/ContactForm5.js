@@ -31,6 +31,9 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
             mattressesLabel
             tyresLabel
             dropDoorLabel
+            mixedLoadLabel
+            heavyLoadLabel
+            futileFeeLabel
             binSize {
               size
             }
@@ -53,6 +56,12 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
   const binSizes = data.wp.siteGeneralSettings.siteSettingsFields.binSize
   const wasteTypeOptions =
     data.wp.siteGeneralSettings.siteSettingsFields.wasteType
+  const mixedLoadLabel =
+    data.wp.siteGeneralSettings.siteSettingsFields.mixedLoadLabel
+  const heavyLoadLabel =
+    data.wp.siteGeneralSettings.siteSettingsFields.heavyLoadLabel
+  const futileFeeLabel =
+    data.wp.siteGeneralSettings.siteSettingsFields.futileFeeLabel
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -160,6 +169,9 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
           bodyFormData.append("tyres", data.tyres)
           bodyFormData.append("hire", data.hire)
           bodyFormData.append("drop-door", data.dropdoor)
+          bodyFormData.append("mixed-load", data.mixedLoad)
+          bodyFormData.append("heavy-load", data.heavyLoad)
+          bodyFormData.append("futile-fee", data.futileFee)
           bodyFormData.append("agreed", data.terms)
           bodyFormData.append("token", token)
 
@@ -753,6 +765,51 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                   {errors.dropdoor && errors.dropdoor.message && (
                     <p class="error">{errors.dropdoor.message}</p>
                   )}
+                </div>
+              </div>
+            </div>
+
+            <div className="first-last cs-form-control">
+              <div>
+                <label htmlFor="mixedLoad">{mixedLoadLabel}</label>
+                <div>
+                  <input
+                    type="number"
+                    id="mixedLoad"
+                    name="mixedLoad"
+                    min="0"
+                    placeholder={mixedLoadLabel}
+                    ref={register()}
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="heavyLoad">{heavyLoadLabel}</label>
+                <div>
+                  <input
+                    type="number"
+                    id="heavyLoad"
+                    name="heavyLoad"
+                    min="0"
+                    placeholder={heavyLoadLabel}
+                    ref={register()}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="first-last cs-form-control">
+              <div>
+                <label htmlFor="futileFee">{futileFeeLabel}</label>
+                <div>
+                  <input
+                    type="number"
+                    id="futileFee"
+                    name="futileFee"
+                    min="0"
+                    placeholder={futileFeeLabel}
+                    ref={register()}
+                  />
                 </div>
               </div>
             </div>
