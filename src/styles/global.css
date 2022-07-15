@@ -352,6 +352,10 @@ p a {
   @apply rounded-sm border border-secondary;
 }
 
+.cs-home-form .form-note div {
+  @apply text-secondary;
+}
+
 .cs-textarea textarea {
   @apply h-26;
 }
