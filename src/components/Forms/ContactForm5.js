@@ -12,6 +12,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import suburbs from "../../data/suburbs"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Script } from "gatsby"
+import Logo from "../Logo"
 
 const ContactForm5 = ({ isModal, bookNowContent }) => {
   const [serverState, setServerState] = useState({
@@ -40,6 +41,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
             wasteType {
               type
             }
+            formNotes
           }
         }
       }
@@ -62,6 +64,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
     data.wp.siteGeneralSettings.siteSettingsFields.heavyLoadLabel
   const futileFeeLabel =
     data.wp.siteGeneralSettings.siteSettingsFields.futileFeeLabel
+  const formNotes = data.wp.siteGeneralSettings.siteSettingsFields.formNotes
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -86,6 +89,11 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
 
   const deliveryDate = watch("deliveryDate")
   const returnDate = watch("returnDate")
+  const paymentMethodValue = watch("paymentMethod")
+
+  const forcedRequired = paymentMethodValue === "cash" ? false : true
+
+  //console.log(forcedRequired)
 
   const formLink = process.env.GATSBY_MODALFORM
 
@@ -171,7 +179,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
           bodyFormData.append("drop-door", data.dropdoor)
           bodyFormData.append("mixed-load", data.mixedLoad)
           bodyFormData.append("heavy-load", data.heavyLoad)
-          bodyFormData.append("futile-fee", data.futileFee)
+          //bodyFormData.append("futile-fee", data.futileFee)
           bodyFormData.append("agreed", data.terms)
           bodyFormData.append("token", token)
 
@@ -591,6 +599,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                       errors.nameOnCard ? "ring-2 ring-red-500" : ""
                     }`}
                     ref={register({
+                      required: forcedRequired,
                       minLength: {
                         value: 2,
                         message: "Name on Card must be at least 2 characters.",
@@ -598,8 +607,12 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                     })}
                   />
                   {errors.nameOnCard && errors.nameOnCard.message && (
-                    <p class="error">{errors.nameOnCard.message}</p>
+                    <p className="error">{errors.nameOnCard.message}</p>
                   )}
+                  {errors.nameOnCard &&
+                    errors.nameOnCard.type === "required" && (
+                      <p className="error">Name on Card is required.</p>
+                    )}
                 </div>
               </div>
               <div>
@@ -616,6 +629,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                       errors.cardNumber ? "ring-2 ring-red-500" : ""
                     }`}
                     ref={register({
+                      required: forcedRequired,
                       minLength: {
                         value: 16,
                         message: "Card Number must be 16 digits.",
@@ -627,8 +641,12 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                     })}
                   />
                   {errors.cardNumber && errors.cardNumber.message && (
-                    <p class="error">{errors.cardNumber.message}</p>
+                    <p className="error">{errors.cardNumber.message}</p>
                   )}
+                  {errors.cardNumber &&
+                    errors.cardNumber.type === "required" && (
+                      <p className="error">Card number is required.</p>
+                    )}
                 </div>
               </div>
             </div>
@@ -647,6 +665,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                       errors.cardExpiry ? "ring-2 ring-red-500" : ""
                     }`}
                     ref={register({
+                      required: forcedRequired,
                       minLength: {
                         value: 4,
                         message: "Card Expiry must be 4 digits.",
@@ -660,6 +679,10 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                   {errors.cardExpiry && errors.cardExpiry.message && (
                     <p class="error">{errors.cardExpiry.message}</p>
                   )}
+                  {errors.cardExpiry &&
+                    errors.cardExpiry.type === "required" && (
+                      <p className="error">Card expiry is required.</p>
+                    )}
                 </div>
               </div>
               <div>
@@ -675,6 +698,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                     }`}
                     rules={{ validate }}
                     ref={register({
+                      required: forcedRequired,
                       minLength: {
                         value: 3,
                         message:
@@ -690,6 +714,12 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                   {errors.threeDigits && errors.threeDigits.message && (
                     <p class="error">{errors.threeDigits.message}</p>
                   )}
+                  {errors.threeDigits &&
+                    errors.threeDigits.type === "required" && (
+                      <p className="error">
+                        Three digits on reverse is required.
+                      </p>
+                    )}
                 </div>
               </div>
             </div>
@@ -772,33 +802,44 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
             <div className="first-last cs-form-control">
               <div>
                 <label htmlFor="mixedLoad">{mixedLoadLabel}</label>
-                <div>
-                  <input
-                    type="number"
-                    id="mixedLoad"
+                <div className="relative">
+                  <select
                     name="mixedLoad"
-                    min="0"
-                    placeholder={mixedLoadLabel}
-                    ref={register()}
-                  />
+                    id="mixedLoad"
+                    ref={register({})}
+                    className={`${
+                      errors.mixedLoad ? "ring-2 ring-red-500" : ""
+                    }`}
+                  >
+                    <option value="">Select Answer</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                  <ChevronDown />
                 </div>
               </div>
+
               <div>
                 <label htmlFor="heavyLoad">{heavyLoadLabel}</label>
-                <div>
-                  <input
-                    type="number"
-                    id="heavyLoad"
+                <div className="relative">
+                  <select
                     name="heavyLoad"
-                    min="0"
-                    placeholder={heavyLoadLabel}
-                    ref={register()}
-                  />
+                    id="heavyLoad"
+                    ref={register({})}
+                    className={`${
+                      errors.heavyLoad ? "ring-2 ring-red-500" : ""
+                    }`}
+                  >
+                    <option value="">Select Answer</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                  <ChevronDown />
                 </div>
               </div>
             </div>
 
-            <div className="first-last cs-form-control">
+            {/* <div className="first-last cs-form-control">
               <div>
                 <label htmlFor="futileFee">{futileFeeLabel}</label>
                 <div>
@@ -812,7 +853,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="cs-textarea cs-form-control">
               <div>
@@ -829,11 +870,11 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
               </div>
             </div>
 
-            <div className="form-note cs-form-control p-4">
-              <p class="text-secondary">
-                NOTE: Payment is to be made prior to or on delivery of skip bin.
-              </p>
-            </div>
+            {formNotes && (
+              <div className="form-note cs-form-control p-4">
+                <div dangerouslySetInnerHTML={{ __html: formNotes }} />
+              </div>
+            )}
 
             <div className="terms-check cs-form-control">
               <div>
@@ -878,8 +919,11 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
         </>
       )}
       {isFormSubmitted && (
-        <div className="max-w-500px mx-auto mt-8 text-center">
-          Thank you! We will get back to you shortly.
+        <div className="text-center">
+          <Logo />
+          <div className="max-w-500px mx-auto mt-8 text-center">
+            Thank you for your booking request! We will get back to you shortly.
+          </div>
         </div>
       )}
     </>
