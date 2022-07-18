@@ -10,7 +10,7 @@ const ModalContents = () => {
     <div className="cs-home-form modal-content">
       <div className="modal-content__text">
         <h2>{`Book a ${modalTitle == null ? "bin" : modalTitle}`}</h2>
-        <p>Fill out the form below to place a booking for a skip bin.</p>
+        {/* <p>Fill out the form below to place a booking for a skip bin.</p> */}
       </div>
 
       <ContactForm5 isModal={true} />
