@@ -9,7 +9,7 @@ const ModalContents = () => {
   return (
     <div className="cs-home-form modal-content">
       <div className="modal-content__text">
-        <h2>{`Book a ${modalTitle == null ? "bin" : modalTitle}`}</h2>
+        {/* <h2>{`Book a ${modalTitle == null ? "bin" : modalTitle}`}</h2> */}
         {/* <p>Fill out the form below to place a booking for a skip bin.</p> */}
       </div>
 
