@@ -38,6 +38,12 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
             binSize {
               size
             }
+            mattressesOptions {
+              option
+            }
+            tyresOptions {
+              option
+            }
             wasteType {
               type
             }
@@ -65,6 +71,10 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
   const futileFeeLabel =
     data.wp.siteGeneralSettings.siteSettingsFields.futileFeeLabel
   const formNotes = data.wp.siteGeneralSettings.siteSettingsFields.formNotes
+  const mattressesOptions =
+    data.wp.siteGeneralSettings.siteSettingsFields.mattressesOptions
+  const tyresOptions =
+    data.wp.siteGeneralSettings.siteSettingsFields.tyresOptions
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -751,15 +761,23 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
               </div>
               <div>
                 <label htmlFor="tyres">{tyres}</label>
-                <div>
-                  <input
-                    type="number"
+                <div class="relative">
+                  <select
                     id="tyres"
                     name="tyres"
-                    min="0"
                     placeholder={tyres}
                     ref={register()}
-                  />
+                  >
+                    <option value="">Select Answer</option>
+                    {tyresOptions.map(function (item, i) {
+                      return (
+                        <option value={item.option} key={i}>
+                          {item.option}
+                        </option>
+                      )
+                    })}
+                  </select>
+                  <ChevronDown />
                 </div>
               </div>
             </div>
@@ -786,27 +804,32 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
               </div>
               <div>
                 <label htmlFor="mattresses">{mattresses}</label>
-                <div>
-                  <input
-                    type="number"
-                    id="mattresses"
-                    name="mattresses"
-                    min="0"
-                    placeholder={mattresses}
-                    ref={register()}
-                  />
+
+                <div class="relative">
+                  <select id="mattresses" name="mattresses" ref={register()}>
+                    <option value="">Select Answer</option>
+                    {mattressesOptions.map(function (item, i) {
+                      return (
+                        <option value={item.option} key={i}>
+                          {item.option}
+                        </option>
+                      )
+                    })}
+                  </select>
+                  <ChevronDown />
                 </div>
               </div>
             </div>
 
             <div className="first-last cs-form-control">
               <div>
-                <label htmlFor="mixedLoad">{mixedLoadLabel}</label>
+                <label htmlFor="mixedLoad">{mixedLoadLabel}*</label>
                 <div className="relative">
                   <select
                     name="mixedLoad"
                     id="mixedLoad"
-                    ref={register({})}
+                    ref={register({ required: "Please select a value." })}
+                    required
                     className={`${
                       errors.mixedLoad ? "ring-2 ring-red-500" : ""
                     }`}
@@ -816,16 +839,20 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                     <option value="No">No</option>
                   </select>
                   <ChevronDown />
+                  {errors.mixedLoad && errors.mixedLoad.message && (
+                    <p class="error">{errors.mixedLoad.message}</p>
+                  )}
                 </div>
               </div>
 
               <div>
-                <label htmlFor="heavyLoad">{heavyLoadLabel}</label>
+                <label htmlFor="heavyLoad">{heavyLoadLabel}*</label>
                 <div className="relative">
                   <select
                     name="heavyLoad"
                     id="heavyLoad"
-                    ref={register({})}
+                    ref={register({ required: "Please select a value." })}
+                    required
                     className={`${
                       errors.heavyLoad ? "ring-2 ring-red-500" : ""
                     }`}
@@ -835,6 +862,9 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                     <option value="No">No</option>
                   </select>
                   <ChevronDown />
+                  {errors.heavyLoad && errors.heavyLoad.message && (
+                    <p class="error">{errors.heavyLoad.message}</p>
+                  )}
                 </div>
               </div>
             </div>
