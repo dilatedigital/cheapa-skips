@@ -38,6 +38,9 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
             binSize {
               size
             }
+            additionalHireOptions {
+              option
+            }
             mattressesOptions {
               option
             }
@@ -75,6 +78,8 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
     data.wp.siteGeneralSettings.siteSettingsFields.mattressesOptions
   const tyresOptions =
     data.wp.siteGeneralSettings.siteSettingsFields.tyresOptions
+  const additionalHireOptions =
+    data.wp.siteGeneralSettings.siteSettingsFields.additionalHireOptions
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -404,7 +409,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                         onChange={onChange}
                         selected={value}
                         selectsStart
-                        minDate={new Date().toDateString}
+                        minDate={new Date()}
                         startDate={deliveryDate}
                         endDate={returnDate}
                         placeholderText="Choose delivery date"
@@ -784,23 +789,29 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
 
             <div className="first-last cs-form-control">
               <div>
-                <label htmlFor="hire">{additionalHire}</label>
+                <label htmlFor="hire">{additionalHire}*</label>
                 <div className="relative">
                   <select
                     name="hire"
                     id="hire"
-                    ref={register({})}
+                    ref={register({ required: "Please select an answer." })}
                     className={`${errors.hire ? "ring-2 ring-red-500" : ""}`}
                   >
                     <option value="">Select Answer</option>
-                    <option value="1 Week">1 Week</option>
-                    <option value="2 Weeks">2 Weeks</option>
-                    <option value="3 Weeks">3 Weeks</option>
-                    <option value="4 Weeks">4 Weeks</option>
-                    <option value="more">More</option>
+
+                    {additionalHireOptions.map(function (item, i) {
+                      return (
+                        <option value={item.option} key={i}>
+                          {item.option}
+                        </option>
+                      )
+                    })}
                   </select>
                   <ChevronDown />
                 </div>
+                {errors.hire && errors.hire.message && (
+                  <p class="error">{errors.hire.message}</p>
+                )}
               </div>
               <div>
                 <label htmlFor="mattresses">{mattresses}</label>
