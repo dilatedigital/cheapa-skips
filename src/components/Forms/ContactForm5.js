@@ -413,7 +413,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                         startDate={deliveryDate}
                         endDate={returnDate}
                         placeholderText="Choose delivery date"
-                        dateFormat="MM/dd/yyyy h:mm:aa"
+                        dateFormat="dd/MM/yyyy h:mm:aa"
                         showTimeInput
                         id="deliveryDate"
                         autoComplete="off"
@@ -450,7 +450,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
                         endDate={returnDate}
                         id="returnDate"
                         autoComplete="off"
-                        dateFormat="MM/dd/yyyy h:mm:aa"
+                        dateFormat="dd/MM/yyyy h:mm:aa"
                         showTimeInput
                         placeholderText="Choose delivery return date"
                         className={`${
