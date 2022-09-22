@@ -161,7 +161,15 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
     let bodyFormData = new FormData()
     const form = e.target
     //console.log(data)
-    //console.log(data.deliveryDate.toLocaleString())
+
+    const formatedDeliveryDate = `${data.deliveryDate.toLocaleDateString(
+      "en-AU"
+    )} ${data.deliveryDate.toLocaleTimeString("en-AU")}`
+
+    const formatedReturnDate = `${data.returnDate.toLocaleDateString(
+      "en-AU"
+    )} ${data.returnDate.toLocaleTimeString("en-AU")}`
+    //console.log(formatedDeliveryDate)
     window.grecaptcha.ready(() => {
       window.grecaptcha
         .execute(process.env.GATSBY_RECAPTCHA_KEY, { action: "submit" })
@@ -173,11 +181,8 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
           bodyFormData.append("your-subject", data.subject)
           bodyFormData.append("waste-type", data.waste)
           bodyFormData.append("bin-size", data.bin)
-          bodyFormData.append(
-            "delivery-date",
-            data.deliveryDate.toLocaleString()
-          )
-          bodyFormData.append("return-date", data.returnDate.toLocaleString())
+          bodyFormData.append("delivery-date", formatedDeliveryDate)
+          bodyFormData.append("return-date", formatedReturnDate)
           bodyFormData.append("suburb", data.suburb.value)
           bodyFormData.append("address", data.address)
           bodyFormData.append("postcode", data.postcode)
