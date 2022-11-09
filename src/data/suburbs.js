@@ -220,6 +220,7 @@ export default [
   "Maida Vale",
   "Malaga",
   "Mandogalup",
+  "Mandurah",
   "Manning",
   "Marangaroo",
   "Mardella",
