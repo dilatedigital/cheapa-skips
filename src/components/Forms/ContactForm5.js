@@ -9,7 +9,7 @@ import Calendar from "../../images/calendar.svg"
 import Loading from "../../images/loading.svg"
 import ReactDatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-import suburbs from "../../data/suburbs"
+//import suburbs from "../../data/suburbs"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Script } from "gatsby"
 import Logo from "../Logo"
@@ -51,6 +51,9 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
               type
             }
             formNotes
+            suburbs {
+              suburb
+            }
           }
         }
       }
@@ -80,6 +83,7 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
     data.wp.siteGeneralSettings.siteSettingsFields.tyresOptions
   const additionalHireOptions =
     data.wp.siteGeneralSettings.siteSettingsFields.additionalHireOptions
+  const dynamicSubs = data.wp.siteGeneralSettings.siteSettingsFields.suburbs
 
   const handleServerResponse = (ok, msg, form) => {
     setServerState({
@@ -115,12 +119,14 @@ const ContactForm5 = ({ isModal, bookNowContent }) => {
   //declare options for suburb
   let options = []
 
-  suburbs.forEach(item => {
+  dynamicSubs.forEach(item => {
     options.push({
-      value: item,
-      label: item,
+      value: item.suburb,
+      label: item.suburb,
     })
   })
+
+  //console.log(dynamicSubs)
 
   //change dropdown indicator
   const DropdownIndicator = props => {
