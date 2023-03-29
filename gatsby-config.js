@@ -13,7 +13,7 @@ module.exports = {
     description: `Cheapa Skips WA website powered by Gatsby.js`,
     author: `Dilate Digital - Jejomar Dorongon`,
     image: "/cheapa-skips-logo.png",
-    siteUrl: `https://google.com/`,
+    siteUrl: `https://cheapaskipswa.com.au`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -24,10 +24,66 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+            allWpContentNode(filter: {nodeType: {in: ["Post", "Page"]}}) {
+              nodes {
+                ... on WpPost {
+                  uri
+                  modifiedGmt
+                }
+                ... on WpPage {
+                  uri
+                  modifiedGmt
+                }
+              }
+            }
+          }
+        `,
+        resolveSiteUrl: ({ site }) => {
+          console.log("Site object:", site)
+          return site.siteMetadata.siteUrl
+        },
+        resolvePages: ({
+          allSitePage: { nodes: allSitePages },
+          allWpContentNode: { nodes: allWpContentNodes },
+        }) => {
+          const wpNodeMap = allWpContentNodes.reduce((acc, node) => {
+            const { uri } = node
+            acc[uri] = node
+            return acc
+          }, {})
+
+          return allSitePages.map(page => {
+            const wpNode = wpNodeMap[page.path]
+            return { ...page, ...wpNode }
+          })
+        },
+        serialize: ({ path, modifiedGmt }) => {
+          return {
+            url: path,
+            lastmod: modifiedGmt,
+          }
+        },
+        output: "/sitemap",
+      },
+    },
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-no-index`,
     {
       resolve: `gatsby-source-wordpress`,
       options: {
@@ -37,6 +93,16 @@ module.exports = {
          */
         url: process.env.GATSBY_WPGRAPHQL_URL,
         verbose: true,
+        schema: {
+          timeout: 30000, // Increase the timeout to 30 seconds
+        },
+        type: {
+          MediaItem: {
+            localFile: {
+              requestConcurrency: 5, // Limit concurrent file download requests
+            },
+          },
+        },
       },
     },
     {
