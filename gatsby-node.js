@@ -65,4 +65,39 @@ exports.createPages = async ({ actions, graphql }) => {
       },
     })
   })
+
+  // Add your redirect codes here
+  const { createRedirect } = actions
+
+  const redirects = [
+    {
+      fromPath: "/book-now",
+      toPath: "/contact/",
+    },
+    {
+      fromPath: "/bin-sizes",
+      toPath: "/pricing-sizes/",
+    },
+    {
+      fromPath: "/about",
+      toPath: "/about-us/",
+    },
+    {
+      fromPath: "/termsconditions",
+      toPath: "/terms-conditions/",
+    },
+    {
+      fromPath: "/service-areas",
+      toPath: "/services/",
+    },
+  ]
+
+  redirects.forEach(({ fromPath, toPath }) => {
+    createRedirect({
+      fromPath,
+      toPath,
+      isPermanent: true,
+      redirectInBrowser: true,
+    })
+  })
 }
