@@ -72,7 +72,7 @@ exports.createPages = async ({ actions, graphql }) => {
   const redirects = [
     {
       fromPath: "/book-now",
-      toPath: "/contact/",
+      toPath: "/pricing-sizes/",
     },
     {
       fromPath: "/bin-sizes",
