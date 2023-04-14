@@ -11,7 +11,12 @@ const Layout = ({ children }) => {
     <>
       <Helmet
         bodyAttributes={{ class: isMenuOpen || isModalOpen ? "menu-open" : "" }}
-      />
+      >
+        <meta
+          name="google-site-verification"
+          content="wieiCCQO9kfBI80J_hURjrC0B-Hx0qFh3WDFeD_ss6A"
+        />
+      </Helmet>
       <div className="flex flex-col min-h-screen">
         <Header />
         <main>{children}</main>
